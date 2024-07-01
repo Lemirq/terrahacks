@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BackgroundBeams } from '@/components/beams';
 import { World } from '@/components/globe';
 import { toast } from 'sonner';
@@ -22,8 +22,8 @@ export default function Home() {
 		console.log(data);
 
 		if (data.status === 'success') {
-			toast.success('Thanks for your submission!', {
-				description: 'We will get back to you soon.',
+			toast.success('Thanks for signing up!', {
+				description: 'We will get back to you soon. \n email: ' + formData.get('email') + '\n name: ' + formData.get('name'),
 			});
 		} else {
 			toast.error('Something went wrong!', {
@@ -419,19 +419,18 @@ export default function Home() {
 		},
 	];
 	return (
-		<div className="h-screen w-full bg-neutral-950 relative fc justify-start antialiased overflow-hidden">
-			<div className="max-w-3xl mx-auto p-4 mt-20 z-50">
-				<h1 className="relative z-10 text-lg md:text-7xl  bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold">
+		<div className="h-screen w-full bg-neutral-950 relative fc justify-start antialiased overflow-hidden px-5">
+			<div className="max-w-3xl mx-auto mt-20 z-50">
+				<h1 className="relative z-10 text-5xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold">
 					TerraHacks 2024
 				</h1>
-				<p></p>
-				<p className="text-neutral-500 mx-auto my-2 text-xl text-center relative z-10 mb-3">
+				<p className="text-neutral-500 mx-auto my-2 text-sm sm:text-xl text-center relative z-10 mb-3">
 					TerraHacks is a global hackathon for the public good. We are a community of builders, hackers, and makers who are passionate about
 					the intersection of technology and society. Our goal is to create a more inclusive and equitable world by bringing together
 					diverse perspectives and experiences.
 				</p>
 				<form className="fc gap-2 w-full" onSubmit={handleSubmit}>
-					<div className="fr gap-2 w-full">
+					<div className="sm:fr fc gap-2 w-full">
 						<div className="fc items-start w-full">
 							<label htmlFor="name" className="text-neutral-500 text-sm">
 								Name
@@ -465,7 +464,7 @@ export default function Home() {
 					</button>
 				</form>
 			</div>
-			<div className="md:absolute w-full aspect-square top-[30vh] z-10">
+			<div className="absolute w-full min-w-[600px] aspect-square -bottom-[10vh] md:top-[30vh] z-10">
 				<World data={sampleArcs} globeConfig={globeConfig} />;
 			</div>
 
