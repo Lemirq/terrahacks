@@ -1,9 +1,11 @@
 'use client';
 import React, { useEffect, useState } from 'react';
 import { BackgroundBeams } from '@/components/beams';
-import { World } from '@/components/globe';
 import { toast } from 'sonner';
-
+import dynamic from 'next/dynamic';
+const World = dynamic(() => import('@/components/globe').then((m) => m.World), {
+	ssr: false,
+});
 export default function Home() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
