@@ -424,12 +424,13 @@ export default function Home() {
 		<div className="h-screen w-full bg-neutral-950 relative fc justify-start antialiased overflow-hidden px-5">
 			<div className="max-w-3xl mx-auto mt-20 z-50">
 				<h1 className="relative z-10 text-5xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold">
-					TerraHacks 2024
+					Hack49
 				</h1>
+				<h3 className="text-neutral-300 mx-auto my-2 text-2xl text-center relative z-10 mb-3 font-bold">2024</h3>
 				<p className="text-neutral-500 mx-auto my-2 text-sm sm:text-xl text-center relative z-10 mb-3">
-					TerraHacks is a global hackathon for the public good. We are a community of builders, hackers, and makers who are passionate about
-					the intersection of technology and society. Our goal is to create a more inclusive and equitable world by bringing together
-					diverse perspectives and experiences.
+					Hack49 is a global hackathon for the public good. We are a community of builders, hackers, and makers who are passionate about the
+					intersection of technology and society. Our goal is to create a more inclusive and equitable world by bringing together diverse
+					perspectives and experiences.
 				</p>
 				<form className="fc gap-2 w-full" onSubmit={handleSubmit}>
 					<div className="sm:fr fc gap-2 w-full">
@@ -455,7 +456,7 @@ export default function Home() {
 								id="email"
 								type="email"
 								required
-								placeholder="hi@terrahacks.io"
+								placeholder="hi@hack49.com"
 								className="rounded-lg border border-neutral-800 px-5 py-3 w-full relative z-10 bg-neutral-950 placeholder:text-neutral-700 active:outline-none focus:outline-none text-white"
 							/>
 						</div>

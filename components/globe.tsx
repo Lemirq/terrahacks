@@ -145,10 +145,37 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
 	useEffect(() => {
 		if (globeRef.current && globeData) {
+			const N_PATHS = 1; // Only one path
+			const MAX_POINTS_PER_LINE = 10000;
+			const MAX_STEP_DEG = 360;
+			const MAX_STEP_ALT = 0.015;
+			const gData = [...Array(N_PATHS).keys()].map(() => {
+				let lat = 49; // Fixed latitude on the 49th parallel
+				// make it go only on canada
+				let lng = 1;
+				let alt = 1000;
+
+				return [
+					[lat, lng, alt],
+					...[...Array(Math.round(Math.random() * MAX_POINTS_PER_LINE)).keys()].map(() => {
+						lng += (Math.random() * 2 - 1) * MAX_STEP_DEG;
+						alt += (Math.random() * 2 - 1) * MAX_STEP_ALT;
+						alt = Math.max(0, alt);
+
+						return [lat, lng, alt];
+					}),
+				];
+			});
+
 			globeRef.current
 				.hexPolygonsData(countries.features)
+				.pathsData(gData)
 				.hexPolygonResolution(3)
 				.hexPolygonMargin(0.7)
+				.pathColor((e) => {
+					return '#6366f1';
+				})
+				.pathStroke(1.5)
 				.showAtmosphere(defaultProps.showAtmosphere)
 				.atmosphereColor(defaultProps.atmosphereColor)
 				.atmosphereAltitude(defaultProps.atmosphereAltitude)
