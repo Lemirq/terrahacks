@@ -3,37 +3,14 @@ import React, { useEffect, useState } from 'react';
 import { BackgroundBeams } from '@/components/beams';
 import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
+import SignUpWaitlist from '@/components/SignUpWaitlist';
+import { AuroraBackground } from '@/components/aurora';
+import { motion } from 'framer-motion';
+
 const World = dynamic(() => import('@/components/globe').then((m) => m.World), {
 	ssr: false,
 });
 export default function Home() {
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		const formData = new FormData(e.target);
-
-		// post request to /api/mailing with body formData
-		const response = await fetch('/api/mailing', {
-			method: 'POST',
-			body: JSON.stringify({
-				name: formData.get('name'),
-				email: formData.get('email'),
-			}),
-		});
-
-		const data = await response.json();
-		console.log(data);
-
-		if (data.status === 'success') {
-			toast.success('Thanks for signing up!', {
-				description: 'We will get back to you soon. \n email: ' + formData.get('email') + '\n name: ' + formData.get('name'),
-			});
-		} else {
-			toast.error('Something went wrong!', {
-				description: data.error,
-			});
-		}
-	};
-
 	const globeConfig = {
 		pointSize: 4,
 		globeColor: '#1f1f1f',
@@ -421,57 +398,29 @@ export default function Home() {
 		},
 	];
 	return (
-		<div className="h-screen w-full bg-neutral-950 relative fc justify-start antialiased overflow-hidden px-5">
-			<div className="max-w-3xl mx-auto mt-20 z-50">
-				<h1 className="relative z-10 text-5xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-b from-neutral-200 to-neutral-600  text-center font-sans font-bold">
-					Hack49
-				</h1>
-				<h3 className="text-neutral-300 mx-auto my-2 text-2xl text-center relative z-10 mb-3 font-bold">2024</h3>
-				<p className="text-neutral-500 mx-auto my-2 text-sm sm:text-xl text-center relative z-10 mb-3">
-					Hack49 is a global hackathon for the public good. We are a community of builders, hackers, and makers who are passionate about the
-					intersection of technology and society. Our goal is to create a more inclusive and equitable world by bringing together diverse
-					perspectives and experiences.
-				</p>
-				<form className="fc gap-2 w-full" onSubmit={handleSubmit}>
-					<div className="sm:fr fc gap-2 w-full">
-						<div className="fc items-start w-full">
-							<label htmlFor="name" className="text-neutral-500 text-sm">
-								Name
-							</label>
-							<input
-								name="name"
-								id="name"
-								required
-								type="text"
-								placeholder="John Doe"
-								className="rounded-lg border border-neutral-800 px-5 py-3 w-full relative z-10 bg-neutral-950 placeholder:text-neutral-700 active:outline-none focus:outline-none text-white"
-							/>
-						</div>
-						<div className="fc items-start w-full">
-							<label htmlFor="email" className="text-neutral-500 text-sm">
-								Email
-							</label>
-							<input
-								name="email"
-								id="email"
-								type="email"
-								required
-								placeholder="hi@hack49.com"
-								className="rounded-lg border border-neutral-800 px-5 py-3 w-full relative z-10 bg-neutral-950 placeholder:text-neutral-700 active:outline-none focus:outline-none text-white"
-							/>
-						</div>
-					</div>
+		<>
+			<div className="h-screen hidden sm:fc w-full bg-neutral-950 relative fc sm:justify-start antialiased overflow-hidden px-5">
+				<SignUpWaitlist />
+				<div className="absolute w-full min-w-[600px] aspect-square -bottom-[10vh] md:top-[30vh] z-10">
+					<World data={sampleArcs} globeConfig={globeConfig} />;
+				</div>
 
-					<button type="submit" className="border-neutral-800 px-5 py-3 rounded-lg bg-white text-black font-bold text-sm w-full">
-						Submit
-					</button>
-				</form>
+				<BackgroundBeams />
 			</div>
-			<div className="absolute w-full min-w-[600px] aspect-square -bottom-[10vh] md:top-[30vh] z-10">
-				<World data={sampleArcs} globeConfig={globeConfig} />;
-			</div>
-
-			<BackgroundBeams />
-		</div>
+			<AuroraBackground>
+				<motion.div
+					initial={{ opacity: 0.0, y: 40 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					transition={{
+						delay: 0.3,
+						duration: 0.8,
+						ease: 'easeInOut',
+					}}
+					className="relative flex flex-col gap-4 items-center justify-center px-4"
+				>
+					<SignUpWaitlist />
+				</motion.div>
+			</AuroraBackground>
+		</>
 	);
 }
