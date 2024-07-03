@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 	initialScale: 1,
 	maximumScale: 5,
 	minimumScale: 1,
-	userScalable: false``,
+	userScalable: false,
 };
 
 export default function RootLayout({
