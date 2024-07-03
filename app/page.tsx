@@ -10,6 +10,7 @@ import { motion } from 'framer-motion';
 const World = dynamic(() => import('@/components/globe').then((m) => m.World), {
 	ssr: false,
 });
+
 export default function Home() {
 	const globeConfig = {
 		pointSize: 4,
