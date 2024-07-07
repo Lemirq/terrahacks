@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { Toaster } from 'sonner';
 import Navbar from '@/components/Navbar';
+import { GoogleAnalytics } from '@next/third-parties/google';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -40,6 +41,7 @@ export default function RootLayout({
 				<Navbar />
 				{children}
 				<Toaster />
+				<GoogleAnalytics gaId="G-XC1DE1499V" />
 			</body>
 		</html>
 	);
