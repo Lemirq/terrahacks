@@ -32,7 +32,7 @@ const SignUpWaitlist = () => {
 
 	return (
 		<div className="max-w-3xl mx-auto mt-14 z-50">
-			<motion.h1 className="relative z-10 text-6xl md:text-9xl bg-clip-text text-transparent bg-gradient-to-b from-blue-300 to-blue-900 text-center font-sans font-bold">
+			<motion.h1 className="relative z-10 text-6xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-b from-blue-300 to-blue-900 text-center font-sans font-bold">
 				Hack49
 			</motion.h1>
 			<h3 className="text-neutral-300 mx-auto my-2 text-2xl text-center relative z-10 mb-3 font-bold">2024</h3>
