@@ -41,7 +41,7 @@ export default function RootLayout({
 				<Navbar />
 				{children}
 				<Toaster />
-				<GoogleAnalytics gaId="G-XC1DE1499V" />
+				<GoogleAnalytics gaId="G-DJNEVNJYM7" />
 			</body>
 		</html>
 	);
