@@ -17,3 +17,7 @@
 		text-wrap: balance;
 	}
 }
+
+.nav-links > li {
+	@apply p-1 rounded-md bg-white/0 hover:bg-white/10 transition-colors;
+}

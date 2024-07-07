@@ -1,7 +1,6 @@
 'use client';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BackgroundBeams } from '@/components/beams';
-import { toast } from 'sonner';
 import dynamic from 'next/dynamic';
 import SignUpWaitlist from '@/components/SignUpWaitlist';
 import { AuroraBackground } from '@/components/aurora';
