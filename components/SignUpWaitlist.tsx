@@ -31,7 +31,7 @@ const SignUpWaitlist = () => {
 	};
 
 	return (
-		<div className="max-w-3xl mx-auto mt-14 z-50">
+		<div className="max-w-3xl mx-auto z-50">
 			<motion.h1 className="relative z-10 text-6xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-b from-blue-300 to-blue-900 text-center font-sans font-bold">
 				Hack49
 			</motion.h1>
@@ -54,7 +54,7 @@ const SignUpWaitlist = () => {
 							required
 							type="text"
 							placeholder="John Doe"
-							className="rounded-lg border border-neutral-800 px-5 py-3 w-full relative z-10 bg-neutral-950 placeholder:text-neutral-700 active:outline-none focus:outline-none text-white"
+							className="rounded-lg border border-neutral-800 px-5 py-3 w-full relative z-10 bg-neutral-950 placeholder:text-neutral-600 active:outline-none focus:outline-none text-white"
 						/>
 					</div>
 					<div className="fc items-start w-full">
@@ -67,7 +67,7 @@ const SignUpWaitlist = () => {
 							type="email"
 							required
 							placeholder="hi@hack49.com"
-							className="rounded-lg border border-neutral-800 px-5 py-3 w-full relative z-10 bg-neutral-950 placeholder:text-neutral-700 active:outline-none focus:outline-none text-white"
+							className="rounded-lg border border-neutral-800 px-5 py-3 w-full relative z-10 bg-neutral-950 placeholder:text-neutral-600 active:outline-none focus:outline-none text-white"
 						/>
 					</div>
 				</div>

@@ -399,11 +399,11 @@ export default function Home() {
 	];
 	return (
 		<>
-			<div className="h-screen hidden sm:fc w-full bg-neutral-950 relative fc sm:justify-start antialiased overflow-hidden px-5">
+			<div className="h-screen hidden sm:fc w-full bg-neutral-950 relative fc sm:justify- antialiased overflow-hidden px-5">
 				<SignUpWaitlist />
-				<div className="absolute w-full min-w-[600px] aspect-square -bottom-[10vh] md:top-[30vh] z-10">
+				{/* <div className="absolute w-full min-w-[600px] aspect-square -bottom-[10vh] md:top-[30vh] z-10">
 					<World data={sampleArcs} globeConfig={globeConfig} />;
-				</div>
+				</div> */}
 
 				<BackgroundBeams />
 			</div>
