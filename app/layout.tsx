@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import './satoshi.css';
 import { Toaster } from 'sonner';
 import Navbar from '@/components/Navbar';
 import { GoogleAnalytics } from '@next/third-parties/google';
-
-const inter = Inter({ subsets: ['latin'] });
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
 	title: 'Hack49',
@@ -37,11 +37,12 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={inter.className + ' bg-neutral-950'}>
+			<body className={'bg-neutral-950 font-satoshi text-white'}>
 				<Navbar />
 				{children}
 				<Toaster />
 				<GoogleAnalytics gaId="G-DJNEVNJYM7" />
+				<Footer />
 			</body>
 		</html>
 	);

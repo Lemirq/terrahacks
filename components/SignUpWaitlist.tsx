@@ -1,6 +1,8 @@
-import React from 'react';
+'use client';
+import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
+import { IoArrowDownCircle, IoChevronDown } from 'react-icons/io5';
 
 const SignUpWaitlist = () => {
 	const handleSubmit = async (e) => {
@@ -30,18 +32,48 @@ const SignUpWaitlist = () => {
 		}
 	};
 
+	const calculateTimeLeft = () => {
+		const difference = +new Date('10/19/2024') - +new Date();
+		let timeLeft = {};
+
+		if (difference > 0) {
+			timeLeft = {
+				months: Math.floor(difference / (1000 * 60 * 60 * 24 * 30)),
+				days: Math.floor((difference / (1000 * 60 * 60 * 24)) % 30),
+				hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+				minutes: Math.floor((difference / 1000 / 60) % 60),
+				seconds: Math.floor((difference / 1000) % 60),
+			};
+		}
+
+		return timeLeft;
+	};
+
+	const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setTimeLeft(calculateTimeLeft());
+		}, 1000);
+
+		return () => clearTimeout(timer);
+	});
+
 	return (
-		<div className="max-w-3xl mx-auto z-50">
-			<motion.h1 className="relative z-10 text-6xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-b from-blue-300 to-blue-900 text-center font-sans font-bold">
+		<div className="max-w-xl w-full lg:max-w-xl xl:max-w-3xl mx-auto md:mx-0 z-30 fc items-start">
+			<motion.h1 className="relative text-6xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-b from-blue-300 to-blue-900 text-center font-extrabold">
 				Hack49
 			</motion.h1>
-			<h3 className="text-neutral-300 mx-auto my-2 text-2xl text-center relative z-10 mb-3 font-bold">2024</h3>
-			<p className="text-neutral-400 mx-auto my-2 text-sm sm:text-xl text-center relative z-10 mb-3">
+			<h3 className="text-neutral-300 my-2 text-2xl mb-3 font-bold">2024</h3>
+			<p className="text-neutral-400 my-2 text-sm sm:text-xl">
 				Hack49 is a global hackathon for the public good. We are a community of builders, hackers, and makers who are passionate about the
 				intersection of technology and society. Our goal is to create a more inclusive and equitable world by bringing together diverse
 				perspectives and experiences.
 			</p>
-			<form className="fc gap-2 w-full" onSubmit={handleSubmit}>
+			<div className="text-white text-2xl mb-10">
+				{timeLeft.months}mo {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s until Hack49 2024!
+			</div>
+			<form className="fc gap-2 w-full items-start" onSubmit={handleSubmit}>
 				<h3 className="text-neutral-400 text-center text-lg">Join the Hack49 waitlist!</h3>
 				<div className="sm:fr fc gap-2 w-full">
 					<div className="fc items-start w-full">
@@ -54,7 +86,7 @@ const SignUpWaitlist = () => {
 							required
 							type="text"
 							placeholder="John Doe"
-							className="rounded-lg border border-neutral-800 px-5 py-3 w-full relative z-10 bg-neutral-950 placeholder:text-neutral-600 active:outline-none focus:outline-none text-white"
+							className="rounded-lg border border-neutral-800 px-5 py-3 w-full relative bg-neutral-950 placeholder:text-neutral-600 active:outline-none focus:outline-none text-white"
 						/>
 					</div>
 					<div className="fc items-start w-full">
@@ -67,7 +99,7 @@ const SignUpWaitlist = () => {
 							type="email"
 							required
 							placeholder="hi@hack49.com"
-							className="rounded-lg border border-neutral-800 px-5 py-3 w-full relative z-10 bg-neutral-950 placeholder:text-neutral-600 active:outline-none focus:outline-none text-white"
+							className="rounded-lg border border-neutral-800 px-5 py-3 w-full relative bg-neutral-950 placeholder:text-neutral-600 active:outline-none focus:outline-none text-white"
 						/>
 					</div>
 				</div>
@@ -80,7 +112,16 @@ const SignUpWaitlist = () => {
 				>
 					Submit
 				</button>
+
+				{/* scroll down animation */}
 			</form>
+			<button
+				className="w-full fr items-start gap-2 text-neutral-500 mt-4 animate-bounce"
+				onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
+			>
+				<IoArrowDownCircle className="text-xl" />
+				<p className="text-sm">Scroll Down</p>
+			</button>
 		</div>
 	);
 };
