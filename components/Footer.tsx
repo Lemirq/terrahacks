@@ -37,7 +37,7 @@ const Footer = () => {
 				<div className="sm:flex sm:items-center sm:justify-between fc sm:fr gap-3">
 					<span className="text-sm text-gray-500 text-center dark:text-gray-400">
 						© {new Date().getFullYear()}{' '}
-						<a href="https://flowbite.com/" className="hover:underline">
+						<a href="https://hack-49.vercel.app/" className="hover:underline">
 							Hack49 Global™
 						</a>
 						. All Rights Reserved.
