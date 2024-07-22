@@ -15,13 +15,15 @@ export const people = [
 	{
 		name: 'Arjun Virk',
 		title: 'Arjun Virk',
-		description: "Hi! I'm working on the infrastructure!",
+		description:
+			'Hey my name is Arjun! I’m an AI developer that is working at the intersection of AI x Cancer. I’m currently working on some projects with LLMs and Thyroid Cancer. Fun Fact: I’m the youngest member on the Hack49 team!',
 		image: '/images/founders/arjun.jpg',
 	},
 	{
 		name: 'Rishi Shah',
 		title: 'Rishi Shah',
-		description: "Hi! I'm working on the infrastructure!",
+		description:
+			'Rishi is a teenager from Ontario who is interested in medical AI and adversarial attacks. Fun Fact: Rishi enjoys 3D printing and tinkering with electronics in his free time.',
 		image: '/images/founders/rishi.jpg',
 	},
 ];

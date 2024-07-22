@@ -4,7 +4,7 @@ import { FaXTwitter, FaTiktok, FaYoutube } from 'react-icons/fa6';
 import { IoLogoInstagram } from 'react-icons/io5';
 const Footer = () => {
 	return (
-		<footer className="rounded-lg shadow bg-neutral-900 m-4">
+		<footer className="rounded-t-3xl shadow bg-neutral-900">
 			<div className="w-full max-w-screen-xl mx-auto p-4 md:py-8">
 				<div className="sm:flex sm:items-center sm:justify-between">
 					<a href="#" className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">

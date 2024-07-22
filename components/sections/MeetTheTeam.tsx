@@ -1,3 +1,4 @@
+'use client';
 import React from 'react';
 import { people } from '@/data/people';
 import { motion } from 'framer-motion';
@@ -19,8 +20,21 @@ const listItem = {
 const MeetTheTeam = () => {
 	return (
 		<section id="founders" className="w-full px-5 sm:px-10 fc gap-10 max-w-6xl mx-auto my-24">
-			<h3 className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium">Meet The Founders</h3>
-			<motion.div variants={container} initial="hidden" whileInView="show" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+			<motion.h3
+				initial={{ opacity: 0, y: 50 }}
+				whileInView={{ opacity: 1, y: 0 }}
+				viewport={{ once: true }}
+				className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium"
+			>
+				Meet The Founders
+			</motion.h3>
+			<motion.div
+				variants={container}
+				initial="hidden"
+				whileInView="show"
+				viewport={{ once: true }}
+				className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"
+			>
 				{people.map((person, index) => (
 					<Founder key={index} {...person} />
 				))}
@@ -44,7 +58,7 @@ const Founder = ({ name, title, description, image }: FounderProps) => {
 			</div>
 			<h4 className="text-2xl font-semibold text-black dark:text-white">{name}</h4>
 			{/* <p className="text-lg text-gray-600 dark:text-gray-400">{title}</p> */}
-			<p className="text-sm text-gray-600 dark:text-gray-400 text-center max-w-[30ch]">{description}</p>
+			<p className="text-lg sm:text-sm text-gray-600 dark:text-gray-400 text-center max-w-[30ch]">{description}</p>
 		</motion.div>
 	);
 };
