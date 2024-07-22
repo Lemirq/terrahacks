@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Link as NextLink } from '@nextui-org/react';
 
 const Admin = () => {
-	const [hidden, setHidden] = useState(false);
+	const [hidden, setHidden] = useState(true);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
