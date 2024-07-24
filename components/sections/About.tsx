@@ -3,6 +3,21 @@ import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
 const About = () => {
+	const container = {
+		hidden: { opacity: 0 },
+		show: {
+			opacity: 1,
+			transition: {
+				staggerChildren: 0.2,
+			},
+		},
+	};
+
+	const listItem = {
+		hidden: { opacity: 0 },
+		show: { opacity: 1 },
+	};
+
 	return (
 		<section id="about" className="w-full relative">
 			{/* <div className="absolute w-full h-full">
@@ -17,8 +32,15 @@ const About = () => {
 					}}
 				/>
 			</div> */}
-			<div className="max-w-7xl fc gap-10 w-full mx-auto z-10 px-5 sm:px-10 my-24 relative">
+			<motion.div
+				variants={container}
+				initial="hidden"
+				whileInView="show"
+				viewport={{ once: true }}
+				className="max-w-7xl fc gap-10 w-full mx-auto z-10 px-5 sm:px-10 my-24 relative"
+			>
 				<motion.h3
+					variants={listItem}
 					initial={{ opacity: 0, y: 50 }}
 					whileInView={{ opacity: 1, y: 0 }}
 					viewport={{ once: true }}
@@ -27,15 +49,15 @@ const About = () => {
 					About Us
 				</motion.h3>
 				<div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
-					<div className="fc gap-3 w-full">
+					<motion.div variants={listItem} className="fc gap-3 w-full">
 						<h4 className="text-2xl font-semibold text-black dark:text-white">Overview</h4>
 						<p className="text-lg text-gray-600 dark:text-gray-400 sm:text-center sm:min-w-[300px] text-left">
 							Hack49 is a global hackathon designed to bring together creative minds, coders, and tech enthusiasts from around the
 							world. Our event focuses on collaboration, innovation, and the development of cutting-edge technology projects.
 							Participants will engage in various challenges and work together to create solutions that address real-world problems.
 						</p>
-					</div>
-					<div className="fc gap-3 w-full">
+					</motion.div>
+					<motion.div variants={listItem} className="fc gap-3 w-full">
 						<h4 className="text-2xl font-semibold text-black dark:text-white">Our Mission</h4>
 						<p className="text-lg text-gray-600 dark:text-gray-400 sm:text-center sm:min-w-[300px] text-left">
 							The mission of Hack49 is to foster a community of innovation and creativity. We aim to provide a platform for individuals
@@ -43,8 +65,8 @@ const About = () => {
 							promoting technological advancement, encouraging collaboration, and empowering participants to turn their ideas into
 							reality.
 						</p>
-					</div>
-					<div className="fc gap-3 w-full">
+					</motion.div>
+					<motion.div variants={listItem} className="fc gap-3 w-full">
 						<h4 className="text-2xl font-semibold text-black dark:text-white">Benefits</h4>
 						<p className="text-lg text-gray-600 dark:text-gray-400 text-left">
 							Participants in Hack49 will gain numerous benefits, including:
@@ -66,10 +88,12 @@ const About = () => {
 								<b>Growth: </b>Personal and professional growth through collaboration and competition.
 							</li>
 						</ul>
-					</div>
-					<Image src="/images/collaboration.jpg" alt="Collaboration" width={500} height={500} className="rounded-3xl w-full" />
+					</motion.div>
+					<motion.div variants={listItem}>
+						<Image src="/images/collaboration.jpg" alt="Collaboration" width={500} height={500} className="rounded-3xl w-full" />
+					</motion.div>
 				</div>
-			</div>
+			</motion.div>
 		</section>
 	);
 };

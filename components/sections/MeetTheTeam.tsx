@@ -2,6 +2,8 @@
 import React from 'react';
 import { people } from '@/data/people';
 import { motion } from 'framer-motion';
+import { Button } from '@nextui-org/react';
+import { IoLogoLinkedin } from 'react-icons/io5';
 
 const container = {
 	hidden: { opacity: 0 },
@@ -48,15 +50,30 @@ interface FounderProps {
 	title: string;
 	description: string;
 	image: string;
+	lk: string;
 }
 
-const Founder = ({ name, title, description, image }: FounderProps) => {
+const Founder = ({ name, title, description, image, lk }: FounderProps) => {
 	return (
 		<motion.div variants={listItem} className="fc gap-2 h-full w-full justify-start">
 			<div className="w-40 h-40 rounded-full overflow-hidden">
 				<img src={image} alt={name} className="w-full h-full object-cover" />
 			</div>
-			<h4 className="text-2xl font-semibold text-black dark:text-white">{name}</h4>
+			<h4 className="text-2xl font-semibold text-black dark:text-white inline-flex justify-center items-center gap-2">
+				{/* dont wrap text */}
+				<span className="whitespace-nowrap">{name}</span>
+				<a href={lk} target="_blank" rel="noreferrer">
+					<Button size="sm" isIconOnly variant="bordered">
+						<IoLogoLinkedin />
+					</Button>
+				</a>
+			</h4>
+			<div className="relative">
+				<span className="relative z-10 mb-4 inline-block rounded-full border border-zinc-700 bg-zinc-900/20 px-3 py-1.5 text-neutral-300 md:mb-0 text-lg font-bold">
+					{title}
+					<span className="absolute bottom-0 left-3 right-3 h-[1px] bg-gradient-to-r from-zinc-500/0 via-zinc-300 to-zinc-500/0"></span>
+				</span>
+			</div>
 			{/* <p className="text-lg text-gray-600 dark:text-gray-400">{title}</p> */}
 			<p className="text-lg sm:text-sm text-gray-600 dark:text-gray-400 text-center max-w-[30ch]">{description}</p>
 		</motion.div>
