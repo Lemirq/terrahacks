@@ -120,9 +120,8 @@ const SignUpWaitlist = () => {
 				</span>
 			</div>
 			<p className="text-neutral-400 my-2 text-sm sm:text-xl">
-				Hack49 is a global hackathon for the public good. We are a community of builders, hackers, and makers who are passionate about the
-				intersection of technology and society. Our goal is to create a more inclusive and equitable world by bringing together diverse
-				perspectives and experiences.
+				Hack49 is a yearly international hackathon dedicated to fostering the creation of groundbreaking solutions to address the world's most
+				complex issues.
 			</p>
 			{timeLeft && (
 				<div className="text-white text-2xl mb-10">
