@@ -9,7 +9,7 @@ interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
 
 export const AuroraBackground = ({ className, children, showRadialGradient = true, ...props }: AuroraBackgroundProps) => {
 	return (
-		<div className={cn('relative bg-neutral-900  text-slate-950 transition-bg', className)} {...props}>
+		<div className={cn('relative bg-neutral-950 bg-opacity-40  text-slate-950 transition-bg', className)} {...props}>
 			<div className="absolute inset-0 overflow-hidden opacity-70">
 				<div
 					//   I'm sorry but this is what peak developer performance looks like // trigger warning
