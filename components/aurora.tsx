@@ -9,19 +9,12 @@ interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
 
 export const AuroraBackground = ({ className, children, showRadialGradient = true, ...props }: AuroraBackgroundProps) => {
 	return (
-		<main className="sm:hidden">
-			<div
-				className={cn(
-					'relative flex flex-col  h-[100vh] items-center justify-center bg-neutral-900  text-slate-950 transition-bg',
-					className
-				)}
-				{...props}
-			>
-				<div className="absolute inset-0 overflow-hidden opacity-70">
-					<div
-						//   I'm sorry but this is what peak developer performance looks like // trigger warning
-						className={cn(
-							`
+		<div className={cn('relative bg-neutral-900  text-slate-950 transition-bg', className)} {...props}>
+			<div className="absolute inset-0 overflow-hidden opacity-70">
+				<div
+					//   I'm sorry but this is what peak developer performance looks like // trigger warning
+					className={cn(
+						`
             [--dark-gradient:repeating-linear-gradient(100deg,var(--black)_0%,var(--black)_7%,var(--transparent)_10%,var(--transparent)_12%,var(--black)_16%)]
             [--aurora:repeating-linear-gradient(100deg,var(--blue-500)_10%,var(--indigo-300)_15%,var(--blue-300)_20%,var(--violet-200)_25%,var(--blue-400)_30%)]
             [background-image:var(--dark-gradient),var(--aurora)]
@@ -35,12 +28,11 @@ export const AuroraBackground = ({ className, children, showRadialGradient = tru
             pointer-events-none
             absolute -inset-[10px] opacity-50 will-change-transform`,
 
-							showRadialGradient && `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
-						)}
-					></div>
-				</div>
-				{children}
+						showRadialGradient && `[mask-image:radial-gradient(ellipse_at_100%_0%,black_10%,var(--transparent)_70%)]`
+					)}
+				></div>
 			</div>
-		</main>
+			{children}
+		</div>
 	);
 };

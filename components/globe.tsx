@@ -145,8 +145,19 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
 	useEffect(() => {
 		if (globeRef.current && globeData) {
+			// globeRef.current
+			// 	.hexPolygonsData(countries.features)
+			// 	.hexPolygonResolution(3)
+			// 	.hexPolygonMargin(0.7)
+			// 	.showAtmosphere(defaultProps.showAtmosphere)
+			// 	.atmosphereColor(defaultProps.atmosphereColor)
+			// 	.atmosphereAltitude(defaultProps.atmosphereAltitude)
+			// 	.hexPolygonColor((e) => {
+			// 		return defaultProps.polygonColor;
+			// 	});
+
 			const N_PATHS = 1; // Only one path
-			const MAX_POINTS_PER_LINE = 10000;
+			const MAX_POINTS_PER_LINE = 20;
 			const MAX_STEP_DEG = 360;
 			const MAX_STEP_ALT = 0.015;
 			const gData = [...Array(N_PATHS).keys()].map(() => {
@@ -167,21 +178,24 @@ export function Globe({ globeConfig, data }: WorldProps) {
 				];
 			});
 
+			console.log(gData);
+
 			globeRef.current
 				.hexPolygonsData(countries.features)
-				.pathsData(gData)
 				.hexPolygonResolution(3)
 				.hexPolygonMargin(0.7)
-				.pathColor((e) => {
-					return '#6366f1';
-				})
-				.pathStroke(1.5)
 				.showAtmosphere(defaultProps.showAtmosphere)
 				.atmosphereColor(defaultProps.atmosphereColor)
 				.atmosphereAltitude(defaultProps.atmosphereAltitude)
 				.hexPolygonColor((e) => {
 					return defaultProps.polygonColor;
-				});
+				})
+				.pathsData(gData)
+				.pathColor(() => {
+					return '#6366f1';
+				})
+				.pathStroke(1.5);
+
 			startAnimation();
 		}
 	}, [globeData]);
