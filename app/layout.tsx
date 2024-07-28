@@ -4,9 +4,9 @@ import '@/app/satoshi.css';
 import { Providers } from './providers';
 
 export const metadata: Metadata = {
-	title: 'Hack49',
+	title: 'Hack49 Global',
 	description:
-		'Hack49 is a global hackathon for the public good. We are a community of builders, hackers, and makers who are passionate about the intersection of technology and society. Our goal is to create a more inclusive and equitable world by bringing together diverse perspectives and experiences.',
+		"Hack49 is a yearly international hackathon dedicated to fostering the creation of groundbreaking solutions to address the world's most",
 	robots: 'follow, index',
 	icons: {
 		icon: '/favicon.ico',
@@ -15,6 +15,13 @@ export const metadata: Metadata = {
 	openGraph: {
 		type: 'website',
 		url: `https://hack-49.vercel.app/`,
+		images: [
+			{
+				url: `https://hack-49.vercel.app/images/og-image.png`,
+				width: 1200,
+				height: 630,
+			},
+		],
 	},
 };
 
