@@ -48,7 +48,7 @@ const Navbar = () => {
 
 			<ul className="fr gap-2 nav-links text-white text-2xl">
 				<li>
-					<a href="https://www.instagram.com/hacks_49" target="_blank" rel="noopener noreferrer">
+					<a href="https://www.instagram.com/hack49__/" target="_blank" rel="noopener noreferrer">
 						<IoLogoInstagram />
 					</a>
 				</li>
@@ -58,12 +58,7 @@ const Navbar = () => {
 					</a>
 				</li>
 				<li>
-					<a href="https://www.tiktok.com/@hacks_49" target="_blank" rel="noopener noreferrer">
-						<FaTiktok />
-					</a>
-				</li>
-				<li>
-					<a href="https://www.youtube.com/@hacks_49" target="_blank" rel="noopener noreferrer">
+					<a href="https://www.youtube.com/channel/UCHT4o_3qcYAMNw1Sgdq7FMQ" target="_blank" rel="noopener noreferrer">
 						<FaYoutube />
 					</a>
 				</li>

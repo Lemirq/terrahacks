@@ -2,6 +2,8 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import MuxPlayer from '@mux/mux-player-react';
+import Video from '../Video';
 const About = () => {
 	const container = {
 		hidden: { opacity: 0 },
@@ -48,7 +50,9 @@ const About = () => {
 				>
 					About Us
 				</motion.h3>
-				<div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
+				<p className="text-lg text-neutral-300">Play the video below to learn more about Hack49 and what we have to offer.</p>
+				<Video />
+				{/* <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
 					<motion.div variants={listItem} className="fc gap-3 w-full">
 						<h4 className="text-2xl font-semibold text-black dark:text-white">Overview</h4>
 						<p className="text-lg text-gray-600 dark:text-gray-400 sm:text-center sm:min-w-[300px] text-left">
@@ -92,7 +96,7 @@ const About = () => {
 					<motion.div variants={listItem}>
 						<Image src="/images/collaboration.jpg" alt="Collaboration" width={500} height={500} className="rounded-3xl w-full" />
 					</motion.div>
-				</div>
+				</div> */}
 			</motion.div>
 		</section>
 	);
