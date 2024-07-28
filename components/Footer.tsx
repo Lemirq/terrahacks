@@ -33,9 +33,9 @@ const Footer = () => {
 						</li>
 					</ul>
 				</div>
-				<hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+				<hr className="my-6 sm:mx-auto border-gray-700 lg:my-8" />
 				<div className="sm:flex sm:items-center sm:justify-between fc sm:fr gap-3">
-					<span className="text-sm text-gray-500 text-center dark:text-gray-400">
+					<span className="text-sm text-center text-gray-400">
 						© {new Date().getFullYear()}{' '}
 						<a href="https://hack-49.vercel.app/" className="hover:underline">
 							Hack49 Global™
