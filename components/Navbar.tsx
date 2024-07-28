@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { IoLogoInstagram } from 'react-icons/io5';
 import { FaTiktok, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 import { useMotionValueEvent, useScroll, motion } from 'framer-motion';
+import Link from 'next/link';
+import { Button } from '@nextui-org/react';
 
 const Navbar = () => {
 	const { scrollYProgress } = useScroll();
@@ -43,10 +45,14 @@ const Navbar = () => {
 			className="w-full bg-black/30 fixed top-0 backdrop-blur-xl py-3 px-4 md:px-10 fr justify-between z-50"
 		>
 			{/* logo */}
-			<Image src="/images/logo-horizontal.svg" height={50} width={150} alt="logo" className="hidden sm:block" />
-			<Image src="/images/Logo.png" height={50} width={50} alt="logo" className="block sm:hidden" />
-
-			<ul className="fr gap-2 nav-links text-white text-2xl">
+			<Link href="/">
+				<Image src="/images/logo-horizontal.svg" height={50} width={150} alt="logo" className="hidden sm:block" />
+				<Image src="/images/Logo.png" height={50} width={50} alt="logo" className="block sm:hidden" />
+			</Link>
+			<Link href="/dashboard">
+				<Button color="primary">Dashboard</Button>
+			</Link>
+			{/* <ul className="fr gap-2 nav-links text-white text-2xl">
 				<li>
 					<a href="https://www.instagram.com/hack49__/" target="_blank" rel="noopener noreferrer">
 						<IoLogoInstagram />
@@ -62,7 +68,7 @@ const Navbar = () => {
 						<FaYoutube />
 					</a>
 				</li>
-			</ul>
+			</ul> */}
 			{/* links */}
 		</motion.nav>
 	);

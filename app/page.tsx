@@ -11,16 +11,12 @@ import FAQ from '@/components/sections/FAQ';
 export default function Home() {
 	return (
 		<>
-			<Navbar />
 			<main className="w-full overflow-x-hidden bg-dot-white/[0.2] bg-neutral-950 fc">
 				<Hero />
 				<About />
 				<MeetTheTeam />
 				<FAQ />
 			</main>
-			<Toaster />
-			<GoogleAnalytics gaId="G-DJNEVNJYM7" />
-			<Footer />
 		</>
 	);
 }
