@@ -10,7 +10,7 @@ import Faqs from './FAQ';
 import Waitlist from './Waitlist';
 
 const Dashboard = ({ faqs, waitlist, categories }) => {
-	const [hidden, setHidden] = useState(false);
+	const [hidden, setHidden] = useState(true);
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
