@@ -22,3 +22,14 @@ export const getAllCategories = async () => {
 	console.log(data);
 	return data;
 };
+
+export const getWaitlist = async () => {
+	const client = createClient();
+	const { data, error } = await client.from('email_list').select('*');
+	if (error) {
+		console.error(error);
+		throw new Error('Failed to fetch Waitlist');
+	}
+	console.log(data);
+	return data;
+};
