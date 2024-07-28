@@ -8,6 +8,7 @@ import Navbar from '@/components/Navbar';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Footer from '@/components/Footer';
 import FAQ from '@/components/sections/FAQ';
+import Contact from '@/components/sections/Contact';
 export default function Home() {
 	return (
 		<>
@@ -17,6 +18,7 @@ export default function Home() {
 				<About />
 				<MeetTheTeam />
 				<FAQ />
+				<Contact />
 			</main>
 			<Toaster />
 			<GoogleAnalytics gaId="G-DJNEVNJYM7" />

@@ -62,16 +62,16 @@ const About = () => {
 				{/* <Video /> */}
 				{/* <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
 					<motion.div variants={listItem} className="fc gap-3 w-full">
-						<h4 className="text-2xl font-semibold text-black dark:text-white">Overview</h4>
-						<p className="text-lg text-gray-600 dark:text-gray-400 sm:text-center sm:min-w-[300px] text-left">
+						<h4 className="text-2xl font-semibold text-white">Overview</h4>
+						<p className="text-lg text-gray-400 sm:text-center sm:min-w-[300px] text-left">
 							Hack49 is a global hackathon designed to bring together creative minds, coders, and tech enthusiasts from around the
 							world. Our event focuses on collaboration, innovation, and the development of cutting-edge technology projects.
 							Participants will engage in various challenges and work together to create solutions that address real-world problems.
 						</p>
 					</motion.div>
 					<motion.div variants={listItem} className="fc gap-3 w-full">
-						<h4 className="text-2xl font-semibold text-black dark:text-white">Our Mission</h4>
-						<p className="text-lg text-gray-600 dark:text-gray-400 sm:text-center sm:min-w-[300px] text-left">
+						<h4 className="text-2xl font-semibold text-white">Our Mission</h4>
+						<p className="text-lg text-gray-400 sm:text-center sm:min-w-[300px] text-left">
 							The mission of Hack49 is to foster a community of innovation and creativity. We aim to provide a platform for individuals
 							to showcase their skills, learn from each other, and push the boundaries of technology. Our core objectives include
 							promoting technological advancement, encouraging collaboration, and empowering participants to turn their ideas into
@@ -79,11 +79,11 @@ const About = () => {
 						</p>
 					</motion.div>
 					<motion.div variants={listItem} className="fc gap-3 w-full">
-						<h4 className="text-2xl font-semibold text-black dark:text-white">Benefits</h4>
-						<p className="text-lg text-gray-600 dark:text-gray-400 text-left">
+						<h4 className="text-2xl font-semibold text-white">Benefits</h4>
+						<p className="text-lg text-gray-400 text-left">
 							Participants in Hack49 will gain numerous benefits, including:
 						</p>
-						<ul className="text-lg text-gray-600 dark:text-gray-400 text-left items-start gap-3 fc">
+						<ul className="text-lg text-gray-400 text-left items-start gap-3 fc">
 							<li>
 								<b>Skill Development: </b>Enhance your technical skills and learn new technologies.
 							</li>

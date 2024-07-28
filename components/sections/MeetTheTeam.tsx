@@ -70,7 +70,7 @@ const Founder = ({ name, title, description, image, lk }: FounderProps) => {
 			</h4>
 			<div className="fr gap-3 mb-4"></div>
 
-			{/* <p className="text-lg text-gray-600 dark:text-gray-400">{title}</p> */}
+			{/* <p className="text-lg text-gray-400">{title}</p> */}
 			<p className="text-lg sm:text-sm text-gray-200 text-center max-w-[30ch]">{description}</p>
 		</motion.div>
 	);
