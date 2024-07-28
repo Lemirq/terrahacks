@@ -51,7 +51,15 @@ const About = () => {
 					About Us
 				</motion.h3>
 				<p className="text-lg text-neutral-300">Play the video below to learn more about Hack49 and what we have to offer.</p>
-				<Video />
+				<iframe
+					className="max-w-6xl w-full aspect-video rounded-2xl"
+					src="https://www.youtube.com/embed/bFUflO_1Tuw"
+					title=""
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					referrerPolicy="strict-origin-when-cross-origin"
+					allowFullScreen
+				></iframe>
+				{/* <Video /> */}
 				{/* <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
 					<motion.div variants={listItem} className="fc gap-3 w-full">
 						<h4 className="text-2xl font-semibold text-black dark:text-white">Overview</h4>
