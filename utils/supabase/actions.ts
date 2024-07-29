@@ -25,7 +25,7 @@ export const getAllCategories = async () => {
 
 export const getWaitlist = async () => {
 	const client = createClient();
-	const { data, error } = await client.from('email_list').select('*');
+	const { data, error } = await client.from('email_list').select('*').order('created_at', { ascending: true });
 	if (error) {
 		console.error(error);
 		throw new Error('Failed to fetch Waitlist');

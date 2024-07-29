@@ -3,7 +3,7 @@ import React from 'react';
 
 const NotFound = () => {
 	return (
-		<main className="w-screen h-screen overflow-hidden fc gap-3 px-5 sm:px-10">
+		<main className="w-full h-screen overflow-hidden fc gap-3 px-5 sm:px-10">
 			<div className="fr gap-4">
 				<h1 className="font-bold text-2xl">404</h1>
 				{/* vertical line */}
