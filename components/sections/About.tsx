@@ -2,7 +2,6 @@
 import React from 'react';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import MuxPlayer from '@mux/mux-player-react';
 import Video from '../Video';
 const About = () => {
 	const container = {
