@@ -2,6 +2,11 @@ import type { Metadata, Viewport } from 'next';
 import '@/app/globals.css';
 import '@/app/satoshi.css';
 import { Providers } from './providers';
+import Footer from '@/components/Footer';
+import { GoogleAnalytics } from '@next/third-parties/google';
+
+import { Toaster } from 'sonner';
+import Navbar from '@/components/Navbar';
 
 export const metadata: Metadata = {
 	title: 'Hack49 Global',
@@ -41,7 +46,11 @@ export default function PublicLayout({
 	return (
 		<html lang="en">
 			<body className={'font-satoshi dark text-foreground bg-dot-white/[0.2] bg-neutral-950'}>
+				<Navbar />
 				<Providers>{children}</Providers>
+				<Toaster />
+				<GoogleAnalytics gaId="G-DJNEVNJYM7" />
+				<Footer />
 			</body>
 		</html>
 	);

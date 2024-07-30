@@ -2,7 +2,7 @@ import { createClient } from './client';
 
 export const getAllFAQs = async () => {
 	const client = createClient();
-	const { data, error } = await client.from('faq').select('*');
+	const { data, error } = await client.from('faq').select('*').order('created_at', { ascending: true });
 	if (error) {
 		console.error(error);
 		throw new Error('Failed to fetch FAQs');
@@ -25,7 +25,7 @@ export const getAllCategories = async () => {
 
 export const getWaitlist = async () => {
 	const client = createClient();
-	const { data, error } = await client.from('email_list').select('*');
+	const { data, error } = await client.from('email_list').select('*').order('created_at', { ascending: true });
 	if (error) {
 		console.error(error);
 		throw new Error('Failed to fetch Waitlist');

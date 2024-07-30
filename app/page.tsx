@@ -12,7 +12,6 @@ import Contact from '@/components/sections/Contact';
 export default function Home() {
 	return (
 		<>
-			<Navbar />
 			<main className="w-full overflow-x-hidden bg-dot-white/[0.2] bg-neutral-950 fc">
 				<Hero />
 				<About />
@@ -20,9 +19,6 @@ export default function Home() {
 				<FAQ />
 				<Contact />
 			</main>
-			<Toaster />
-			<GoogleAnalytics gaId="G-DJNEVNJYM7" />
-			<Footer />
 		</>
 	);
 }

@@ -25,7 +25,7 @@ const Dashboard = ({ faqs, waitlist, categories }) => {
 	};
 
 	return (
-		<div className="w-full min-h-screen overflow-x-hidden fc py-10">
+		<div className="w-full min-h-screen overflow-x-hidden fc py-10 pt-36">
 			{hidden ? (
 				<form onSubmit={handleSubmit} className="fr gap-3 w-full max-w-3xl px-3 sm:px-10">
 					<Input type="text" label="Enter the secret word" id="bing" name="bing" />

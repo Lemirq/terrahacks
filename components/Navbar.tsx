@@ -1,14 +1,37 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
-import { IoLogoInstagram } from 'react-icons/io5';
-import { FaTiktok, FaXTwitter, FaYoutube } from 'react-icons/fa6';
 import { useMotionValueEvent, useScroll, motion } from 'framer-motion';
 import Link from 'next/link';
+import { Button } from '@nextui-org/react';
+import { createClient } from '@/utils/supabase/client';
+import { FaXTwitter, FaYoutube } from 'react-icons/fa6';
+import { IoLogoInstagram } from 'react-icons/io5';
 
 const Navbar = () => {
 	const { scrollYProgress } = useScroll();
+	const supabase = createClient();
+	const [user, setUser] = useState(false);
 
+	useEffect(() => {
+		supabase.auth.onAuthStateChange((event, session) => {
+			console.log(event, session);
+			if (event === 'SIGNED_IN') {
+				setUser(true);
+			} else if (event === 'SIGNED_OUT') {
+				setUser(false);
+			}
+		});
+		const fetchUser = async () => {
+			const { data, error } = await supabase.auth.getUser();
+			if (error) {
+				console.log(error);
+			} else if (data.user) {
+				setUser(true);
+			}
+		};
+		fetchUser();
+	}, []);
 	const [visible, setVisible] = useState(false);
 
 	useMotionValueEvent(scrollYProgress, 'change', (current) => {
@@ -48,7 +71,24 @@ const Navbar = () => {
 				<Image src="/images/logo-horizontal.svg" height={50} width={150} alt="logo" className="hidden sm:block" />
 				<Image src="/images/Logo.png" height={50} width={50} alt="logo" className="block sm:hidden" />
 			</Link>
-
+			{/* {user ? (
+				<Link href="/dashboard">
+					<Button color="primary">Dashboard</Button>
+				</Link>
+			) : (
+				<div className="fr gap-2">
+					<Link href="/login">
+						<Button variant="shadow" color="primary">
+							Sign in
+						</Button>
+					</Link>
+					<Link href="/signup">
+						<Button variant="shadow" color="primary">
+							Sign up
+						</Button>
+					</Link>
+				</div>
+			)} */}
 			<ul className="fr gap-2 nav-links text-white text-2xl">
 				<li>
 					<a href="https://www.instagram.com/hack49__/" target="_blank" rel="noopener noreferrer">
