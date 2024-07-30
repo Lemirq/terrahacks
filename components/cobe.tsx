@@ -30,7 +30,7 @@ export default function Cobe() {
 				// Called on every animation frame.
 				// `state` will be an empty object, return updated params.
 				state.phi = phi;
-				phi += 0.01;
+				phi += 0.004;
 			},
 		});
 
