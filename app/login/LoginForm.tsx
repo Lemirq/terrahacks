@@ -98,13 +98,9 @@ const LoginForm = () => {
 							}
 							type={isVisible ? 'text' : 'password'}
 							placeholder="Enter your password"
-							errorMessage={
-								errors.password && errors.password.type === 'required'
-									? 'Password is required'
-									: 'Password must be at least 8 characters long'
-							}
+							errorMessage={errors.password && 'Password is required'}
 							isInvalid={!!errors.password}
-							{...register('password', { required: true, minLength: 8 })}
+							{...register('password', { required: true })}
 						/>
 						<Button isLoading={buttonLoading} type="submit" color="primary">
 							Login
