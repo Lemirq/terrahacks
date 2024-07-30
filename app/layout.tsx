@@ -11,7 +11,7 @@ import Navbar from '@/components/Navbar';
 export const metadata: Metadata = {
 	title: 'Hack49 Global',
 	description:
-		"Hack49 is a yearly international hackathon dedicated to fostering the creation of groundbreaking solutions to address the world's most",
+		"Hack49 is a yearly international hackathon dedicated to fostering the creation of groundbreaking solutions to address the world's most complex issues.",
 	robots: 'follow, index',
 	icons: {
 		icon: '/favicon.ico',

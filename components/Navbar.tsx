@@ -11,15 +11,23 @@ import { createClient } from '@/utils/supabase/client';
 const Navbar = () => {
 	const { scrollYProgress } = useScroll();
 	const supabase = createClient();
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState(false);
 
 	useEffect(() => {
+		const { data } = supabase.auth.onAuthStateChange((event, session) => {
+			console.log(event, session);
+			if (event === 'SIGNED_IN') {
+				setUser(true);
+			} else if (event === 'SIGNED_OUT') {
+				setUser(false);
+			}
+		});
 		const fetchUser = async () => {
 			const { data, error } = await supabase.auth.getUser();
 			if (error) {
 				console.log(error);
-			} else {
-				setUser(data);
+			} else if (data.user) {
+				setUser(true);
 			}
 		};
 		fetchUser();

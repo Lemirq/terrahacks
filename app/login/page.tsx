@@ -2,6 +2,7 @@ import React from 'react';
 import LoginForm from './LoginForm';
 import { createClient } from '@/utils/supabase/server';
 import { redirect } from 'next/navigation';
+import { useForm } from 'react-hook-form';
 
 const LoginPage = async () => {
 	const supabase = createClient();
@@ -9,7 +10,6 @@ const LoginPage = async () => {
 	if (data.user) {
 		redirect('/dashboard');
 	}
-	await new Promise((resolve) => setTimeout(resolve, 5000));
 	return <LoginForm />;
 };
 

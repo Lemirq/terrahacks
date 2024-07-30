@@ -8,12 +8,12 @@ export default async function PrivatePage() {
 
 	const { data, error } = await supabase.auth.getUser();
 	if (error || !data?.user) {
+		// 2 seconds delay before redirecting to login
 		redirect('/login');
 	}
 
 	return (
-		<main className="w-full min-h-screen fc">
-			<p className="pt-36">Hello {data.user.email}</p>
+		<main className="w-full min-h-screen py-36 fc px-5 sm:px-10">
 			<form>
 				<button formAction={logout}>Logout</button>
 			</form>

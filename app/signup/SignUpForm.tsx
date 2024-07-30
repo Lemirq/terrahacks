@@ -1,5 +1,4 @@
 'use client';
-import Navbar from '@/components/Navbar';
 import React, { useEffect, useRef, useState } from 'react';
 import { createClient } from '@/utils/supabase/client';
 import { toast } from 'sonner';
@@ -91,7 +90,7 @@ const SignUpForm = () => {
 	return (
 		<main className="w-full h-screen overflow-hidden relative fc">
 			<BackgroundGradientAnimation>
-				<div className="absolute z-30 inset-0 flex items-center justify-center text-white font-bold px-5">
+				<div className="absolute z-30 inset-0 flex items-center justify-center text-white font-bold px-5 py-36">
 					<AnimatePresence>
 						{!emailSent && (
 							<motion.form
