@@ -7,6 +7,7 @@ import { IoEyeOff, IoEye, IoLink, IoArrowForward } from 'react-icons/io5';
 import { Button, Input } from '@nextui-org/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const LoginForm = () => {
 	const supabase = createClient();
@@ -50,7 +51,7 @@ const LoginForm = () => {
 	});
 
 	return (
-		<main className="w-full h-screen overflow-hidden fc pt-36">
+		<main className="w-full h-screen overflow-hidden relative fc py-36">
 			<AnimatePresence>
 				{!user && (
 					<motion.form
@@ -65,9 +66,10 @@ const LoginForm = () => {
 						transition={{
 							duration: 0.5,
 						}}
-						className="max-w-xl fc w-full items-start fc gap-5 sm:px-10"
+						className="max-w-xl fc w-full items-start fc gap-5 sm:px-10 px-5 z-30"
 						onSubmit={handleSubmit(login)}
 					>
+						<h1 className="text-2xl sm:text-4xl text-center">Login</h1>
 						<Input
 							label="Email"
 							placeholder="Enter your email"

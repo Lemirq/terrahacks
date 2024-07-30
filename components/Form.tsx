@@ -80,10 +80,7 @@ const Form = () => {
 	const messageRef = useRef(null);
 
 	return (
-		<form
-			className="fc items-end gap-3 bg-transparent rounded-xl p-5 w-full max-w-xl sm:p-10 text-white text-base"
-			onSubmit={handleSubmit(onSubmit)}
-		>
+		<form className="fc items-end gap-3 bg-transparent rounded-xl w-full max-w-xl text-white text-base" onSubmit={handleSubmit(onSubmit)}>
 			<div className="fc md:fr gap-3 w-full md:items-start items-start">
 				<Input
 					isRequired
