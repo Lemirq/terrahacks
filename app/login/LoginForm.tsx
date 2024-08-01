@@ -71,7 +71,7 @@ const LoginForm = () => {
 						<p className="text-neutral-300">
 							Don't have an account?{' '}
 							<Link href="/signup" className="underline text-blue-500">
-								sign up
+								Sign Up
 							</Link>{' '}
 							instead
 						</p>
