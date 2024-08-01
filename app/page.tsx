@@ -7,7 +7,8 @@ import FAQ from '@/components/sections/FAQ';
 import Contact from '@/components/sections/Contact';
 import { ReactLenis } from 'lenis/react';
 
-export default function Home() {
+export default function Home({ params }) {
+	console.log(params);
 	return (
 		<ReactLenis
 			root

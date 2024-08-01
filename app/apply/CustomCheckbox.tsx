@@ -35,6 +35,7 @@ export const CustomCheckbox = (props) => {
 				<input {...getInputProps()} />
 			</VisuallyHidden>
 			<Chip
+				isDisabled={props.isDisabled}
 				classNames={{
 					base: styles.base(),
 					content: styles.content(),

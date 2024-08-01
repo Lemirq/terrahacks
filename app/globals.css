@@ -27,6 +27,10 @@
 	}
 }
 
+* {
+	overscroll-behavior: none;
+}
+
 @layer utilities {
 	.text-balance {
 		text-wrap: balance;

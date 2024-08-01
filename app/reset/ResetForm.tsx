@@ -40,6 +40,7 @@ const ResetForm = ({ user }: { user: User }) => {
 		if (error) {
 			console.error(error);
 			toast.error(error.message);
+			setButtonLoading(false);
 			return;
 		}
 

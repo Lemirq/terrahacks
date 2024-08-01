@@ -41,7 +41,7 @@ interface Props {
 	user_id: string | null;
 }
 
-const ViewApplication = ({ data, resume }: { data: Props; resume?: { name: string; url: string } }) => {
+const ViewApplication = ({ data, resume }: { data: Props; resume?: { name: string; url: string } | null }) => {
 	return (
 		<main className="w-full min-h-screen overflow-hidden relative py-36 fc justify-start">
 			<div className="max-w-7xl w-full fc gap-10 sm:px-10 px-5">
@@ -103,8 +103,11 @@ const ViewApplication = ({ data, resume }: { data: Props; resume?: { name: strin
 
 				<Section title="Short Answers">
 					<div className="col-span-4 w-full fc gap-5">
-						<Viewer question="Why are you interested in the Fellowship?" answer={data.short_ans_1} />
-						<Viewer question="What do you hope to achieve in the Fellowship?" answer={data.short_ans_2} />
+						<Viewer question="Tell us the story of how you began in the computer science field." answer={data.short_ans_1} />
+						<Viewer
+							question="Tell us the biggest challenge you have ever faced (doesn't have to be related to computer science)."
+							answer={data.short_ans_2}
+						/>
 					</div>
 				</Section>
 			</div>

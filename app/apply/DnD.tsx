@@ -89,13 +89,13 @@ export default function DnD({ user, onChange, onBlur, value }: { user: User; onC
 				{...getRootProps()}
 			>
 				<input {...getInputProps()} />
-				<div className="fc gap-3">
+				<div className="fc gap-3 px-5">
 					<p>Drag 'n' drop your resume here, or click to browse</p>
 					<Chip color="primary">PDF only</Chip>
 				</div>
 			</div>
 
-			<div className="w-full fr justify-between">
+			<div className="w-full fc gap-2 sm:fr justify-between">
 				{acceptedFiles.length > 0 && (
 					<div className="w-full fc items-start">
 						<h3 className="text-lg font-bold">Accepted</h3>
@@ -112,14 +112,14 @@ export default function DnD({ user, onChange, onBlur, value }: { user: User; onC
 						))}
 					</div>
 				)}
-				<div className="w-full bg-green-500/30 border-2 border-dashed border-green-500/30 px-10 py-5 rounded-xl">
+				<div className="w-full bg-green-500/30 border-2 border-dashed border-green-500/30 px-5 sm:px-10 py-5 rounded-xl">
 					<h3 className="text-lg font-bold mb-3">Uploaded Files</h3>
-					<div className="fc gap-2 w-full items-start">
+					<div className="fr sm:fc gap-2 w-full sm:items-start">
 						{uploadedFiles.length === 0 ? (
 							<p className="text-neutral-300">No files uploaded yet</p>
 						) : (
 							uploadedFiles.map((file) => (
-								<div className="fr justify-start gap-3 w-full" key={file.name}>
+								<div className="fc sm:fr sm:justify-start gap-3 w-full" key={file.name}>
 									<p>{file.name}</p>
 									{file.uploaded ? (
 										<div className="fr gap-2">

@@ -23,17 +23,20 @@ const ApplicationPage = async () => {
 		const { data: resume, error: resumeError } = await supabase.storage.from(`resumes`).list(data.user.id, {
 			limit: 1,
 		});
+
 		// get rid of all objects from resume that have the key of 'name' starting with a period
 		const finalList = resume
 			? resume.filter((obj) => {
 					return !Object.keys(obj).some((key) => key.startsWith('.'));
 			  })
-			: [];
-
-		const { data: url } = await supabase.storage.from('resumes').getPublicUrl(`${data.user.id}/${finalList[0].name}`);
-
+			: null;
+		let url = null;
+		if (finalList && finalList[0]) {
+			const { data: resumeFile } = await supabase.storage.from('resumes').getPublicUrl(`${data.user.id}/${finalList[0].name}`);
+			url = resumeFile.publicUrl;
+		}
 		console.log(url);
-		return <ViewApplication data={app} resume={{ url: url.publicUrl, name: finalList[0] && finalList[0].name }} />;
+		return <ViewApplication data={app} resume={url && finalList ? { url: url, name: finalList[0] && finalList[0].name } : null} />;
 	}
 
 	return <Application user={data.user} />;

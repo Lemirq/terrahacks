@@ -25,7 +25,7 @@ export default async function PrivatePage() {
 	return (
 		<main className="w-full min-h-screen py-36 fc px-5 sm:px-10">
 			<div className="w-full min-h-screen max-w-5xl mx-auto fc justify-start items-start h-full gap-2">
-				<div className="fc sm:fr items-start sm:justify-between w-full">
+				<div className="fc gap-3 sm:fr items-start sm:justify-between w-full">
 					<h1 className="text-3xl font-bold">Welcome, {data.user.user_metadata.first_name}!</h1>
 					<form>
 						<Button type="submit" formAction={logout} color="danger" variant="ghost" startContent={<IoLogOut className="rotate-180" />}>
@@ -34,7 +34,7 @@ export default async function PrivatePage() {
 					</form>
 				</div>
 				<p>Let's dive into your application journey.</p>
-				<div className="w-full py-5 px-10 fc gap-5 items-start sm:fr justify-between rounded-2xl border border-neutral-300/30 bg-neutral-900 mt-5">
+				<div className="w-full py-5 px-5 sm:px-10 fc gap-5 items-start sm:fr justify-between rounded-2xl border border-neutral-300/30 bg-neutral-900 mt-5">
 					<div className="fc gap-3 items-start w-full">
 						<Chip>Application Status</Chip>
 						<h2 className="text-4xl font-bold">

@@ -1,4 +1,5 @@
 'use client';
+import InputMask from 'react-input-mask';
 import React, { useEffect, useState } from 'react';
 import { User } from '@/node_modules/@supabase/auth-js/src/lib/types';
 import { Controller, useForm } from 'react-hook-form';
@@ -114,7 +115,7 @@ const Application = ({ user }: { user: User }) => {
 		first_name: errors.first_name && 'First name is required',
 		last_name: errors.last_name && 'Last name is required',
 		email: errors.email?.type === 'required' ? 'Email is required' : errors.email?.type === 'pattern' && 'Email is invalid',
-		phone: errors.phone_number && 'Phone number is required',
+		phone: errors.phone_number?.type === 'pattern' && 'Phone number is invalid',
 		gender: errors.gender && 'Selecting an option is required',
 		country: errors.country && 'Selecting an option is required',
 		level_of_study: errors.level_of_study && 'Selecting an option is required',
@@ -179,7 +180,7 @@ const Application = ({ user }: { user: User }) => {
 	const registerPhone = {
 		errorMessage: errorMessages.phone,
 		isInvalid: !!errors.phone_number,
-		...register('phone_number', { required: true }),
+		...register('phone_number', { required: false, pattern: /^[0-9-]+$/ }),
 	};
 
 	const urlRegex = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[a-zA-Z0-9-._~:\/?#[\]@!$&'()*+,;=]*)?$/;
@@ -308,7 +309,19 @@ const Application = ({ user }: { user: User }) => {
 							</FieldSeparator>
 							<FieldSeparator>
 								<Input label="Email" placeholder="Enter your email" {...registerEmail} />
-								<Input label="Phone Number" placeholder="Enter your phone number" {...registerPhone} />
+								{/* <Input
+								type="number" label="Phone Number" placeholder="Enter your phone number" {...registerPhone} /> */}
+								<Controller
+									name="phone_number"
+									control={control}
+									render={({ field: { onChange, onBlur, value } }) => (
+										<InputMask mask="999-999-9999" value={value} onChange={onChange} onBlur={onBlur}>
+											{(inputProps) => (
+												<Input type="text" label="Phone Number" placeholder="Enter your phone number" {...inputProps} />
+											)}
+										</InputMask>
+									)}
+								/>
 							</FieldSeparator>
 							<FieldSeparator>
 								<Controller
@@ -421,11 +434,13 @@ const Application = ({ user }: { user: User }) => {
 											label="Expected Graduation"
 											placeholder="Enter your expected graduation year"
 											isRequired
+											type="number"
 											isInvalid={!!errors.graduation}
 											onBlur={onBlur}
 											onChange={onChange}
 											value={value}
 											errorMessage={errorMessages.graduation}
+											description="Enter a random year if this doesn't apply to you"
 										/>
 									</div>
 								)}
@@ -445,7 +460,7 @@ const Application = ({ user }: { user: User }) => {
 											onChange={onChange}
 											value={value}
 											errorMessage={errorMessages.major}
-											description=""
+											description="Enter N/A if this doesn't apply to you"
 										/>
 									</div>
 								)}
@@ -459,25 +474,26 @@ const Application = ({ user }: { user: User }) => {
 								control={control}
 								rules={{ required: true }} // Add your validation rules here
 								render={({ field: { onChange, onBlur, value } }) => (
-									<div className="fc gap-2 items-start w-full">
-										<p>How many hackathons have you attended before?</p>
-										<Select
-											label="Attended Hackathons"
-											placeholder="Select an option"
-											isRequired
-											isInvalid={!!errors.attended_hackathons}
-											onBlur={onBlur}
-											onChange={onChange}
-											errorMessage={errorMessages.attended_hackathons}
-											selectedKeys={value ? new Set([value]) : []}
-										>
-											{AttendedHackathons.map((att) => (
-												<SelectItem key={att.value} value={att.value}>
-													{att.label}
-												</SelectItem>
-											))}
-										</Select>
-									</div>
+									<Select
+										labelPlacement="outside"
+										classNames={{
+											label: 'text-left',
+										}}
+										label="How many hackathons have you attended before?"
+										placeholder="Select an option"
+										isRequired
+										isInvalid={!!errors.attended_hackathons}
+										onBlur={onBlur}
+										onChange={onChange}
+										errorMessage={errorMessages.attended_hackathons}
+										selectedKeys={value ? new Set([value]) : []}
+									>
+										{AttendedHackathons.map((att) => (
+											<SelectItem key={att.value} value={att.value}>
+												{att.label}
+											</SelectItem>
+										))}
+									</Select>
 								)}
 							/>
 							<Controller
@@ -485,22 +501,40 @@ const Application = ({ user }: { user: User }) => {
 								control={control}
 								rules={{ required: true, validate: (value) => value.length >= 3 }} // Add your validation rules here
 								render={({ field: { onChange, onBlur, value } }) => {
+									const handleCheckboxChange = (e) => {
+										// console.log(e);
+										// return;
+										// e is the array of options selected
+										// limit options to 4
+										if (e.length >= 4) return;
+										onChange(e);
+									};
+
 									return (
-										<div className="flex flex-col gap-1 w-full">
+										<div className="fc gap-1 w-full mt-5">
 											<CheckboxGroup
 												className="gap-1"
-												label="Choose at least 3 interests"
+												label="Choose 3 of your top interests"
 												orientation="horizontal"
 												isInvalid={!!errors.interests}
 												errorMessage={errorMessages.interests}
 												value={value}
 												onBlur={onBlur}
-												onChange={(e) => {
-													onChange(e);
-												}}
+												onChange={handleCheckboxChange}
 											>
 												{interests.map((option) => (
-													<CustomCheckbox key={option.value} value={option.label}>
+													// <Checkbox
+													// 	isDisabled={value && !value.includes(option.label) && value.length >= 4}
+													// 	key={option.value}
+													// 	value={option.label}
+													// >
+													// 	{option.label}
+													// </Checkbox>
+													<CustomCheckbox
+														isDisabled={value && !value.includes(option.label) && value.length >= 4}
+														key={option.value}
+														value={option.label}
+													>
 														{option.label}
 													</CustomCheckbox>
 												))}
@@ -523,8 +557,12 @@ and a dropdown to select their confidence level in each of these areas.
 from not confident, somewhat confident, confident, very confident, expert
 For each, there will be a dropdown to select their confidence level.  
 All the data should be added to the 'confidence' object in the form data. */}
-							<div className="w-full fc items-start gap-2">
+							<div className="w-full fc items-start gap-2 mt-5">
 								<p>How confident are you in the following areas?</p>
+								<p className="text-sm">
+									If you're a beginner, don't worry! This hackathon is a great place to learn and grow. If you're an expert, we'd
+									love to see what you can do!
+								</p>
 								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
 									{confidence.map((item: confidenceType) => {
 										const { value, label } = item;
@@ -569,23 +607,6 @@ All the data should be added to the 'confidence' object in the form data. */}
 								</div>
 							</div>
 						</Section>
-
-						{/* Social Section */}
-						<Section title="Social" subheading="These aren't required, but they give us a glimpse of who you are.">
-							<FieldSeparator>
-								<Input {...registerGithub} label="GitHub" placeholder="https://github.com/elon_musk" />
-								<Input {...registerTwitter} label="Twitter" placeholder="https://x.com/elonmusk" />
-							</FieldSeparator>
-							<FieldSeparator>
-								<Input {...registerInstagram} label="Instagram" placeholder="https://www.instagram.com/elonmusk" />
-								<Input {...registerLinkedIn} label="LinkedIn" placeholder="https://linkedin.com/in/elonmusk" />
-							</FieldSeparator>
-							<Input {...registerPortfolio} label="Portfolio" placeholder="Your personal website" />
-
-							{/* Now Drag and drop for the resume */}
-							<Controller name="resume" control={control} render={({ field }) => <DnD {...field} user={user} />} />
-						</Section>
-
 						{/* Short answer section */}
 						<Section title="Short Answer">
 							<Controller
@@ -594,8 +615,9 @@ All the data should be added to the 'confidence' object in the form data. */}
 								rules={{ required: true, maxLength: 1000 }}
 								render={({ field: { onChange, onBlur, value } }) => (
 									<div className="fc gap-2 items-start w-full">
-										<p>Tell us the story of how you began in the computer science field.</p>
 										<Textarea
+											label="Tell us the story of how you began in the computer science field."
+											labelPlacement="outside"
 											placeholder="Enter your response"
 											isRequired
 											size="lg"
@@ -618,8 +640,9 @@ All the data should be added to the 'confidence' object in the form data. */}
 								rules={{ required: true, maxLength: 1000 }}
 								render={({ field: { onChange, onBlur, value } }) => (
 									<div className="fc gap-2 items-start w-full">
-										<p>Tell us the biggest challenge you have ever faced (doesn't have to be related to computer science).</p>
 										<Textarea
+											label="Tell us the biggest challenge you have ever faced (doesn't have to be related to computer science)."
+											labelPlacement="outside"
 											placeholder="Enter your response"
 											isRequired
 											size="lg"
@@ -636,6 +659,21 @@ All the data should be added to the 'confidence' object in the form data. */}
 									</div>
 								)}
 							/>
+						</Section>
+						{/* Social Section */}
+						<Section title="Social" subheading="These aren't required, but they give us a glimpse of who you are.">
+							<FieldSeparator>
+								<Input {...registerGithub} label="GitHub" placeholder="https://github.com/elon_musk" />
+								<Input {...registerTwitter} label="Twitter" placeholder="https://x.com/elonmusk" />
+							</FieldSeparator>
+							<FieldSeparator>
+								<Input {...registerInstagram} label="Instagram" placeholder="https://www.instagram.com/elonmusk" />
+								<Input {...registerLinkedIn} label="LinkedIn" placeholder="https://linkedin.com/in/elonmusk" />
+							</FieldSeparator>
+							<Input {...registerPortfolio} label="Portfolio" placeholder="Your personal website" />
+
+							{/* Now Drag and drop for the resume */}
+							<Controller name="resume" control={control} render={({ field }) => <DnD {...field} user={user} />} />
 						</Section>
 
 						{/* Submit */}
@@ -665,7 +703,7 @@ const FieldSeparator = ({ children }: { children: React.ReactNode }) => (
 
 const Section = ({ title, subheading, children }: { title: string; subheading?: string; children: React.ReactNode }) => (
 	<div className="w-full py-5 px-6 bg-neutral-900 rounded-2xl gap-3 fc items-start">
-		<div className="fc w-full items-start mb-2">
+		<div className="fc w-full items-start mb-3">
 			<h2 className="text-2xl font-bold">{title}</h2>
 			{subheading && <p className="text-neutral-300">{subheading}</p>}
 		</div>
