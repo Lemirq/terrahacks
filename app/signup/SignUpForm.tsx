@@ -8,6 +8,7 @@ import { BackgroundGradientAnimation } from '@/components/ui/background-gradient
 import { IoEye, IoEyeOff, IoLink } from 'react-icons/io5';
 import { AnimatePresence, motion } from 'framer-motion';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
 const SignUpForm = () => {
 	const supabase = createClient();
 
@@ -32,10 +33,14 @@ const SignUpForm = () => {
 			setButtonLoading(false);
 			return;
 		}
+
+		console.log(location.origin);
+
 		const { data: supabaseData, error } = await supabase.auth.signUp({
 			email: formData.email,
 			password: formData.password,
 			options: {
+				emailRedirectTo: location.origin,
 				data: {
 					first_name: formData.firstName,
 					last_name: formData.lastName,
@@ -46,6 +51,7 @@ const SignUpForm = () => {
 		if (error) {
 			console.error(error);
 			toast.error(error.message);
+			setButtonLoading(false);
 			return;
 		}
 
@@ -108,7 +114,16 @@ const SignUpForm = () => {
 								onSubmit={handleSubmit(signup)}
 								className="max-w-xl fc w-full fc gap-10 sm:px-10"
 							>
-								<h1 className="text-2xl sm:text-4xl text-center">Signup for Hack49!</h1>
+								<div className="w-full fc gap-2">
+									<h1 className="text-2xl sm:text-4xl text-center">Signup for Hack49!</h1>
+									<p className="text-neutral-300">
+										Have an account?{' '}
+										<Link href="/login" className="underline text-blue-500">
+											login
+										</Link>{' '}
+										instead
+									</p>
+								</div>
 								<div className="fc gap-3 w-full items-start">
 									<div className="fc sm:fr gap-3 w-full sm:items-start items-start">
 										<Input
@@ -133,9 +148,9 @@ const SignUpForm = () => {
 										placeholder="Enter your email"
 										description="We'll never share your email with anyone else."
 										onClear={() => console.log('clear')}
-										errorMessage={errors.email && 'Email is required'}
+										errorMessage={errors.email?.type === 'required' ? 'Email is required' : 'Please enter a valid email'}
 										isInvalid={!!errors.email}
-										{...register('email', { required: true })}
+										{...register('email', { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ })}
 									/>
 									{/* password, firstname, lastname */}
 									<Input
@@ -195,7 +210,13 @@ const SignUpForm = () => {
 											validate: (value) => value === password.current,
 										})}
 									/>
-									<Button isLoading={buttonLoading} type="submit" color="primary">
+									<Button
+										// disabled until form is valid
+										isDisabled={Object.keys(errors).length > 0}
+										isLoading={buttonLoading}
+										type="submit"
+										color="primary"
+									>
 										Signup
 									</Button>
 								</div>

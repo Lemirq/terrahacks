@@ -1,11 +1,10 @@
 'use client';
-import { motion } from 'framer-motion';
 import React from 'react';
 import { AuroraBackground } from '../aurora';
 import SignUpWaitlist from '../SignUpWaitlist';
-import { World } from '../globe';
+
 import Cobe from '../cobe';
-import { Input } from '@nextui-org/react';
+
 const Hero = () => {
 	const globeConfig = {
 		pointSize: 4,

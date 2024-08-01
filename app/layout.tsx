@@ -44,11 +44,11 @@ export default function PublicLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" className="bg-neutral-950">
 			<body className={'font-satoshi dark text-foreground bg-dot-white/[0.2] bg-neutral-950'}>
 				<Navbar />
 				<Providers>{children}</Providers>
-				<Toaster />
+				<Toaster richColors />
 				<GoogleAnalytics gaId="G-DJNEVNJYM7" />
 				<Footer />
 			</body>

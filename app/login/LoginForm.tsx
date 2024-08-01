@@ -7,8 +7,6 @@ import { IoEyeOff, IoEye, IoLink, IoArrowForward } from 'react-icons/io5';
 import { Button, Input } from '@nextui-org/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import Image from 'next/image';
-
 const LoginForm = () => {
 	const supabase = createClient();
 	const [buttonLoading, setButtonLoading] = useState(false);
@@ -70,17 +68,27 @@ const LoginForm = () => {
 						onSubmit={handleSubmit(login)}
 					>
 						<h1 className="text-2xl sm:text-4xl text-center">Login</h1>
+						<p className="text-neutral-300">
+							Don't have an account?{' '}
+							<Link href="/signup" className="underline text-blue-500">
+								sign up
+							</Link>{' '}
+							instead
+						</p>
 						<Input
 							label="Email"
 							placeholder="Enter your email"
 							description="We'll never share your email with anyone else."
 							onClear={() => console.log('clear')}
-							errorMessage={errors.email && 'Email is required'}
+							errorMessage={
+								errors.email?.type === 'required' ? 'Email is required' : errors.email?.type === 'pattern' && 'Email is invalid'
+							}
 							isInvalid={!!errors.email}
-							{...register('email', { required: true })}
+							{...register('email', { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ })}
 						/>
 						{/* password, firstname, lastname */}
 						<Input
+							isRequired
 							label="Password"
 							endContent={
 								<button
@@ -102,6 +110,9 @@ const LoginForm = () => {
 							isInvalid={!!errors.password}
 							{...register('password', { required: true })}
 						/>
+						<div className="w-full fr justify-end">
+							<Link href="/forgot">Forgot Password?</Link>
+						</div>
 						<Button isLoading={buttonLoading} type="submit" color="primary">
 							Login
 						</Button>
