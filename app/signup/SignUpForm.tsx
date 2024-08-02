@@ -119,7 +119,7 @@ const SignUpForm = () => {
 									<p className="text-neutral-300">
 										Have an account?{' '}
 										<Link href="/login" className="underline text-blue-500">
-											login
+											Login
 										</Link>{' '}
 										instead
 									</p>

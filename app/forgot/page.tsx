@@ -68,7 +68,7 @@ const ForgotPassword = () => {
 						transition={{
 							duration: 0.5,
 						}}
-						className="max-w-xl fc w-full fc gap-10 sm:px-10"
+						className="max-w-xl fc w-full fc gap-10 px-5 sm:px-10"
 					>
 						<h1 className="text-2xl sm:text-4xl text-center">Check your email</h1>
 						<p className="text-center">Please check your email and click the link to reset your password.</p>

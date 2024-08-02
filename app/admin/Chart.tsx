@@ -72,7 +72,13 @@ export function Chart({
 								/>
 							}
 						/>
-						<Bar dataKey={activeChart} fill={`var(--color-${activeChart})`} />
+						<Bar
+							dataKey={activeChart}
+							className="fill-blue-500"
+							background={{
+								fill: 'transparent',
+							}}
+						/>
 					</BarChart>
 				</ChartContainer>
 			</CardContent>

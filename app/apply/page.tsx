@@ -10,11 +10,6 @@ const ApplicationPage = async () => {
 	const supabase = createClient();
 
 	const { data, error } = await supabase.auth.getUser();
-	if (error || !data?.user) {
-		// 2 seconds delay before redirecting to login
-		redirect('/login');
-		return; // Return early to prevent rendering the page
-	}
 
 	// check applications
 	const { data: app, error: appError } = await supabase.from('applications').select('*').eq('user_id', data.user.id).single();

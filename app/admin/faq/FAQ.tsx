@@ -1,20 +1,13 @@
 'use client';
-import { getAllCategories, getAllFAQs } from '@/utils/supabase/actions';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import EditFAQ from './EditFAQ';
-import Link from 'next/link';
-import { Button, Link as NextLink } from '@nextui-org/react';
-import { IoAdd, IoChevronBack } from 'react-icons/io5';
-import CreateFAQ from './CreateFAQ';
-import { createClient } from '@/utils/supabase/client';
 import DeleteFAQ from './DeleteFAQ';
+import CreateFAQ from './CreateFAQ';
 
 const Faqs = ({ initialFAQs, categories }) => {
 	const [faqs, setFaqs] = useState(initialFAQs);
-	console.log(faqs);
-	console.log(categories);
 	return (
-		<div className="fc gap-3 items-start w-full max-w-6xl sm:px-10 px-5">
+		<div className="fc gap-3 items-start w-full">
 			<CreateFAQ setFAQs={setFaqs} categories={categories} />
 			{faqs && categories && (
 				<div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">

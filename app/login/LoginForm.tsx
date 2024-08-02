@@ -131,7 +131,7 @@ const LoginForm = () => {
 						transition={{
 							duration: 0.5,
 						}}
-						className="max-w-xl fc w-full fc gap-10 sm:px-10"
+						className="max-w-xl fc w-full fc gap-10 px-5 sm:px-10"
 					>
 						<h1 className="text-2xl sm:text-4xl text-center">Welcome, {user.user_metadata.first_name}!</h1>
 						<Link href="/dashboard">

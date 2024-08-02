@@ -5,9 +5,9 @@ import { useEffect, useState } from 'react';
 import { Chart } from './Chart';
 
 const Waitlist = ({ waitlist }) => {
-	console.log(waitlist);
 	const formatDate = (dateString) => {
 		const date = new Date(dateString);
+		// want to convert to
 		const options = { year: 'numeric', month: 'long', day: 'numeric' };
 		return date.toLocaleDateString(undefined, options);
 	};
@@ -41,8 +41,10 @@ const Waitlist = ({ waitlist }) => {
 	}, [waitlist]);
 
 	return (
-		<div className="w-full sm:px-10 px-5 fc gap-10">
-			<h1 className="text-4xl text-center">Waitlist</h1>
+		<div className="w-full sm:px-10 px-5 fc gap-10 items-start">
+			<h1 className="text-2xl text-center">Waitlist</h1>
+			<Chart chartData={chartData} />
+
 			{waitlist.length > 0 && (
 				<Table>
 					<TableHeader>
@@ -64,7 +66,6 @@ const Waitlist = ({ waitlist }) => {
 				</Table>
 			)}
 			{/* turn waitlist data into */}
-			<Chart chartData={chartData} />
 		</div>
 	);
 };

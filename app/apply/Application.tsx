@@ -6,7 +6,7 @@ import { Controller, useForm } from 'react-hook-form';
 import useFormPersist from 'react-hook-form-persist';
 import { Button, Checkbox, CheckboxGroup, divider, Input, Select, SelectItem, Textarea } from '@nextui-org/react';
 import { TracingBeam } from '@/components/ui/tracing-beam';
-import countries from '@/app/assets/countries.json';
+import countries from '@/data/countries.json';
 import { AttendedHackathons, confidence, confidenceType, genders, interests } from './options';
 import { CustomCheckbox } from './CustomCheckbox';
 import DnD from './DnD';

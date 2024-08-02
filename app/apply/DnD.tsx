@@ -1,4 +1,4 @@
-import { cn } from '@/lib/utils';
+import { cn } from '@/utils/cn';
 import { createClient } from '@/utils/supabase/client';
 import { Button, Chip } from '@nextui-org/react';
 import React, { useEffect, useMemo, useState } from 'react';
