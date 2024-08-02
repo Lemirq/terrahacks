@@ -76,7 +76,7 @@ export default function EditFAQ({
 								/>
 								<Select selectedKeys={category} onSelectionChange={setCategory} label="Select a category" variant="bordered">
 									{categories.map((category) => (
-										<SelectItem key={category.id}>{category.name}</SelectItem>
+										<SelectItem key={category.name}>{category.name}</SelectItem>
 									))}
 								</Select>
 							</ModalBody>

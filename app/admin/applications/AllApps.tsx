@@ -20,7 +20,7 @@ import countries from '@/data/countries.json';
 import { columns } from './data';
 import { Database, Tables } from '@/database.types';
 import { useRouter } from 'next/navigation';
-import { IoChevronDown, IoSearch } from 'react-icons/io5';
+import { IoChevronDown, IoRefresh, IoSearch } from 'react-icons/io5';
 
 const statusColorMap = {
 	accepted: 'success',

@@ -4,8 +4,8 @@ import { Button } from '@nextui-org/react';
 import Link from 'next/link';
 import React from 'react';
 import { logout } from '../login/actions';
-import { IoLogOut } from 'react-icons/io5';
-import { usePathname } from 'next/navigation';
+import { IoLogOut, IoRefresh } from 'react-icons/io5';
+import { usePathname, useRouter } from 'next/navigation';
 
 const Sidebar = () => {
 	const pathname = usePathname();
@@ -24,6 +24,8 @@ const Sidebar = () => {
 		},
 	];
 
+	const router = useRouter();
+
 	return (
 		<>
 			<div className="hidden sm:flex h-screen fixed left-0 fc px-5 pt-24 pb-10 select-none">
@@ -41,7 +43,11 @@ const Sidebar = () => {
 								{link.text}
 							</Link>
 						))}
+						<Button fullWidth onClick={() => router.refresh()} color="primary" startContent={<IoRefresh />}>
+							Refresh
+						</Button>
 					</div>
+
 					<form className="w-full">
 						<Button
 							fullWidth

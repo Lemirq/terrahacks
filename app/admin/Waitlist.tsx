@@ -42,7 +42,7 @@ const Waitlist = ({ waitlist }) => {
 
 	return (
 		<div className="w-full fc gap-10 items-start">
-			<h1 className="text-2xl text-center">Waitlist</h1>
+			<h1 className="text-2xl text-center">Waitlist: {waitlist.length} users</h1>
 			<Chart chartData={chartData} />
 
 			{waitlist.length > 0 && (
