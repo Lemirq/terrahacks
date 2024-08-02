@@ -10,7 +10,7 @@ const Faqs = ({ initialFAQs, categories }) => {
 		<div className="fc gap-3 items-start w-full">
 			<CreateFAQ setFAQs={setFaqs} categories={categories} />
 			{faqs && categories && (
-				<div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+				<div className="w-full grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3">
 					{faqs.map((faq, index) => (
 						<div key={index} className="fc gap-3 bg-neutral-800 rounded-lg p-5 items-start justify-between">
 							<div className="fc gap-2 items-start">

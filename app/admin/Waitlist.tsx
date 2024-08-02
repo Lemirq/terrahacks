@@ -41,7 +41,7 @@ const Waitlist = ({ waitlist }) => {
 	}, [waitlist]);
 
 	return (
-		<div className="w-full sm:px-10 px-5 fc gap-10 items-start">
+		<div className="w-full fc gap-10 items-start">
 			<h1 className="text-2xl text-center">Waitlist</h1>
 			<Chart chartData={chartData} />
 

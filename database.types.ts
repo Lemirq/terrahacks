@@ -11,72 +11,75 @@ export type Database = {
     Tables: {
       applications: {
         Row: {
-          age: number
+          age: number | null
           complete: boolean | null
-          confidence: Json
-          country: string
+          confidence: Json | null
+          country: string | null
           created_at: string
-          email: string
-          first_name: string
-          gender: string
+          email: string | null
+          first_name: string | null
+          gender: string | null
           graduation: number | null
-          hackathons_attended: number
+          hackathons_attended: number | null
           id: string
-          last_name: string
-          level_of_study: string
+          last_name: string | null
+          level_of_study: string | null
           major: string | null
           phone: number | null
           resume_url: string | null
-          short_ans_1: string
-          short_ans_2: string
-          social: Json
-          top_interests: string[]
+          short_ans_1: string | null
+          short_ans_2: string | null
+          social: Json | null
+          status: Database["public"]["Enums"]["app_status"]
+          top_interests: string[] | null
           user_id: string | null
         }
         Insert: {
-          age: number
+          age?: number | null
           complete?: boolean | null
-          confidence: Json
-          country: string
+          confidence?: Json | null
+          country?: string | null
           created_at?: string
-          email: string
-          first_name: string
-          gender: string
+          email?: string | null
+          first_name?: string | null
+          gender?: string | null
           graduation?: number | null
-          hackathons_attended: number
+          hackathons_attended?: number | null
           id?: string
-          last_name: string
-          level_of_study: string
+          last_name?: string | null
+          level_of_study?: string | null
           major?: string | null
           phone?: number | null
           resume_url?: string | null
-          short_ans_1: string
-          short_ans_2: string
-          social: Json
-          top_interests: string[]
+          short_ans_1?: string | null
+          short_ans_2?: string | null
+          social?: Json | null
+          status?: Database["public"]["Enums"]["app_status"]
+          top_interests?: string[] | null
           user_id?: string | null
         }
         Update: {
-          age?: number
+          age?: number | null
           complete?: boolean | null
-          confidence?: Json
-          country?: string
+          confidence?: Json | null
+          country?: string | null
           created_at?: string
-          email?: string
-          first_name?: string
-          gender?: string
+          email?: string | null
+          first_name?: string | null
+          gender?: string | null
           graduation?: number | null
-          hackathons_attended?: number
+          hackathons_attended?: number | null
           id?: string
-          last_name?: string
-          level_of_study?: string
+          last_name?: string | null
+          level_of_study?: string | null
           major?: string | null
           phone?: number | null
           resume_url?: string | null
-          short_ans_1?: string
-          short_ans_2?: string
-          social?: Json
-          top_interests?: string[]
+          short_ans_1?: string | null
+          short_ans_2?: string | null
+          social?: Json | null
+          status?: Database["public"]["Enums"]["app_status"]
+          top_interests?: string[] | null
           user_id?: string | null
         }
         Relationships: []
@@ -176,6 +179,7 @@ export type Database = {
       [_ in never]: never
     }
     Enums: {
+      app_status: "in_progress" | "accepted" | "rejected" | "not_started"
       faq_category:
         | "General Information"
         | "Participation Details"
