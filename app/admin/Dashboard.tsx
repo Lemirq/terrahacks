@@ -4,7 +4,7 @@ import { Toaster } from 'sonner';
 import Waitlist from './Waitlist';
 import { User } from '@/node_modules/@supabase/auth-js/src/lib/types';
 
-const Dashboard = ({ waitlist, user }: { user: User }) => {
+const Dashboard = ({ waitlist, user }: { user: User; waitlist: any }) => {
 	return (
 		<div className="w-full min-h-screen overflow-x-hidden fc">
 			<div className="w-full max-w-7xl h-full fc gap-10">

@@ -27,6 +27,7 @@ export type Database = {
           major: string | null
           phone: number | null
           resume_url: string | null
+          reviewedBy: string | null
           short_ans_1: string | null
           short_ans_2: string | null
           social: Json | null
@@ -51,6 +52,7 @@ export type Database = {
           major?: string | null
           phone?: number | null
           resume_url?: string | null
+          reviewedBy?: string | null
           short_ans_1?: string | null
           short_ans_2?: string | null
           social?: Json | null
@@ -75,6 +77,7 @@ export type Database = {
           major?: string | null
           phone?: number | null
           resume_url?: string | null
+          reviewedBy?: string | null
           short_ans_1?: string | null
           short_ans_2?: string | null
           social?: Json | null

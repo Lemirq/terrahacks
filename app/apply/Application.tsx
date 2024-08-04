@@ -605,6 +605,8 @@ All the data should be added to the 'confidence' object in the form data. */}
 										);
 									})}
 								</div>
+
+								<p>Quick Tip: Use tab and the left/right arrow keys to select quickly</p>
 							</div>
 						</Section>
 						{/* Short answer section */}

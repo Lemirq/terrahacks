@@ -1,15 +1,10 @@
-'use server';
 import { createClient } from '@/utils/supabase/server';
-import { Button } from '@nextui-org/react';
-import Link from 'next/link';
-import React, { useState } from 'react';
-import { IoArrowBack, IoCheckmarkCircle, IoCloseCircle, IoDocument } from 'react-icons/io5';
+import React from 'react';
 import countries from '@/data/countries.json';
-import PdfViewer from './PdfViewer';
-import { redirect } from 'next/navigation';
-import { toast } from 'sonner';
-import { approve, reject } from './actions';
+import ReviewApplication from './ReviewApplication';
 const Application = async ({ params }: { params: { id: string } }) => {
+	// get origin from the request
+	const origin = typeof window === 'undefined' ? 'http://localhost:3000' : window.location.origin;
 	const supabase = createClient();
 	const fetchApplication = async () => {
 		const { data, error } = await supabase.from('applications').select('*').eq('user_id', params.id).single();
@@ -20,11 +15,13 @@ const Application = async ({ params }: { params: { id: string } }) => {
 		return data;
 	};
 
+	const { data: user, error } = await supabase.auth.getUser();
+
 	const data = await fetchApplication();
 
 	const setToNotStarted = async () => {
 		if (data?.status === 'not_started') {
-			await supabase.from('applications').update({ status: 'in_progress' }).eq('user_id', params.id);
+			await supabase.from('applications').update({ status: 'in_progress', reviewedBy: user.user?.id }).eq('user_id', params.id);
 		}
 	};
 	setToNotStarted();
@@ -38,29 +35,14 @@ const Application = async ({ params }: { params: { id: string } }) => {
 	if (!data) {
 		return <div className="text-3xl">No Application found.</div>;
 	}
+	const formatSocialLink = (url: string | null) => {
+		if (!url) return '';
+		return url.startsWith('http') ? url : `https://${url}`;
+	};
 
 	return (
 		<div className="fc gap-3 items-start w-full">
-			<div className="w-full gap-4 bg-neutral-800 fc items-start lg:fr lg:justify-between mb-10 rounded-2xl px-5 py-4">
-				<Link href="/admin/applications">
-					<Button color="primary" startContent={<IoArrowBack />}>
-						Back
-					</Button>
-				</Link>
-				<h3 className="font-bold text-2xl">
-					Application for {data.first_name} {data.last_name}
-				</h3>
-				<form className="gap-3 fr flex-wrap justify-start">
-					{url && <PdfViewer url={url} />}
-					<input type="text" className="hidden" value={params.id} name="id" />
-					<Button type="submit" formAction={approve} color="success" startContent={<IoCheckmarkCircle />}>
-						Approve
-					</Button>
-					<Button type="submit" formAction={reject} color="danger" startContent={<IoCloseCircle />}>
-						Reject
-					</Button>
-				</form>
-			</div>
+			<ReviewApplication data={data} id={params.id} url={url} />
 
 			<div className="w-full fc gap-10">
 				<Section title="Short Answers">
@@ -106,41 +88,51 @@ const Application = async ({ params }: { params: { id: string } }) => {
 						<Viewer
 							question="Github"
 							answer={
-								<Link className="text-blue-500 underline" href={data.social.github}>
-									{data.social.github}
-								</Link>
+								data.social.github && (
+									<a className="text-blue-500 underline" href={formatSocialLink(data.social.github)}>
+										{formatSocialLink(data.social.github)}
+									</a>
+								)
 							}
 						/>
 						<Viewer
 							question="LinkedIn"
 							answer={
-								<Link className="text-blue-500 underline" href={data.social.linkedin}>
-									{data.social.linkedin}
-								</Link>
-							}
-						/>
-						<Viewer
-							question="Instagram"
-							answer={
-								<Link className="text-blue-500 underline" href={data.social.instagram}>
-									{data.social.instagram}
-								</Link>
+								data.social.linkedin && (
+									<a className="text-blue-500 underline" href={formatSocialLink(data.social.linkedin)}>
+										{formatSocialLink(data.social.linkedin)}
+									</a>
+								)
 							}
 						/>
 						<Viewer
 							question="Twitter"
 							answer={
-								<Link className="text-blue-500 underline" href={data.social.twitter}>
-									{data.social.twitter}
-								</Link>
+								data.social.twitter && (
+									<a className="text-blue-500 underline" href={formatSocialLink(data.social.twitter)}>
+										{formatSocialLink(data.social.twitter)}
+									</a>
+								)
+							}
+						/>
+						<Viewer
+							question="Instagram"
+							answer={
+								data.social.instagram && (
+									<a className="text-blue-500 underline" href={formatSocialLink(data.social.instagram)}>
+										{formatSocialLink(data.social.instagram)}
+									</a>
+								)
 							}
 						/>
 						<Viewer
 							question="Portfolio"
 							answer={
-								<Link className="text-blue-500 underline" href={data.social.portfolio}>
-									{data.social.portfolio}
-								</Link>
+								data.social.portfolio && (
+									<a className="text-blue-500 underline" href={formatSocialLink(data.social.portfolio)}>
+										{formatSocialLink(data.social.portfolio)}
+									</a>
+								)
 							}
 						/>
 					</Section>
@@ -149,11 +141,11 @@ const Application = async ({ params }: { params: { id: string } }) => {
 		</div>
 	);
 };
-const Viewer = ({ question, answer }: { question: string; answer: React.ReactNode }) => {
+const Viewer = ({ question, answer }: { question: string; answer: React.ReactNode | string | null }) => {
 	return (
 		<div className="fc items-start gap-2 w-full">
 			<p className="text-lg font-bold">{question}</p>
-			<p>{answer}</p>
+			{answer || 'N/A'}
 		</div>
 	);
 };

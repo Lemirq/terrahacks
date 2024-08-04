@@ -11,7 +11,6 @@ import { themePlugin } from '@react-pdf-viewer/theme';
 
 import React from 'react';
 import { ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure, Button, Modal } from '@nextui-org/react';
-import { Viewer } from '@react-pdf-viewer/core';
 import { IoDocument } from 'react-icons/io5';
 
 const PdfViewer = ({ url }: { url: string }) => {

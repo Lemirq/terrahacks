@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import {
 	Table,
 	TableHeader,
@@ -21,7 +21,8 @@ import { columns } from './data';
 import { Database, Tables } from '@/database.types';
 import { useRouter } from 'next/navigation';
 import { IoChevronDown, IoRefresh, IoSearch } from 'react-icons/io5';
-
+import { createClient } from '@/utils/supabase/client';
+import { User as Suser } from '@/node_modules/@supabase/auth-js/src/lib/types';
 const statusColorMap = {
 	accepted: 'success',
 	rejected: 'danger',
@@ -41,9 +42,26 @@ export default function AllApps({ applications }: { applications: Tables<'applic
 	const [filterValue, setFilterValue] = React.useState('');
 	const [page, setPage] = React.useState(1);
 	const [rowsPerPage, setRowsPerPage] = React.useState(5);
+	const [reviewByUser, setReviewByUser] = useState<Suser | null>(null);
+
+	const supabase = createClient();
+	const getUser = async (app: Database['public']['Tables']['applications']['Row']) => {
+		if (!app) {
+			return;
+		}
+		const { data: user, error } = await supabase.from('users').select('*').eq('uid', app.reviewedBy).single();
+		if (error) {
+			return error;
+		}
+		return user as Database['public']['Tables']['users']['Row'];
+	};
 
 	const renderCell = React.useCallback(
-		(app: Database['public']['Tables']['applications']['Row'], columnKey: 'name' | 'level_of_study' | 'status' | 'country') => {
+		async (app: Database['public']['Tables']['applications']['Row'], columnKey: 'name' | 'level_of_study' | 'status' | 'country' | 'review') => {
+			let reviewByUser: Database['public']['Tables']['users']['Row'] = null;
+			if (app.reviewedBy) {
+				reviewByUser = await getUser(app);
+			}
 			switch (columnKey) {
 				case 'name':
 					return (
@@ -72,14 +90,16 @@ export default function AllApps({ applications }: { applications: Tables<'applic
 							{statusLabelMap[app.status]}
 						</Chip>
 					);
-				// case 'review':
-				// 	return (
-				// 		<Link href={`/admin/applications/${app.user_id}`}>
-				// 			<Button color="primary" endContent={<IoArrowForward />}>
-				// 				Review Application
-				// 			</Button>
-				// 		</Link>
-				// 	);
+				case 'review':
+					return (
+						<p>
+							{app.reviewedBy ? (
+								<User description={reviewByUser.email} name={reviewByUser.firstName + ' ' + reviewByUser.lastName} />
+							) : (
+								'Not reviewed yet'
+							)}
+						</p>
+					);
 				case 'country':
 					return <p>{`${countries.find((c) => c.code === app.country)?.emoji} ${countries.find((c) => c.code === app.country)?.name}`}</p>;
 			}

@@ -24,7 +24,7 @@ export default function DnD({ user, onChange, onBlur, value }: { user: User; onC
 		// before sending, we must check if there is already a file in the folder, as there can only be one file
 		const { data: files, error: filesError } = await supabase.storage.from('resumes').list(`${user.id}/`);
 		console.log(files);
-		if (files?.length > 1) {
+		if (files?.length === 1) {
 			toast.error('You can only upload one file');
 			setButtonL(false);
 			return;
@@ -77,6 +77,12 @@ export default function DnD({ user, onChange, onBlur, value }: { user: User; onC
 			setUploadedFiles(uploadedFiles.filter((f) => f.name !== file.name));
 		}
 	};
+	// send to supabase when file is uploaded
+	useEffect(() => {
+		if (acceptedFiles.length > 0) {
+			sendToSupabase(acceptedFiles[0]);
+		}
+	}, [acceptedFiles]);
 
 	return (
 		<div onBlur={onBlur} className="fc gap-5 w-full items-start">
@@ -96,7 +102,7 @@ export default function DnD({ user, onChange, onBlur, value }: { user: User; onC
 			</div>
 
 			<div className="w-full fc gap-2 sm:fr justify-between">
-				{acceptedFiles.length > 0 && (
+				{/* {acceptedFiles.length > 0 && (
 					<div className="w-full fc items-start">
 						<h3 className="text-lg font-bold">Accepted</h3>
 
@@ -111,7 +117,7 @@ export default function DnD({ user, onChange, onBlur, value }: { user: User; onC
 							</div>
 						))}
 					</div>
-				)}
+				)} */}
 				<div className="w-full bg-green-500/30 border-2 border-dashed border-green-500/30 px-5 sm:px-10 py-5 rounded-xl">
 					<h3 className="text-lg font-bold mb-3">Uploaded Files</h3>
 					<div className="fr sm:fc gap-2 w-full sm:items-start">

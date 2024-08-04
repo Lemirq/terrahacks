@@ -30,4 +30,19 @@ export const people = [
 			'Rishi is a teenager from Ontario who is interested in medical AI and adversarial attacks. Fun Fact: Rishi enjoys 3D printing and tinkering with electronics in his free time.',
 		image: '/images/founders/rishi.jpg',
 	},
+	{
+		name: 'Kevin Chen',
+		title: 'Marketing Lead',
+		image: '/images/founders/rishi.jpg',
+	},
+	{
+		name: 'Shayan Awan',
+		title: 'Marketing Lead',
+		image: '/images/founders/rishi.jpg',
+	},
+	{
+		name: 'Piranaven',
+		title: 'Marketing Lead',
+		image: '/images/founders/rishi.jpg',
+	},
 ];

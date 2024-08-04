@@ -16,5 +16,6 @@ const Home = async () => {
 
 	return <Dashboard user={data.user} waitlist={waitlist} />;
 };
+export const fetchCache = 'force-no-store';
 
 export default Home;

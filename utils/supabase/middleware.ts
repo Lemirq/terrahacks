@@ -65,14 +65,8 @@ export async function updateSession(request: NextRequest) {
 		return NextResponse.redirect(url);
 	} else if (user) {
 		if (request.nextUrl.pathname.startsWith('/admin')) {
-			const admin = [
-				'519vihaansh@gmail.com',
-				'spacecoder9849999@hotmail.com',
-				'smitjohn3221@gmail.com',
-				'shayan.awan.shakeel@gmail.com',
-				'prabhnannu07@gmail.com',
-			];
-			if (!admin.includes(user?.email!)) {
+			const domain = 'hack49.com';
+			if (!user.email?.endsWith(domain)) {
 				const url = request.nextUrl.clone();
 				url.pathname = '/dashboard';
 				return NextResponse.redirect(url);

@@ -37,7 +37,7 @@ const Footer = () => {
 				<div className="sm:flex sm:items-center sm:justify-between fc sm:fr gap-3">
 					<span className="text-sm text-center text-gray-400">
 						© {new Date().getFullYear()}{' '}
-						<a href="https://hack-49.vercel.app/" className="hover:underline">
+						<a href="https://hack49.com" className="hover:underline">
 							Hack49 Global™
 						</a>
 						. All Rights Reserved.
