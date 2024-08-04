@@ -16,7 +16,7 @@ const Applications = async () => {
 	if (!allApplications) {
 		return <div>Loading...</div>;
 	}
-	const incomingApplications = allApplications.filter((application) => application.status === 'not_started');
+	const incomingApplications = allApplications.filter((application) => application.status === 'not_started' && application.first_name);
 	const inProgressApplications = allApplications.filter((application) => application.status === 'in_progress');
 	const acceptedApplications = allApplications.filter((application) => application.status === 'accepted');
 	const rejectedApplications = allApplications.filter((application) => application.status === 'rejected');

@@ -30,7 +30,7 @@ const PdfViewer = ({ url }: { url: string }) => {
 						<>
 							<ModalHeader className="flex flex-col gap-1">Resume</ModalHeader>
 							<ModalBody>
-								<embed className="w-full h-full rounded-2xl" type="application/pdf" src={url} />
+								<object className="w-full h-full rounded-2xl" type="application/pdf" data={url} />
 							</ModalBody>
 							<ModalFooter>
 								<Button color="danger" onPress={onClose}>
