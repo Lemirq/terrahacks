@@ -30,7 +30,11 @@ export const people = [
 			'Rishi is a teenager from Ontario who is interested in medical AI and adversarial attacks. Fun Fact: Rishi enjoys 3D printing and tinkering with electronics in his free time.',
 		image: '/images/team/rishi.jpg',
 	},
-
+	{
+		name: 'Shayan Awan',
+		image: '/images/team/shayan.jpg',
+		lk: 'https://www.linkedin.com/in/shayan-awan-7548a4277/',
+	},
 	{
 		name: 'Kevin Chen',
 		image: '/images/team/kevin.jpg',

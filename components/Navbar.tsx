@@ -96,7 +96,7 @@ const Navbar = () => {
 					</a>
 				</li>
 				<li>
-					<a href="https://x.com/hacks_49" target="_blank" rel="noopener noreferrer">
+					<a href="https://x.com/hack49_" target="_blank" rel="noopener noreferrer">
 						<FaXTwitter />
 					</a>
 				</li>
