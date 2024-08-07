@@ -10,7 +10,7 @@ const SignUpForm = () => {
 		const formData = new FormData(e.target);
 
 		// post request to /api/mailing with body formData
-		const response = await fetch('/api/mailing', {
+		const response = await fetch('/api/waitlist', {
 			method: 'POST',
 			body: JSON.stringify({
 				name: formData.get('name'),
@@ -26,6 +26,7 @@ const SignUpForm = () => {
 				description: 'We will get back to you soon. \n email: ' + formData.get('email') + '\n name: ' + formData.get('name'),
 			});
 		} else {
+			console.log(data.error);
 			toast.error('Something went wrong!', {
 				description: data.error,
 			});

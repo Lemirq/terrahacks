@@ -28,7 +28,7 @@ const MeetTheTeam = () => {
 				viewport={{ once: true }}
 				className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium"
 			>
-				Meet The Founders
+				Meet The Team
 			</motion.h3>
 			<motion.div
 				variants={container}
@@ -62,16 +62,18 @@ const Founder = ({ name, title, description, image, lk }: FounderProps) => {
 			<h4 className="text-2xl font-semibold text-white inline-flex justify-center items-center gap-2">
 				{/* dont wrap text */}
 				<span className="whitespace-nowrap">{name}</span>
-				<a href={lk} target="_blank" rel="noreferrer">
-					<Button isIconOnly variant="bordered">
-						<IoLogoLinkedin />
-					</Button>
-				</a>
+				{lk && (
+					<a href={lk} target="_blank" rel="noreferrer">
+						<Button isIconOnly variant="bordered">
+							<IoLogoLinkedin />
+						</Button>
+					</a>
+				)}
 			</h4>
 			<div className="fr gap-3 mb-4"></div>
 
 			{/* <p className="text-lg text-gray-400">{title}</p> */}
-			<p className="text-lg sm:text-sm text-gray-200 text-center max-w-[30ch]">{description}</p>
+			{/* <p className="text-lg sm:text-sm text-gray-200 	text-center max-w-[30ch]">{description}</p> */}
 		</motion.div>
 	);
 };
