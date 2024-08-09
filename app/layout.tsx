@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 	title: 'Hack49 Global',
 	description:
 		"Hack49 is a yearly international hackathon dedicated to fostering the creation of groundbreaking solutions to address the world's most complex issues.",
+	keywords:
+		'hackathon, hack49, hack49 global, hack49 hackathon, hack49 global hackathon, hack49 hackathon global, hack 49, innovation, technology, hackathon 2022, hack49 2022, hack49 global 2022, hack49 hackathon 2022, hack49 global hackathon 2022, hack49 hackathon global 2022, hack 49 2022, innovation 2022, technology 2022, hackathon 2023, hack49 2023, hack49 global 2023, hack49 hackathon 2023, hack49 global hackathon 2023, hack49 hackathon global 2023, hack 49 2023, innovation 2023, technology 2023',
 	robots: 'follow, index',
 	icons: {
 		icon: '/favicon.ico',
@@ -19,10 +21,10 @@ export const metadata: Metadata = {
 	},
 	openGraph: {
 		type: 'website',
-		url: `https://hack-49.vercel.app/`,
+		url: `https://hack49.com/`,
 		images: [
 			{
-				url: `https://hack-49.vercel.app/images/og-image.png`,
+				url: `https://hack49.com/images/og-image.png`,
 				width: 1200,
 				height: 630,
 			},
