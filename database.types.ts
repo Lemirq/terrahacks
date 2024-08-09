@@ -155,18 +155,21 @@ export type Database = {
           code: string
           created_at: string
           id: number
+          used: number
           user_id: string
         }
         Insert: {
           code: string
           created_at?: string
           id?: number
+          used?: number
           user_id?: string
         }
         Update: {
           code?: string
           created_at?: string
           id?: number
+          used?: number
           user_id?: string
         }
         Relationships: []

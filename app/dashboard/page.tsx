@@ -102,7 +102,7 @@ export default async function PrivatePage() {
 					</Link>
 				</section>
 
-				<Referral user={data.user} code={referralData} />
+				<Referral user={data.user} refCode={referralData} />
 
 				<section className="mt- sm:px-10 p-5 w-full">
 					<h3 className="text-2xl">Your Profile</h3>
