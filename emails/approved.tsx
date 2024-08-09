@@ -14,7 +14,7 @@ const Approved: React.FC<Readonly<ApprovedProps>> = ({ name, email }) => (
 			<Preview>Congratulations! Your application has been approved.</Preview>
 			<Body className="bg-neutral-950 mx-auto font-sans">
 				<Container className="m-auto p-5 py-24 text-white">
-					<Img src="https://hack49.com/images/og-image.png" alt="image" className="m-auto rounded-3xl w-full" />
+					{/* <Img src="https://hack49.com/images/og-image.png" alt="image" className="m-auto rounded-3xl w-full" /> */}
 					<Heading className="text-3xl font-bold mb-5">Congratulations, {name}! 🎉</Heading>
 					{/* <Button
 						className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
