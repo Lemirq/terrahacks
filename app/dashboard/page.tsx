@@ -6,6 +6,7 @@ import { IoLogOut } from 'react-icons/io5';
 import Link from 'next/link';
 import { logout } from '../login/actions';
 import { use } from 'react';
+import Referral from './Referral';
 
 const articles = [
 	{
@@ -30,11 +31,18 @@ export default async function PrivatePage() {
 	}
 
 	// get application status
-	const { data: userData, error: userError } = await supabase.from('applications').select().eq('user_id', data.user.id);
+	const { data: userData, error: userError } = await supabase.from('applications').select('*').eq('user_id', data.user.id);
 	if (userError) {
 		console.error(userError.message);
 	}
 	console.log(userData);
+
+	// get referral code
+	const { data: referralData, error: referralError } = await supabase.from('referrals').select('*').eq('user_id', data.user.id);
+	if (referralError) {
+		console.error(referralError.message);
+	}
+	console.log(referralData);
 
 	const generateHeading = () => {
 		if (userData?.length === 0) return 'Application not started';
@@ -71,7 +79,7 @@ export default async function PrivatePage() {
 					</form>
 				</div>
 				<p>Let's dive into your application journey.</p>
-				<div className="w-full py-5 px-5 sm:px-10 fc gap-5 items-start md:fr justify-between rounded-2xl border border-neutral-300/30 bg-neutral-900 mt-5">
+				<section className="w-full py-5 px-5 sm:px-10 fc gap-5 items-start md:fr justify-between rounded-2xl border border-neutral-300/30 bg-neutral-900 mt-5">
 					<div className="fc gap-3 items-start w-full">
 						<Chip color={getChipColor()}>Application Status</Chip>
 						<h2 className="text-4xl font-bold">{generateHeading()}</h2>
@@ -92,7 +100,9 @@ export default async function PrivatePage() {
 								: 'Continue Application'}
 						</Button>
 					</Link>
-				</div>
+				</section>
+
+				<Referral user={data.user} code={referralData} />
 
 				<section className="mt- sm:px-10 p-5 w-full">
 					<h3 className="text-2xl">Your Profile</h3>

@@ -23,7 +23,7 @@ const Footer = () => {
 						</li>
 						<li>
 							<a href="#founders" className="hover:underline me-4 md:me-6">
-								Founders
+								Team
 							</a>
 						</li>
 						<li>

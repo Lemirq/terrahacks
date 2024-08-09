@@ -150,6 +150,27 @@ export type Database = {
         }
         Relationships: []
       }
+      referrals: {
+        Row: {
+          code: string
+          created_at: string
+          id: number
+          user_id: string
+        }
+        Insert: {
+          code: string
+          created_at?: string
+          id?: number
+          user_id?: string
+        }
+        Update: {
+          code?: string
+          created_at?: string
+          id?: number
+          user_id?: string
+        }
+        Relationships: []
+      }
       users: {
         Row: {
           created_at: string
