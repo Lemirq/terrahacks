@@ -17,10 +17,8 @@ import Link from 'next/link';
 import { IoArrowBack } from 'react-icons/io5';
 
 const Application = ({ user }: { user: User }) => {
-	const [char1, setChar1] = useState(localStorage.getItem('storageKey')?.short_answer1?.length || 0);
-	const [char2, setChar2] = useState(
-		(localStorage.getItem('storageKey') && JSON.parse(localStorage.getItem('storageKey')).short_answer2.length) || 0
-	);
+	const [char1, setChar1] = useState(0);
+	const [char2, setChar2] = useState(0);
 	const [buttonLoading, setButtonLoading] = useState(false);
 
 	const {
@@ -152,11 +150,15 @@ const Application = ({ user }: { user: User }) => {
 		short_answer1:
 			errors.short_answer1?.type === 'required'
 				? 'Response is required'
-				: errors.short_answer1?.type === 'maxLength' && `Max 1000 characters (${char1}/1000)`,
+				: errors.short_answer1?.type === 'maxLength'
+				? `Max 1000 characters (${char1}/1000)`
+				: `Min 200 characters (${char1}/1000)`,
 		short_answer2:
 			errors.short_answer2?.type === 'required'
 				? 'Response is required'
-				: errors.short_answer2?.type === 'maxLength' && `Max 1000 characters (${char2}/1000)`,
+				: errors.short_answer2?.type === 'maxLength'
+				? `Max 1000 characters (${char2}/1000)`
+				: `Min 200 characters (${char2}/1000)`,
 	};
 
 	const registerFirstName = {
@@ -176,11 +178,6 @@ const Application = ({ user }: { user: User }) => {
 		isInvalid: !!errors.email,
 		isRequired: true,
 		...register('email', { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ }),
-	};
-	const registerPhone = {
-		errorMessage: errorMessages.phone,
-		isInvalid: !!errors.phone_number,
-		...register('phone_number', { required: false, pattern: /^[0-9-]+$/ }),
 	};
 
 	const urlRegex = /^(https?:\/\/)?(www\.)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[a-zA-Z0-9-._~:\/?#[\]@!$&'()*+,;=]*)?$/;
@@ -255,7 +252,7 @@ const Application = ({ user }: { user: User }) => {
 				last_name: data.last_name,
 				level_of_study: data.level_of_study,
 				major: data.major,
-				phone: parseInt(data.phone_number),
+				phone: data.phone_number,
 				short_ans_1: data.short_answer1,
 				short_ans_2: data.short_answer2,
 				social: {
@@ -311,13 +308,29 @@ const Application = ({ user }: { user: User }) => {
 								<Input label="Email" placeholder="Enter your email" {...registerEmail} />
 								{/* <Input
 								type="number" label="Phone Number" placeholder="Enter your phone number" {...registerPhone} /> */}
+								{/* const registerPhone = {
+		errorMessage: errorMessages.phone,
+		isInvalid: !!errors.phone_number,
+		...register('phone_number', { required: false, pattern: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/ }),
+	}; */}
 								<Controller
 									name="phone_number"
 									control={control}
+									rules={{
+										required: false,
+										pattern: /^[0-9]{3}-[0-9]{3}-[0-9]{4}$/,
+									}}
 									render={({ field: { onChange, onBlur, value } }) => (
 										<InputMask mask="999-999-9999" value={value} onChange={onChange} onBlur={onBlur}>
 											{(inputProps) => (
-												<Input type="text" label="Phone Number" placeholder="Enter your phone number" {...inputProps} />
+												<Input
+													isInvalid={!!errors.phone_number}
+													errorMessage={errorMessages.phone}
+													type="text"
+													label="Phone Number"
+													placeholder="Enter your phone number"
+													{...inputProps}
+												/>
 											)}
 										</InputMask>
 									)}
@@ -614,7 +627,7 @@ All the data should be added to the 'confidence' object in the form data. */}
 							<Controller
 								name="short_answer1"
 								control={control}
-								rules={{ required: true, maxLength: 1000 }}
+								rules={{ required: true, maxLength: 1000, minLength: 200 }}
 								render={({ field: { onChange, onBlur, value } }) => (
 									<div className="fc gap-2 items-start w-full">
 										<Textarea
@@ -639,7 +652,7 @@ All the data should be added to the 'confidence' object in the form data. */}
 							<Controller
 								name="short_answer2"
 								control={control}
-								rules={{ required: true, maxLength: 1000 }}
+								rules={{ required: true, maxLength: 1000, minLength: 200 }}
 								render={({ field: { onChange, onBlur, value } }) => (
 									<div className="fc gap-2 items-start w-full">
 										<Textarea

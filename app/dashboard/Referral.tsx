@@ -8,7 +8,32 @@ import { Tables } from '@/database.types';
 import { IoTicket } from 'react-icons/io5';
 import PrizeTiers from './PrizeTiers';
 import { AnimatePresence } from 'framer-motion';
-
+const prizes = [
+	{
+		tickets: 5,
+		prize: '1 entry on winning Hack49 t-shirt',
+	},
+	{
+		tickets: 10,
+		prize: '2 entries on winning Hack49 t-shirt',
+	},
+	{
+		tickets: 20,
+		prize: '3 entries on winning Hack49 t-shirt + custom stickers',
+	},
+	{
+		tickets: 50,
+		prize: '4 entries on winning Hack49 t-shirt + custom hat',
+	},
+	{
+		tickets: 75,
+		prize: '5 entries on winning Hack49 t-shirt + custom water bottle',
+	},
+	{
+		tickets: '1 million',
+		prize: 'Guaranteed Tesla with Hack49 logo',
+	},
+];
 const Referral = ({ user, refCode }: { user: User; refCode: Tables<'referrals'>[] }) => {
 	const [referralCode, setReferralCode] = useState<string>('');
 	const [created, setCreated] = useState<boolean>(refCode.length > 0);
@@ -57,21 +82,32 @@ const Referral = ({ user, refCode }: { user: User; refCode: Tables<'referrals'>[
 	return (
 		<section className="w-full rainbow-shadow relative mt-5">
 			<AnimatePresence>{prizesVisible && <PrizeTiers setVisibility={setVisibility} />}</AnimatePresence>
-			<div className="rounded-2xl border py-5 px-5 sm:px-10 border-neutral-300/30 w-full bg-neutral-900  relative z-10 fc gap-5 items-start md:fr md:justify-between justify-between">
-				<div className="z-10">
-					<h3 className="text-3xl font-bold">Referral Raffle</h3>
+			<div className="rounded-2xl border py-5 px-5 sm:px-10 border-neutral-300/30 w-full bg-neutral-900  relative z-10 fc items-start md:fr md:justify-between gap-10 justify-between">
+				<div className="z-10 fc items-start">
+					<h3 className="text-3xl font-bold">Referral Raffle and Prizes</h3>
 					<p className="text-lg">Refer a friend to get a chance to win a prize!</p>
+					<p>
+						After creating a referral code, share it with your friends. When they <b>submit an application</b> using your code, you get a
+						ticket.
+					</p>
+
 					{created && code.length > 0 && (
-						<p className="my-3">
+						<button
+							className="my-3"
+							onClick={() => {
+								navigator.clipboard.writeText(code[0].code);
+								toast.success('Code copied to clipboard');
+							}}
+						>
 							Your code: <span className="font-bold">{code[0].code}</span>
-						</p>
+						</button>
 					)}
 					<Button className="mt-3" onClick={() => setPrizesVisible(true)} color="primary">
 						View Prize Tiers
 					</Button>
 				</div>
-				<div className="fc gap-2 z-10">
-					<h3 className="text-2xl font-bold">{created ? 'Referral Tickets' : 'Create a referral code to share'}</h3>
+				<div className="fc gap-2 z-10 w-full">
+					<h3 className="text-2xl font-bold">{created ? 'Referral Tickets' : 'Create a referral code'}</h3>
 					{!created && (
 						<div className="fr gap-2 w-full">
 							<Input placeholder="Create referral code..." value={referralCode} onChange={(e) => setReferralCode(e.target.value)} />

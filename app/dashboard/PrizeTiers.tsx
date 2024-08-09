@@ -1,6 +1,5 @@
 import React from 'react';
-import { m, motion } from 'framer-motion';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { IoClose } from 'react-icons/io5';
 import { Button } from '@nextui-org/react';
 const PrizeTiers = ({ setVisibility }: { setVisibility: (value: boolean) => void }) => {

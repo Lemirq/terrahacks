@@ -7,11 +7,13 @@ import { IoEyeOff, IoEye, IoLink, IoArrowForward } from 'react-icons/io5';
 import { Button, Input } from '@nextui-org/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { User } from '@/node_modules/@supabase/auth-js/src/lib/types';
+
 const LoginForm = () => {
 	const supabase = createClient();
 	const [buttonLoading, setButtonLoading] = useState(false);
 	const [isVisible, setIsVisible] = useState(false);
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<User | null>(null);
 	const toggleVisibility = () => setIsVisible(!isVisible);
 
 	async function login(formData: { email: string; password: string }) {
@@ -134,9 +136,15 @@ const LoginForm = () => {
 						className="max-w-xl fc w-full fc gap-10 px-5 sm:px-10"
 					>
 						<h1 className="text-2xl sm:text-4xl text-center">Welcome, {user.user_metadata.first_name}!</h1>
-						<Link href="/dashboard">
-							<Button endContent={<IoArrowForward />}>Continue to Dashboard</Button>
-						</Link>
+						{user.email!.endsWith('@hack49.com') ? (
+							<Link href="/admin">
+								<Button endContent={<IoArrowForward />}>Continue to Admin</Button>
+							</Link>
+						) : (
+							<Link href="/dashboard">
+								<Button endContent={<IoArrowForward />}>Continue to Dashboard</Button>
+							</Link>
+						)}
 					</motion.div>
 				)}
 			</AnimatePresence>

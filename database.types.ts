@@ -25,7 +25,7 @@ export type Database = {
           last_name: string | null
           level_of_study: string | null
           major: string | null
-          phone: number | null
+          phone: string | null
           resume_url: string | null
           reviewedBy: string | null
           short_ans_1: string | null
@@ -50,7 +50,7 @@ export type Database = {
           last_name?: string | null
           level_of_study?: string | null
           major?: string | null
-          phone?: number | null
+          phone?: string | null
           resume_url?: string | null
           reviewedBy?: string | null
           short_ans_1?: string | null
@@ -75,7 +75,7 @@ export type Database = {
           last_name?: string | null
           level_of_study?: string | null
           major?: string | null
-          phone?: number | null
+          phone?: string | null
           resume_url?: string | null
           reviewedBy?: string | null
           short_ans_1?: string | null
@@ -180,6 +180,7 @@ export type Database = {
           email: string
           firstName: string
           lastName: string
+          referred_by: string | null
           uid: string
         }
         Insert: {
@@ -187,6 +188,7 @@ export type Database = {
           email: string
           firstName: string
           lastName: string
+          referred_by?: string | null
           uid?: string
         }
         Update: {
@@ -194,9 +196,18 @@ export type Database = {
           email?: string
           firstName?: string
           lastName?: string
+          referred_by?: string | null
           uid?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "users_referred_by_fkey"
+            columns: ["referred_by"]
+            isOneToOne: false
+            referencedRelation: "referrals"
+            referencedColumns: ["code"]
+          },
+        ]
       }
     }
     Views: {
