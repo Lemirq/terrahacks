@@ -25,10 +25,6 @@ const SuccessPage = async () => {
 		redirect('/apply');
 	}
 
-	if (data && data[0].complete) {
-		redirect('/dashboard');
-	}
-
 	return <Success user={user} />;
 };
 

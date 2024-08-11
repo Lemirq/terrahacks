@@ -15,6 +15,18 @@ const Success = ({ user }: { user: User }) => {
 	const supabase = createClient();
 
 	const applyReferral = async () => {
+		// check if referred_by is already set
+		const { data: userCheckData, error: userCheckErr } = await supabase.from('users').select('referred_by').eq('uid', user.id).single();
+		if (userCheckErr) {
+			console.error(userCheckErr.message);
+			return;
+		}
+
+		if (userCheckData.referred_by) {
+			toast.error('You have already applied a referral code');
+			return;
+		}
+
 		// verify that the referral code exists
 		const { data: refData, error: refError } = await supabase.from('referrals').select('used').eq('code', code).single();
 		if (refError) {
