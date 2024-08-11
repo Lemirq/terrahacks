@@ -29,7 +29,7 @@ const Animation = () => {
 						'hidden pointer-events-none': !visible,
 					})}
 				>
-					<TextEffect className="text-7xl font-bold tracking-wide" preset="scale" per="char">
+					<TextEffect className="text-7xl text-center font-bold tracking-wide" preset="scale" per="char">
 						Hack49 Global
 					</TextEffect>
 				</motion.div>
