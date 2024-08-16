@@ -7,6 +7,7 @@ import FAQ from '@/components/sections/FAQ';
 import Contact from '@/components/sections/Contact';
 import { ReactLenis } from 'lenis/react';
 import Animation from '@/components/Animation';
+import { Sponsors } from '@/components/sections/Sponsors';
 
 export default function Home() {
 	return (
@@ -15,6 +16,7 @@ export default function Home() {
 				<Animation />
 				<Hero />
 				<About />
+				<Sponsors />
 				<MeetTheTeam />
 				<FAQ />
 				<Contact />
