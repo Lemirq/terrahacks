@@ -16,12 +16,6 @@ const Approved: React.FC<Readonly<ApprovedProps>> = ({ name, email }) => (
 				<Container className="m-auto p-5 py-24 text-white">
 					{/* <Img src="https://hack49.com/images/og-image.png" alt="image" className="m-auto rounded-3xl w-full" /> */}
 					<Heading className="text-3xl font-bold mb-5">Congratulations, {name}! 🎉</Heading>
-					{/* <Button
-						className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-						href="https://example.com"
-					>
-						Big black balls
-					</Button> */}
 					<div className="text-lg text-neutral-200">
 						<Text className="text-lg">Congratulations!</Text>
 
@@ -32,9 +26,10 @@ const Approved: React.FC<Readonly<ApprovedProps>> = ({ name, email }) => (
 						<Text className="text-lg">
 							Event Details:
 							<ul className="list-disc">
-								<li>Date: [Event Start Date] to [Event End Date]</li>
-								<li>Platform: [Event Platform]</li>
-								<li>Schedule: [Link to the schedule]</li>
+								<li>
+									Date: <b>October 19, 2024 - October 21, 2024</b>
+								</li>
+								<li>Platform: Devpost (please join this)</li>
 							</ul>
 						</Text>
 						<Text className="text-lg">

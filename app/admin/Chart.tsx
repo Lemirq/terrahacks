@@ -25,7 +25,6 @@ export function Chart({
 	}[];
 }) {
 	const [activeChart, setActiveChart] = React.useState<keyof typeof chartConfig>('users');
-	console.log(chartData);
 	if (!chartData) {
 		return null;
 	}
