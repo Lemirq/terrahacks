@@ -41,7 +41,7 @@ const Footer = () => {
 							Hack49 Global™
 						</a>
 						. All Rights Reserved.
-					</span>
+					</span>{' '}
 					<ul className="fr gap-2 nav-links text-white text-2xl">
 						<li>
 							<a href="https://www.instagram.com/hack49__/" target="_blank" rel="noopener noreferrer">

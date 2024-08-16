@@ -71,6 +71,14 @@ const Navbar = () => {
 				<Image src="/images/logo-horizontal.svg" height={50} width={150} alt="logo" className="hidden sm:block" />
 				<Image src="/images/Logo.png" height={50} width={50} alt="logo" className="block sm:hidden" />
 			</Link>
+			<button
+				className="opacity-0 hover:opacity-100"
+				onClick={() => {
+					throw new Error('Test error');
+				}}
+			>
+				Test error
+			</button>
 			{/* {user ? (
 				<Link href="/dashboard">
 					<Button color="primary">Dashboard</Button>
