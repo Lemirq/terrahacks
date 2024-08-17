@@ -9,7 +9,7 @@ Sentry.init({
 	// of transactions for tracing.
 	// We recommend adjusting this value in production
 	tracesSampleRate: 1.0,
-	enabled: false,
+	// enabled: false,
 
 	// Capture Replay for 10% of all sessions,
 	// plus for 100% of sessions with an error
