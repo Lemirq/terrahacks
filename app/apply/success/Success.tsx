@@ -152,10 +152,15 @@ const Success = ({ user, referralCode }: { user: User; referralCode: Database['p
 							<br />
 							<p>Hack49 is a 3-day virtual global hackathon where you can showcase your skills and win amazing prizes!</p>
 							<br />
-							<p>
-								You can use my referral code when you apply to help me win some cool prizes! 🎁 My referral code: {referralCode.code}
-							</p>
-							<br />
+							{referralCode && referralCode.code && (
+								<>
+									<p>
+										You can use my referral code when you apply to help me win some cool prizes! 🎁 My referral code:{' '}
+										{referralCode.code}
+									</p>
+									<br />
+								</>
+							)}
 							<p>#Hack49 #Hackathon #Tech #Innovation</p>
 						</p>
 
