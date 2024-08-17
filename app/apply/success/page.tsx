@@ -25,7 +25,14 @@ const SuccessPage = async () => {
 		redirect('/apply');
 	}
 
-	return <Success user={user} />;
+	// fetch referral code by the user
+	const { data: refData, error: refError } = await supabase.from('referrals').select('*').eq('user_id', user.id).single();
+	if (refError) {
+		console.log(refError);
+		return;
+	}
+
+	return <Success user={user} referralCode={refData} />;
 };
 
 export default SuccessPage;

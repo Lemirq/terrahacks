@@ -8,10 +8,15 @@ import { IoArrowBack, IoChevronForward } from 'react-icons/io5';
 import { createClient } from '@/utils/supabase/client';
 import { toast } from 'sonner';
 import { AnimatePresence, motion } from 'framer-motion';
+import Image from 'next/image';
+import { Database } from '@/database.types';
+import { LuLoader } from 'react-icons/lu';
 
-const Success = ({ user }: { user: User }) => {
+const Success = ({ user, referralCode }: { user: User; referralCode: Database['public']['Tables']['referrals']['Row'] }) => {
 	const [referral, setReferral] = useState(false);
 	const [code, setcode] = useState('');
+	const [imageLoaded, setImageLoaded] = useState(false);
+
 	const supabase = createClient();
 
 	const applyReferral = async () => {
@@ -117,6 +122,53 @@ const Success = ({ user }: { user: User }) => {
 					<div className="w-full max-w-xl mx-auto px-4">
 						<h1 className="text-4xl font-bold">Your Application is Submitted, {user.user_metadata.first_name}!</h1>
 						<p className="my-4">Thank you for applying to Hack49. We will review your application and get back to you soon.</p>
+
+						<h2 className="text-2xl font-bold">Next Steps:</h2>
+						<ul className="list-disc pl-6 my-4">
+							<li>Check your email for further instructions.</li>
+							<li>Post on linkedin!</li>
+						</ul>
+
+						<h2 className="text-2xl font-bold">Example Post:</h2>
+						<p>
+							We want to see your excitement! Post on LinkedIn and tag us @hack49. We will feature the best posts on our social media.
+						</p>
+						<p>
+							If you haven't already created a referral code, you can do so by going to the Dashboard{' '}
+							<IoChevronForward className="mx-1 inline-block" /> Referral Prizes.
+						</p>
+						<p className="mt-4">Here's a sample post:</p>
+						<div className="text-lg bg-neutral-800 p-4 rounded-lg my-3">
+							Excited to be a part of Hack49! Can't wait to meet the best minds in tech! 🚀
+							<br />
+							Hack49 is a 3-day virtual global hackathon where you can showcase your skills and win amazing prizes!
+							<br />
+							You can use my referral code when you apply to help me win some cool prizes! 🎁 My referral code: {referralCode.code}
+							<br />
+							#Hack49 #Hackathon #Tech #Innovation
+						</div>
+
+						<p>
+							The following image can accompany your post. This image may or may not have your unique referral code. If it doesn't, we
+							suggest you make one on the Dashboard, then visit /apply/success again to get the updated image.
+						</p>
+						{!imageLoaded && (
+							<p className="">
+								<LuLoader className="mr-2" /> Loading image...
+							</p>
+						)}
+						<Image
+							className="my-4 w-full"
+							src={
+								referralCode && referralCode.code
+									? `/api/generate_img?code=${referralCode.code}&mode=applied`
+									: '/api/generate_img?mode=applied'
+							}
+							width={500}
+							height={500}
+							alt="Linkedin post"
+							onLoad={() => setImageLoaded(true)}
+						/>
 						<Link href="/dashboard">
 							<Button color="primary" startContent={<IoArrowBack />}>
 								Back to Dashboard
