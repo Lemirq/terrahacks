@@ -20,7 +20,7 @@ const Success = ({ user, referralCode }: { user: User; referralCode: Database['p
 	const supabase = createClient();
 
 	const applyReferral = async () => {
-		if (code === referralCode.code) {
+		if (referralCode && referralCode.code && code === referralCode.code) {
 			toast.error("Nice try buddy, but you can't use your own referral code");
 			return;
 		}

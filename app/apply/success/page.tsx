@@ -9,10 +9,7 @@ const SuccessPage = async () => {
 		data: { user },
 		error: userError,
 	} = await supabase.auth.getUser();
-	if (userError) {
-		redirect('/login');
-	}
-	if (!user) {
+	if (userError || !user) {
 		redirect('/login');
 	}
 
@@ -23,6 +20,10 @@ const SuccessPage = async () => {
 	}
 	if (data && !data[0].complete) {
 		redirect('/apply');
+	}
+	if (error) {
+		console.error(error);
+		return <div className="w-full min-h-screen overflow-hidden relative py-36 fc">{error.message}</div>;
 	}
 
 	// fetch referral code by the user
