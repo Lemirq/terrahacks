@@ -26,13 +26,13 @@ const SuccessPage = async () => {
 	}
 
 	// fetch referral code by the user
-	const { data: refData, error: refError } = await supabase.from('referrals').select('*').eq('user_id', user.id).single();
+	const { data: refData, error: refError } = await supabase.from('referrals').select('*').eq('user_id', user.id);
 	if (refError) {
 		console.log(refError);
-		return;
+		return <div className="w-full min-h-screen overflow-hidden relative py-36 fc">{refError.message}</div>;
 	}
 
-	return <Success user={user} referralCode={refData} />;
+	return <Success user={user} referralCode={refData[0]} />;
 };
 
 export default SuccessPage;
