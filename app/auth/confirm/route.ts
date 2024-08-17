@@ -17,12 +17,15 @@ export async function GET(request: NextRequest) {
 			type,
 			token_hash,
 		});
+		if (error) {
+			// redirect user to an error page with some instructions
+			console.log(error.message);
+
+			redirect(`/error?message=${error.message}`);
+		}
 		if (!error) {
 			// redirect user to specified redirect URL or root of app
 			redirect('/dashboard');
 		}
 	}
-
-	// redirect the user to an error page with some instructions
-	redirect('/error');
 }

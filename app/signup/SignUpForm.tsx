@@ -9,6 +9,8 @@ import { IoEye, IoEyeOff, IoLink } from 'react-icons/io5';
 import { AnimatePresence, motion } from 'framer-motion';
 import { redirect } from 'next/navigation';
 import Link from 'next/link';
+import { User } from '@supabase/supabase-js';
+
 const SignUpForm = () => {
 	const supabase = createClient();
 
@@ -16,7 +18,7 @@ const SignUpForm = () => {
 	const [emailSent, setEmailSent] = useState(false);
 	const [isVisible, setIsVisible] = useState(false);
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<User | null>(null);
 
 	const toggleVisibility = () => setIsVisible(!isVisible);
 	const togglePasswordVisibility = () => setIsPasswordVisible(!isPasswordVisible);
@@ -27,8 +29,8 @@ const SignUpForm = () => {
 		// in practice, you should validate your inputs
 
 		// check if user already exists
-		const { data: userExists, error: userExistsError } = await supabase.from('users').select('*').eq('email', formData.email).single();
-		if (userExists) {
+		const { data: userExists, error: userExistsError } = await supabase.from('users').select('*').eq('email', formData.email);
+		if (userExists && userExists[0]) {
 			toast.error('User already exists, please login instead.');
 			setButtonLoading(false);
 			return;
@@ -68,6 +70,23 @@ const SignUpForm = () => {
 
 		setButtonLoading(false);
 	}
+
+	const resend = async () => {
+		if (!user) return;
+		const { error } = await supabase.auth.resend({
+			type: 'signup',
+			email: user.email!,
+			options: {
+				emailRedirectTo: location.origin,
+			},
+		});
+
+		if (error) {
+			toast.error(error.message);
+		} else {
+			toast.success('Email sent successfully!');
+		}
+	};
 
 	const {
 		register,
@@ -244,6 +263,14 @@ const SignUpForm = () => {
 										Open Gmail
 									</Button>
 								</a>
+								<div className="fc gap-2">
+									<div className="fc gap-2">
+										<p>Didn't receive an email? </p>
+										<Button onClick={resend} color="primary">
+											Resend Confirmation Email
+										</Button>
+									</div>
+								</div>
 							</motion.div>
 						)}
 					</AnimatePresence>

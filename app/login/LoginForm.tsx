@@ -24,8 +24,12 @@ const LoginForm = () => {
 		const { error } = await supabase.auth.signInWithPassword(formData);
 
 		if (error) {
-			console.error(error);
+			console.log(error.code);
 			toast.error(error.message);
+
+			if (error.message === 'Email not confirmed') {
+				toast.info('Please check your email to confirm your account.');
+			}
 			setButtonLoading(false);
 			return;
 		}
