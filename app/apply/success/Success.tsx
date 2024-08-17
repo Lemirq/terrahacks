@@ -20,6 +20,10 @@ const Success = ({ user, referralCode }: { user: User; referralCode: Database['p
 	const supabase = createClient();
 
 	const applyReferral = async () => {
+		if (code === referralCode.code) {
+			toast.error("Nice try buddy, but you can't use your own referral code");
+			return;
+		}
 		// check if referred_by is already set
 		const { data: userCheckData, error: userCheckErr } = await supabase.from('users').select('referred_by').eq('uid', user.id).single();
 		if (userCheckErr) {
@@ -125,11 +129,16 @@ const Success = ({ user, referralCode }: { user: User; referralCode: Database['p
 
 						<h2 className="text-2xl font-bold">Next Steps:</h2>
 						<ul className="list-disc pl-6 my-4">
-							<li>Check your email for further instructions.</li>
+							<li>
+								Join the Hack49 Discord server to meet other participants, ask questions, and get updates on the event.{' '}
+								<Link href="https://discord.gg/hack49" target="_blank" rel="noreferrer" className="text-blue-500 underline">
+									Join Discord
+								</Link>
+							</li>
 							<li>Post on linkedin!</li>
 						</ul>
 
-						<h2 className="text-2xl font-bold">Example Post:</h2>
+						<h2 className="text-2xl font-bold">Example Post</h2>
 						<p>
 							We want to see your excitement! Post on LinkedIn and tag us @hack49. We will feature the best posts on our social media.
 						</p>
@@ -138,24 +147,27 @@ const Success = ({ user, referralCode }: { user: User; referralCode: Database['p
 							<IoChevronForward className="mx-1 inline-block" /> Referral Prizes.
 						</p>
 						<p className="mt-4">Here's a sample post:</p>
-						<div className="text-lg bg-neutral-800 p-4 rounded-lg my-3">
-							Excited to be a part of Hack49! Can't wait to meet the best minds in tech! 🚀
+						<p className="text-lg bg-neutral-800 p-4 rounded-lg my-3">
+							<p>Excited to be a part of Hack49! Can't wait to meet the best minds in tech! 🚀</p>
 							<br />
-							Hack49 is a 3-day virtual global hackathon where you can showcase your skills and win amazing prizes!
+							<p>Hack49 is a 3-day virtual global hackathon where you can showcase your skills and win amazing prizes!</p>
 							<br />
-							You can use my referral code when you apply to help me win some cool prizes! 🎁 My referral code: {referralCode.code}
+							<p>
+								You can use my referral code when you apply to help me win some cool prizes! 🎁 My referral code: {referralCode.code}
+							</p>
 							<br />
-							#Hack49 #Hackathon #Tech #Innovation
-						</div>
+							<p>#Hack49 #Hackathon #Tech #Innovation</p>
+						</p>
 
 						<p>
 							The following image can accompany your post. This image may or may not have your unique referral code. If it doesn't, we
 							suggest you make one on the Dashboard, then visit /apply/success again to get the updated image.
 						</p>
 						{!imageLoaded && (
-							<p className="">
-								<LuLoader className="mr-2" /> Loading image...
-							</p>
+							<div className="fr my-2">
+								<LuLoader className="mr-2 animate-spin" />
+								Loading image...
+							</div>
 						)}
 						<Image
 							className="my-4 w-full"

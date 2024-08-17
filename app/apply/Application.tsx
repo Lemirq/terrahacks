@@ -165,18 +165,21 @@ const Application = ({ user }: { user: User }) => {
 		errorMessage: errorMessages.first_name,
 		isInvalid: !!errors.first_name,
 		isRequired: true,
+		isDisabled: true,
 		...register('first_name', { required: true }),
 	};
 	const registerLastName = {
 		errorMessage: errorMessages.last_name,
 		isInvalid: !!errors.last_name,
 		isRequired: true,
+		isDisabled: true,
 		...register('last_name', { required: true }),
 	};
 	const registerEmail = {
 		errorMessage: errorMessages.email,
 		isInvalid: !!errors.email,
 		isRequired: true,
+		isDisabled: true,
 		...register('email', { required: true, pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/ }),
 	};
 
