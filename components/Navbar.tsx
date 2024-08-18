@@ -5,13 +5,12 @@ import { useMotionValueEvent, useScroll, motion } from 'framer-motion';
 import Link from 'next/link';
 import { Button } from '@nextui-org/react';
 import { createClient } from '@/utils/supabase/client';
-import { FaXTwitter, FaYoutube } from 'react-icons/fa6';
-import { IoLogoInstagram } from 'react-icons/io5';
+import { User } from '@/node_modules/@supabase/auth-js/src/lib/types';
 
-const Navbar = () => {
+const Navbar = ({ sUser }: { sUser: User }) => {
 	const { scrollYProgress } = useScroll();
 	const supabase = createClient();
-	const [user, setUser] = useState(false);
+	const [user, setUser] = useState(!!sUser);
 
 	useEffect(() => {
 		supabase.auth.onAuthStateChange((event, session) => {
@@ -71,7 +70,7 @@ const Navbar = () => {
 				<Image src="/images/logo-horizontal.svg" height={50} width={150} alt="logo" className="hidden sm:block" />
 				<Image src="/images/Logo.png" height={50} width={50} alt="logo" className="block sm:hidden" />
 			</Link>
-			{/* {user ? (
+			{user ? (
 				<Link href="/dashboard">
 					<Button color="primary">Dashboard</Button>
 				</Link>
@@ -79,7 +78,7 @@ const Navbar = () => {
 				<div className="fr gap-2">
 					<Link href="/login">
 						<Button variant="shadow" color="primary">
-							Sign in
+							Login
 						</Button>
 					</Link>
 					<Link href="/signup">
@@ -88,8 +87,8 @@ const Navbar = () => {
 						</Button>
 					</Link>
 				</div>
-			)} */}
-			<ul className="fr gap-2 nav-links text-white text-2xl">
+			)}
+			{/* <ul className="fr gap-2 nav-links text-white text-2xl">
 				<li>
 					<a href="https://www.instagram.com/hack49__/" target="_blank" rel="noopener noreferrer">
 						<IoLogoInstagram />
@@ -105,7 +104,7 @@ const Navbar = () => {
 						<FaYoutube />
 					</a>
 				</li>
-			</ul>
+			</ul> */}
 			{/* links */}
 		</motion.nav>
 	);

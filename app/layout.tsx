@@ -7,6 +7,7 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 
 import { Toaster } from 'sonner';
 import Navbar from '@/components/Navbar';
+import { createClient } from '@/utils/supabase/server';
 
 export const metadata: Metadata = {
 	title: 'Hack49 Global',
@@ -40,15 +41,20 @@ export const viewport: Viewport = {
 	userScalable: false,
 };
 
-export default function PublicLayout({
+export default async function PublicLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
+	const supabase = createClient();
+	const {
+		data: { user },
+	} = await supabase.auth.getUser();
+
 	return (
 		<html lang="en" className="bg-neutral-950">
 			<body className={'font-satoshi dark text-foreground bg-dot-white/[0.2] bg-neutral-950'}>
-				<Navbar />
+				<Navbar sUser={user} />
 				<Providers>{children}</Providers>
 				<Toaster richColors />
 				<GoogleAnalytics gaId="G-DJNEVNJYM7" />
