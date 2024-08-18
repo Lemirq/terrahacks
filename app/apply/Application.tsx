@@ -301,8 +301,8 @@ const Application = ({ user }: { user: User }) => {
 					<form onSubmit={handleSubmit(submit)} className="w-full fc gap-10">
 						<Section title="Personal Information">
 							<FieldSeparator>
-								<Input label="First Name" placeholder="Enter your first name" {...registerFirstName} />
-								<Input label="Last Name" placeholder="Enter your last name" {...registerLastName} />
+								<Input autoComplete="off" label="First Name" placeholder="Enter your first name" {...registerFirstName} />
+								<Input autoComplete="off" label="Last Name" placeholder="Enter your last name" {...registerLastName} />
 							</FieldSeparator>
 							<FieldSeparator>
 								<Input label="Email" placeholder="Enter your email" {...registerEmail} />
@@ -324,6 +324,7 @@ const Application = ({ user }: { user: User }) => {
 										<InputMask mask="999-999-9999" value={value} onChange={onChange} onBlur={onBlur}>
 											{(inputProps) => (
 												<Input
+													autoComplete="off"
 													isInvalid={!!errors.phone_number}
 													errorMessage={errorMessages.phone}
 													type="text"
@@ -389,6 +390,7 @@ const Application = ({ user }: { user: User }) => {
 								/>
 								{/* age */}
 								<Input
+									autoComplete="off"
 									label="Age"
 									isRequired
 									placeholder="Enter your age"
@@ -444,6 +446,7 @@ const Application = ({ user }: { user: User }) => {
 								render={({ field: { onChange, onBlur, value } }) => (
 									<div className="fc gap-2 items-start w-full">
 										<Input
+											autoComplete="off"
 											label="Expected Graduation"
 											placeholder="Enter your expected graduation year"
 											isRequired
@@ -465,6 +468,7 @@ const Application = ({ user }: { user: User }) => {
 								render={({ field: { onChange, onBlur, value } }) => (
 									<div className="fc gap-2 items-start w-full">
 										<Input
+											autoComplete="off"
 											label="Major"
 											placeholder="Enter your major (Computer Science, High school diploma etc.)"
 											isRequired
@@ -631,6 +635,7 @@ All the data should be added to the 'confidence' object in the form data. */}
 								render={({ field: { onChange, onBlur, value } }) => (
 									<div className="fc gap-2 items-start w-full">
 										<Textarea
+											autoComplete="off"
 											label="Tell us the story of how you began in the computer science field."
 											labelPlacement="outside"
 											placeholder="Enter your response"
@@ -656,6 +661,7 @@ All the data should be added to the 'confidence' object in the form data. */}
 								render={({ field: { onChange, onBlur, value } }) => (
 									<div className="fc gap-2 items-start w-full">
 										<Textarea
+											autoComplete="off"
 											label="Tell us the biggest challenge you have ever faced (doesn't have to be related to computer science)."
 											labelPlacement="outside"
 											placeholder="Enter your response"
@@ -678,14 +684,14 @@ All the data should be added to the 'confidence' object in the form data. */}
 						{/* Social Section */}
 						<Section title="Social" subheading="These aren't required, but they give us a glimpse of who you are.">
 							<FieldSeparator>
-								<Input {...registerGithub} label="GitHub" placeholder="https://github.com/elon_musk" />
-								<Input {...registerTwitter} label="Twitter" placeholder="https://x.com/elonmusk" />
+								<Input autoComplete="off" {...registerGithub} label="GitHub" placeholder="https://github.com/elon_musk" />
+								<Input autoComplete="off" {...registerTwitter} label="Twitter" placeholder="https://x.com/elonmusk" />
 							</FieldSeparator>
 							<FieldSeparator>
-								<Input {...registerInstagram} label="Instagram" placeholder="https://www.instagram.com/elonmusk" />
-								<Input {...registerLinkedIn} label="LinkedIn" placeholder="https://linkedin.com/in/elonmusk" />
+								<Input autoComplete="off" {...registerInstagram} label="Instagram" placeholder="https://www.instagram.com/elonmusk" />
+								<Input autoComplete="off" {...registerLinkedIn} label="LinkedIn" placeholder="https://linkedin.com/in/elonmusk" />
 							</FieldSeparator>
-							<Input {...registerPortfolio} label="Portfolio" placeholder="Your personal website" />
+							<Input autoComplete="off" {...registerPortfolio} label="Portfolio" placeholder="Your personal website" />
 
 							{/* Now Drag and drop for the resume */}
 							<Controller name="resume" control={control} render={({ field }) => <DnD {...field} user={user} />} />
