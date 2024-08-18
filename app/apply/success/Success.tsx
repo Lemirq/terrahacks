@@ -89,8 +89,8 @@ const Success = ({ user, referralCode }: { user: User; referralCode: Database['p
 						<h1 className="text-4xl font-bold">Would you like to use a referral code?</h1>
 						<p className="my-4">If your friend has given you a referral code, you can apply it here.</p>
 						<p>
-							You can win some amazing prizes by referring your friends to Hack49. The more friends you refer, the more tickets you get.
-							To view the prizes, go to Dashboard <IoChevronForward className="mx-1 inline-block" /> Referral Prizes.
+							You have a chance to win an awesome t-shirt by referring your friends to Hack49. The more friends you refer, the more
+							tickets you get in the raffle.
 						</p>
 						<div className="fr gap-2 mt-4">
 							<Input placeholder="Referral Code" value={code} onChange={(e) => setcode(e.target.value)} />
@@ -155,7 +155,7 @@ const Success = ({ user, referralCode }: { user: User; referralCode: Database['p
 							{referralCode && referralCode.code && (
 								<>
 									<p>
-										You can use my referral code when you apply to help me win some cool prizes! 🎁 My referral code:{' '}
+										You can use my referral code when you apply to help me win a free Hack49 t-shirt! 🎁 My referral code:{' '}
 										{referralCode.code}
 									</p>
 									<br />
@@ -166,7 +166,7 @@ const Success = ({ user, referralCode }: { user: User; referralCode: Database['p
 
 						<p>
 							The following image can accompany your post. This image may or may not have your unique referral code. If it doesn't, we
-							suggest you make one on the Dashboard, then visit /apply/success again to get the updated image.
+							suggest you make one on the Dashboard, then click <b>Generate Image</b> in the referral prizes section.
 						</p>
 						{!imageLoaded && (
 							<div className="fr my-2">
@@ -174,18 +174,27 @@ const Success = ({ user, referralCode }: { user: User; referralCode: Database['p
 								Loading image...
 							</div>
 						)}
-						<Image
-							className="my-4 w-full"
-							src={
+						<a
+							download={`Hack49-Linkedin-Post-${user.user_metadata.first_name}.png`}
+							href={
 								referralCode && referralCode.code
 									? `/api/generate_img?code=${referralCode.code}&mode=applied`
 									: '/api/generate_img?mode=applied'
 							}
-							width={500}
-							height={500}
-							alt="Linkedin post"
-							onLoad={() => setImageLoaded(true)}
-						/>
+						>
+							<Image
+								className="my-4 w-full"
+								src={
+									referralCode && referralCode.code
+										? `/api/generate_img?code=${referralCode.code}&mode=applied`
+										: '/api/generate_img?mode=applied'
+								}
+								width={500}
+								height={500}
+								alt="Linkedin post"
+								onLoad={() => setImageLoaded(true)}
+							/>
+						</a>
 						<Link href="/dashboard">
 							<Button color="primary" startContent={<IoArrowBack />}>
 								Back to Dashboard
