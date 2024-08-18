@@ -9,6 +9,7 @@ import { IoTicket } from "react-icons/io5";
 import PrizeTiers from "./PrizeTiers";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import GenerateImgBtn from "./GenerateImgBtn";
 
 const Referral = ({
   user,
@@ -115,8 +116,21 @@ const Referral = ({
                     : "/api/generate_img?mode=applied"
                 }
                 target="_blank"
+                download="applied.png"
               >
-                <Button color="primary">Generate Image</Button>
+                <Button
+                  onClick={() => {
+                    // download
+                    const link = document.createElement("a");
+                    link.href = created
+                      ? `/api/generate_img?code=${code[0].code}&mode=applied`
+                      : "/api/generate_img?mode=applied";
+                    link.download = "applied.png";
+                  }}
+                  color="primary"
+                >
+                  Generate Image
+                </Button>
               </Link>
             )}
           </div>
