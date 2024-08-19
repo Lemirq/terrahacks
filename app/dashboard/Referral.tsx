@@ -108,7 +108,7 @@ const Referral = ({
             <Button onClick={() => setPrizesVisible(true)} color="primary">
               View Tiers
             </Button>
-            {app.complete && (
+            {app && app.complete && (
               <Link
                 href={
                   created
