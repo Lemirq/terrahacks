@@ -208,7 +208,7 @@ const Application = ({ user }: { user: User }) => {
   const registerLastName = {
     errorMessage: errorMessages.last_name,
     isInvalid: !!errors.last_name,
-    last_name: user.user_metadata.last_name,
+    value: user.user_metadata.last_name,
     isRequired: true,
     ...register("last_name", { required: true }),
   };
@@ -335,18 +335,21 @@ const Application = ({ user }: { user: User }) => {
         return;
       }
 
-      const fetched = await fetch(location.origin + "/api/mailing", {
-        method: "POST",
-        body: JSON.stringify({
-          name: data?.first_name,
-          email: data?.email,
-          type: "received",
-          code: sData[0] ? sData[0].code : "",
-        }),
-        headers: {
-          "Access-Control-Allow-Origin": "*",
+      const fetched = await fetch(
+        "https://hack-49-git-launch-apps-vihaans-projects-d0bca7cf.vercel.app/api/mailing",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            name: data?.first_name,
+            email: data?.email,
+            type: "received",
+            code: sData[0] ? sData[0].code : "",
+          }),
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
         },
-      });
+      );
       console.log(fetched.json());
       if (fetched.status !== 200) {
         console.error("Failed to send confirmation email");
@@ -423,7 +426,7 @@ const Application = ({ user }: { user: User }) => {
                           autoComplete="off"
                           isInvalid={!!errors.phone_number}
                           errorMessage={errorMessages.phone}
-                          type="text"
+                          type="tel"
                           label="Phone Number"
                           placeholder="Enter your phone number"
                           {...inputProps}
@@ -495,6 +498,7 @@ const Application = ({ user }: { user: User }) => {
                   isRequired
                   placeholder="Enter your age"
                   type="number"
+                  inputMode="tel"
                   {...register("age", { required: true })}
                   isInvalid={!!errors.age}
                   errorMessage={errors.age && "Age is required"}
@@ -556,6 +560,7 @@ const Application = ({ user }: { user: User }) => {
                       label="Expected Graduation"
                       placeholder="Enter your expected graduation year"
                       isRequired
+                      inputMode="tel"
                       type="number"
                       isInvalid={!!errors.graduation}
                       onBlur={onBlur}

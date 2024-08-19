@@ -27,7 +27,7 @@ export async function GET(request: NextRequest) {
         <div
           tw="flex flex-col w-full h-full items-center justify-center text-white"
           style={{
-            backgroundImage: `url(http://${host}/images/applied.png)`,
+            backgroundImage: `url(https://hack49.com/images/applied.png)`,
             backgroundSize: "100% 100%",
             fontFamily: '"Satoshi"',
           }}
