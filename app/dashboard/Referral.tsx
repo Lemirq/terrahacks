@@ -9,7 +9,6 @@ import { IoTicket } from "react-icons/io5";
 import PrizeTiers from "./PrizeTiers";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import GenerateImgBtn from "./GenerateImgBtn";
 
 const Referral = ({
   user,
@@ -103,35 +102,29 @@ const Referral = ({
               Your code: <span className="font-bold">{code[0].code}</span>
             </button>
           )}
-          <div className="fr gap-2 mt-4">
-            {" "}
+          <div className="fc gap-2 mt-4 items-start">
             <Button onClick={() => setPrizesVisible(true)} color="primary">
               View Tiers
             </Button>
             {app && app.complete && (
               <Link
                 href={
-                  created
+                  code && code[0]
                     ? `/api/generate_img?code=${code[0].code}&mode=applied`
                     : "/api/generate_img?mode=applied"
                 }
                 target="_blank"
                 download="applied.png"
               >
-                <Button
-                  onClick={() => {
-                    // download
-                    const link = document.createElement("a");
-                    link.href = created
-                      ? `/api/generate_img?code=${code[0].code}&mode=applied`
-                      : "/api/generate_img?mode=applied";
-                    link.download = "applied.png";
-                  }}
-                  color="primary"
-                >
-                  Generate Image
-                </Button>
+                <Button color="primary">Generate Post Image</Button>
               </Link>
+            )}
+            {app && app.complete && (
+              <p>
+                {code && code[0]
+                  ? "This is the 'Just Applied' image that can accompany any social media posts. It contains your referral code."
+                  : "This is the 'Just Applied' image that can accompany any social media posts. It doesn't contain your unique referral code. If you would like it to, create one below, and refresh."}
+              </p>
             )}
           </div>
         </div>

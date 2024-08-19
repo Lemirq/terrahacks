@@ -114,7 +114,7 @@ export default async function PrivatePage() {
             </p>
             <p className="text-neutral-300">
               Application due date:{" "}
-              <span className="text-white font-bold">30th September 2024</span>
+              <span className="text-white font-bold">October 1, 2024</span>
             </p>
           </div>
           <Link href="/apply">
