@@ -33,7 +33,6 @@ export async function POST(request: Request) {
         ? Rejected({ name, email })
         : type === "received"
           ? AppReceived({
-              origin: request.headers.get("host"),
               email,
               code: code,
             })

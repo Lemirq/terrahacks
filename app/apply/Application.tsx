@@ -335,21 +335,18 @@ const Application = ({ user }: { user: User }) => {
         return;
       }
 
-      const fetched = await fetch(
-        "https://hack-49-git-launch-apps-vihaans-projects-d0bca7cf.vercel.app/api/mailing",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            name: data?.first_name,
-            email: data?.email,
-            type: "received",
-            code: sData[0] ? sData[0].code : "",
-          }),
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
+      const fetched = await fetch("/api/mailing", {
+        method: "POST",
+        body: JSON.stringify({
+          name: data?.first_name,
+          email: data?.email,
+          type: "received",
+          code: sData[0] ? sData[0].code : "",
+        }),
+        headers: {
+          "Access-Control-Allow-Origin": "*",
         },
-      );
+      });
       console.log(fetched.json());
       if (fetched.status !== 200) {
         console.error("Failed to send confirmation email");

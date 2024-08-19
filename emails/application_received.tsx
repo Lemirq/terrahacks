@@ -15,26 +15,21 @@ import * as React from "react";
 import tailwindConfig from "./tailwind.config";
 
 interface AppReceivedProps {
-  origin: string;
   email: string;
   code: string;
 }
 
-const AppReceived: React.FC<Readonly<AppReceivedProps>> = ({
-  origin,
-  email,
-  code,
-}) => (
+const AppReceived: React.FC<Readonly<AppReceivedProps>> = ({ email, code }) => (
   <Html>
     <Tailwind config={tailwindConfig}>
       <Head />
       <Preview>We've received your application!</Preview>
       <Body className="bg-neutral-950 mx-auto font-sans">
-        <Container className="m-auto p-5 py-24 text-white">
+        <Container className="m-auto p-5 pb-24 text-white">
           <Img
-            src={"http://" + origin + "/images/app received.png"}
+            src={"https://hack49.com/images/emails/app_received.png"}
             alt="image"
-            className="m-auto rounded-3xl w-full"
+            className="m-auto rounded-3xl w-full mt-10"
           />
           <Heading className="text-3xl font-bold mb-5">
             Thanks for Applying!
@@ -74,11 +69,11 @@ const AppReceived: React.FC<Readonly<AppReceivedProps>> = ({
             <Img
               src={
                 code
-                  ? `http://${origin}/api/generate_img?mode=applied&code=${code}`
-                  : `http://${origin}/api/generate_img?mode=applied`
+                  ? `https://hack49.com/api/generate_img?mode=applied&code=${code}`
+                  : `https://hack49.com/api/generate_img?mode=applied`
               }
               alt="image"
-              className="m-auto rounded-3xl w-full"
+              className="m-auto rounded-md w-full"
             />
             <Text className="font-bold text-lg">Best regards,</Text>
             <Text className="font-bold text-lg">Hack49 Team</Text>
@@ -102,7 +97,6 @@ const AppReceived: React.FC<Readonly<AppReceivedProps>> = ({
 );
 AppReceived.PreviewProps = {
   code: "Vihaan",
-  origin: "dedd-70-50-92-209.ngrok-free.app",
   email: "sharmavihaan190@gmail.com",
 } as AppReceivedProps;
 
