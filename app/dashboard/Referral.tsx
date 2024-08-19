@@ -49,7 +49,7 @@ const Referral = ({
     // create referral code
     const { error } = await supabase
       .from("referrals")
-      .insert({ user_id: user.id, code: referralCode });
+      .insert({ user_id: user.id, code: referralCode.toLowerCase() });
     if (error) {
       if (error.code === "23505") {
         toast.error("Referral code already exists, pick a different one");
@@ -138,7 +138,7 @@ const Referral = ({
               onSubmit={createReferralCode}
             >
               <Input
-                maxLength={10}
+                maxLength={15}
                 placeholder="Create referral code..."
                 value={referralCode}
                 onChange={(e) => setReferralCode(e.target.value)}

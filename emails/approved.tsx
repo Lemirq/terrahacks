@@ -55,7 +55,10 @@ const Approved: React.FC<Readonly<ApprovedProps>> = ({ name, email }) => (
             <Text className="text-lg">
               Important steps to get started:
               <ol>
-                <li>Join our Discord/Slack Channel: [Link to the channel]</li>
+                <li>
+                  Join our Discord:{" "}
+                  <Link href="https://discord.gg/cgBYcqnvVy">Discord</Link>
+                </li>
                 <li>Read the Participant Guide: [Link to the guide]</li>
                 <li>
                   Prepare for the Event: Familiarize yourself with the schedule

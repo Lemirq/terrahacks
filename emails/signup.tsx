@@ -17,7 +17,6 @@ const Signup: React.FC = () => (
   <Html>
     <Tailwind config={tailwindConfig}>
       <Head />
-      <Preview>We've received your application</Preview>
       <Body className="bg-neutral-950 mx-auto font-sans">
         <Container className="m-auto p-5 py-24 text-white">
           {/* <Img src="https://hack49.com/images/og-image.png" alt="image" className="m-auto rounded-3xl w-full" /> */}
@@ -29,8 +28,6 @@ const Signup: React.FC = () => (
               Confirm your email address 👉 <Link href="">Here</Link> 👈
             </Text>
             <Text>If you didn't request this, please ignore this email.</Text>
-            <Text className="font-bold text-lg mt-4">Best regards,</Text>
-            <Text className="font-bold text-lg">Hack49 Team</Text>
           </div>
           <Hr className="border border-solid border-neutral-600 my-[26px] mx-0 w-full" />
           <Text className="text-neutral-300/70 text-[12px] leading-[24px]">

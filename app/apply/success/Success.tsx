@@ -180,7 +180,7 @@ const Success = ({
                 Join the Hack49 Discord server to meet other participants, ask
                 questions, and get updates on the event.{" "}
                 <Link
-                  href="https://discord.gg/hack49"
+                  href="https://discord.gg/cgBYcqnvVy"
                   target="_blank"
                   rel="noreferrer"
                   className="text-blue-500 underline"
@@ -277,33 +277,36 @@ const Success = ({
               make one on the Dashboard, then click <b>Generate Post Image</b>{" "}
               in the referral prizes section.
             </p>
-            {!imageLoaded && (
-              <div className="fr my-2">
-                <LuLoader className="mr-2 animate-spin" />
-                Loading image...
-              </div>
-            )}
-            <a
-              download={`Hack49-Social-Post-${user.user_metadata.first_name}.png`}
-              href={
-                referralCode && referralCode.code
-                  ? `/api/generate_img?code=${referralCode.code}&mode=applied`
-                  : "/api/generate_img?mode=applied"
-              }
-            >
-              <Image
-                className="my-4 w-full"
-                src={
+            <div className="w-full fc gap-2 mt-5">
+              {!imageLoaded && (
+                <div className="fr my-2">
+                  <LuLoader className="mr-2 animate-spin" />
+                  Loading image...
+                </div>
+              )}
+              <p>Click the image to download it.</p>
+              <a
+                download={`Hack49-Social-Post-${user.user_metadata.first_name}.png`}
+                href={
                   referralCode && referralCode.code
                     ? `/api/generate_img?code=${referralCode.code}&mode=applied`
                     : "/api/generate_img?mode=applied"
                 }
-                width={500}
-                height={500}
-                alt="Social post"
-                onLoad={() => setImageLoaded(true)}
-              />
-            </a>
+              >
+                <Image
+                  className="my-4 w-full"
+                  src={
+                    referralCode && referralCode.code
+                      ? `/api/generate_img?code=${referralCode.code}&mode=applied`
+                      : "/api/generate_img?mode=applied"
+                  }
+                  width={500}
+                  height={500}
+                  alt="Social post"
+                  onLoad={() => setImageLoaded(true)}
+                />
+              </a>
+            </div>
             <Link href="/dashboard">
               <Button color="primary" startContent={<IoArrowBack />}>
                 Back to Dashboard

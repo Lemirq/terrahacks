@@ -1,7 +1,13 @@
 import React from "react";
 import Image from "next/image";
-import { FaXTwitter, FaTiktok, FaYoutube, FaLinkedin } from "react-icons/fa6";
-import { IoLogoInstagram } from "react-icons/io5";
+import {
+  FaXTwitter,
+  FaTiktok,
+  FaYoutube,
+  FaLinkedin,
+  FaDiscord,
+} from "react-icons/fa6";
+import { IoLogoDiscord, IoLogoInstagram } from "react-icons/io5";
 const Footer = () => {
   return (
     <footer className="rounded-t-3xl shadow bg-neutral-900">
@@ -52,6 +58,15 @@ const Footer = () => {
             . All Rights Reserved.
           </span>{" "}
           <ul className="fr gap-2 nav-links text-white text-2xl">
+            <li>
+              <a
+                href="https://discord.gg/cgBYcqnvVy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <FaDiscord />
+              </a>
+            </li>
             <li>
               <a
                 href="https://www.instagram.com/hack49__/"

@@ -13,6 +13,9 @@ import {
 } from "@react-email/components";
 import * as React from "react";
 import tailwindConfig from "./tailwind.config";
+import { FaLinkedin, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { IoLogoInstagram } from "react-icons/io5";
+import Footer from "./Footer";
 
 interface AppReceivedProps {
   email: string;
@@ -45,7 +48,7 @@ const AppReceived: React.FC<Readonly<AppReceivedProps>> = ({ email, code }) => (
             </Text>
             <Text className="text-lg">
               Additionally, join the{" "}
-              <Link href="https://hack49.com/dashboard">
+              <Link href="https://discord.gg/cgBYcqnvVy">
                 Hack49 Discord server
               </Link>
               , a global community of young developers where you can ask
@@ -75,21 +78,8 @@ const AppReceived: React.FC<Readonly<AppReceivedProps>> = ({ email, code }) => (
               alt="image"
               className="m-auto rounded-md w-full"
             />
-            <Text className="font-bold text-lg">Best regards,</Text>
-            <Text className="font-bold text-lg">Hack49 Team</Text>
           </div>
-          <Hr className="border border-solid border-neutral-600 my-[26px] mx-0 w-full" />
-          <Text className="text-neutral-300/70 text-[12px] leading-[24px]">
-            This email was sent to {email} because you applied to participate in
-            Hack49. If you believe this was a mistake, please contact us at{" "}
-            <Link
-              className="text-white underline"
-              href="mailto:team@hack49.com"
-            >
-              team@hack49.com
-            </Link>
-            .
-          </Text>
+          <Footer email={email} />
         </Container>
       </Body>
     </Tailwind>
