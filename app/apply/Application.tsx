@@ -323,19 +323,35 @@ const Application = ({ user }: { user: User }) => {
       return;
     } else {
       // send confirmation email
+      const { data: sData, error } = await supabase
+        .from("referrals")
+        .select("*")
+        .eq("user_id", user.id);
+
+      if (error) {
+        console.error(error);
+        toast.error(error.message);
+        setButtonLoading(false);
+        return;
+      }
+
       const fetched = await fetch(location.origin + "/api/mailing", {
         method: "POST",
         body: JSON.stringify({
           name: data?.first_name,
           email: data?.email,
           type: "received",
+          code: sData[0] ? sData[0].code : "",
         }),
         headers: {
           "Access-Control-Allow-Origin": "*",
         },
       });
+      console.log(fetched.json());
       if (fetched.status !== 200) {
         console.error("Failed to send confirmation email");
+        setButtonLoading(false);
+        return;
       }
       router.push("/apply/success");
       console.log(sData);

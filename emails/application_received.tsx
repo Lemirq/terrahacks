@@ -9,25 +9,35 @@ import {
   Text,
   Hr,
   Link,
+  Img,
 } from "@react-email/components";
 import * as React from "react";
 import tailwindConfig from "./tailwind.config";
 
 interface AppReceivedProps {
-  name: string;
+  origin: string;
   email: string;
+  code: string;
 }
 
-const AppReceived: React.FC<Readonly<AppReceivedProps>> = ({ name, email }) => (
+const AppReceived: React.FC<Readonly<AppReceivedProps>> = ({
+  origin,
+  email,
+  code,
+}) => (
   <Html>
     <Tailwind config={tailwindConfig}>
       <Head />
-      <Preview>We've received your application</Preview>
+      <Preview>We've received your application!</Preview>
       <Body className="bg-neutral-950 mx-auto font-sans">
         <Container className="m-auto p-5 py-24 text-white">
-          {/* <Img src="https://hack49.com/images/og-image.png" alt="image" className="m-auto rounded-3xl w-full" /> */}
+          <Img
+            src={"http://" + origin + "/images/app received.png"}
+            alt="image"
+            className="m-auto rounded-3xl w-full"
+          />
           <Heading className="text-3xl font-bold mb-5">
-            Application Received
+            Thanks for Applying!
           </Heading>
           <div className="text-lg text-neutral-200">
             <Text className="text-lg">
@@ -39,11 +49,37 @@ const AppReceived: React.FC<Readonly<AppReceivedProps>> = ({ name, email }) => (
               possible.
             </Text>
             <Text className="text-lg">
-              In the meantime, feel free to explore the referral raffle on the{" "}
-              <Link href="https://hack49.com/dashboard">Dashboard</Link> and
-              invite your friends to increase your chances of winning a free
-              t-shirt!
+              Additionally, join the{" "}
+              <Link href="https://hack49.com/dashboard">
+                Hack49 Discord server
+              </Link>
+              , a global community of young developers where you can ask
+              questions, receive announcements, and gain further insights into
+              Hack49.
             </Text>
+            <Text className="text-lg">
+              In the meantime, if you're interested in winning a{" "}
+              <span className="font-bold">FREE HACK49 T-SHIRT</span>, be sure to
+              check out the referral raffle program on the{" "}
+              <Link href="https://hack49.com/dashboard">dashboard</Link>. Invite
+              your friends to boost your chances of winning a t-shirt—every
+              invite earns you an extra ticket!
+            </Text>
+            <Text className="text-lg">
+              You can also create your own referral code to generate a custom
+              version of the image below with your code, and share it on social
+              media! The image below may or may not contain your code, if it
+              doesn't, you can generate a new one on the dashboard.
+            </Text>
+            <Img
+              src={
+                code
+                  ? `http://${origin}/api/generate_img?mode=applied&code=${code}`
+                  : `http://${origin}/api/generate_img?mode=applied`
+              }
+              alt="image"
+              className="m-auto rounded-3xl w-full"
+            />
             <Text className="font-bold text-lg">Best regards,</Text>
             <Text className="font-bold text-lg">Hack49 Team</Text>
           </div>
@@ -65,7 +101,8 @@ const AppReceived: React.FC<Readonly<AppReceivedProps>> = ({ name, email }) => (
   </Html>
 );
 AppReceived.PreviewProps = {
-  name: "Vihaan Sharma",
+  code: "Vihaan",
+  origin: "dedd-70-50-92-209.ngrok-free.app",
   email: "sharmavihaan190@gmail.com",
 } as AppReceivedProps;
 

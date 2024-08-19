@@ -21,28 +21,28 @@ const PrizeTiers = ({
 
 1mil referrals = Guaranteed tesla with mockup */
   }
-  const prizes = [
-    {
-      referrals: 5,
-      prize: 1,
-    },
-    {
-      referrals: 10,
-      prize: 2,
-    },
-    {
-      referrals: 20,
-      prize: 3,
-    },
-    {
-      referrals: 50,
-      prize: 4,
-    },
-    {
-      referrals: 75,
-      prize: 5,
-    },
-  ];
+  // const prizes = [
+  //   {
+  //     referrals: 5,
+  //     prize: 1,
+  //   },
+  //   {
+  //     referrals: 10,
+  //     prize: 2,
+  //   },
+  //   {
+  //     referrals: 20,
+  //     prize: 3,
+  //   },
+  //   {
+  //     referrals: 50,
+  //     prize: 4,
+  //   },
+  //   {
+  //     referrals: 75,
+  //     prize: 5,
+  //   },
+  // ];
 
   // const products = [
   // 	{
@@ -95,17 +95,14 @@ const PrizeTiers = ({
           <IoClose />
         </Button>
         <div className="fc z-10 w-full bg-neutral-900/90 relative p-10 backdrop-blur-2xl rounded-2xl">
-          <div className="fc sm:fr sm:gap-10 sm:justify-between w-full">
-            <div className="fc gap-2 w-full">
-              <h1 className="text-4xl mb-4 w-full">Referral Prizes</h1>
-              <ul className="prizes-ul w-full fc items-start">
-                {prizes.map((item, index) => (
-                  <li key={index} className="my-1 text-xl">
-                    {item.referrals} referrals: {item.prize}{" "}
-                    {item.prize > 1 ? "tickets" : "ticket"}
-                  </li>
-                ))}
-              </ul>
+          <div className="fc gap-10 justify-between w-full">
+            <div className="fc gap-2 w-full text-center">
+              <h1 className="text-4xl mb-4">Referral Prize</h1>
+              <p>
+                Every referral = 1 ticket. Note that you'll get a ticket once
+                the person uses your referral code after their application is
+                submitted.
+              </p>
             </div>
             <div className="fc gap-2 w-full">
               <Image

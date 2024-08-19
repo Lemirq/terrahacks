@@ -104,7 +104,7 @@ const Referral = ({
           )}
           <div className="fc gap-2 mt-4 items-start">
             <Button onClick={() => setPrizesVisible(true)} color="primary">
-              View Tiers
+              View Prize
             </Button>
             {app && app.complete && (
               <Link
@@ -133,14 +133,21 @@ const Referral = ({
             {created ? "Referral Tickets" : "Create a referral code"}
           </h3>
           {!created && (
-            <form className="fr gap-2 w-full" onSubmit={createReferralCode}>
+            <form
+              className="fc sm:fr gap-2 w-full"
+              onSubmit={createReferralCode}
+            >
               <Input
                 maxLength={10}
                 placeholder="Create referral code..."
                 value={referralCode}
                 onChange={(e) => setReferralCode(e.target.value)}
               />
-              <Button isDisabled={!referralCode} type="submit">
+              <Button
+                className="w-full sm:w-auto"
+                isDisabled={!referralCode}
+                type="submit"
+              >
                 Create
               </Button>
             </form>
