@@ -56,7 +56,7 @@ const Perks = async ({
       company: "XYZ Domains",
       link: "https://xyz.com/",
       logo: "/images/sponsors/xyz.svg",
-      description: `Free domain name for first 350 **(${isInFirst350 ? "YOU ARE ELIGIBLE!" : "you are not eligible"})**. The value of this domain is **$10.00 per user.**`,
+      description: `Free domain name for the first 350 people **(${isInFirst350 ? "YOU ARE ELIGIBLE!" : "you are not eligible"})**. The value of this domain is **$10.00 per user.**`,
       showLink: isInFirst350 ? true : false,
     },
     {
