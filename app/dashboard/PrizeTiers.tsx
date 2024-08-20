@@ -99,9 +99,9 @@ const PrizeTiers = ({
             <div className="fc gap-2 w-full text-center">
               <h1 className="text-4xl mb-4">Referral Prize</h1>
               <p>
-                Every referral = 1 ticket. Note that you'll get a ticket once
-                the person uses your referral code after their application is
-                submitted.
+                Every referral = 1 ticket <br /> Note that you'll get a ticket
+                once the person uses your referral code after their application
+                is submitted.
               </p>
             </div>
             <div className="fc gap-2 w-full">

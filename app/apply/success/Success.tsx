@@ -31,7 +31,12 @@ const Success = ({
   const supabase = createClient();
 
   const applyReferral = async () => {
-    if (referralCode && referralCode.code && code === referralCode.code) {
+    const loweredCode = code.toLowerCase();
+    if (
+      referralCode &&
+      referralCode.code &&
+      loweredCode === referralCode.code
+    ) {
       toast.error("Nice try buddy, but you can't use your own referral code");
       return;
     }
@@ -55,7 +60,7 @@ const Success = ({
     const { data: refData, error: refError } = await supabase
       .from("referrals")
       .select("used")
-      .eq("code", code)
+      .eq("code", loweredCode)
       .single();
     if (refError) {
       if (refError.code === "PGRST116") {
@@ -69,7 +74,7 @@ const Success = ({
     // update users table
     const { data: userData, error: userError } = await supabase
       .from("users")
-      .update({ referred_by: code })
+      .update({ referred_by: loweredCode })
       .eq("uid", user.id);
 
     if (userError) {
@@ -83,7 +88,7 @@ const Success = ({
     const { error } = await supabase
       .from("referrals")
       .update({ used: newUsed })
-      .eq("code", code);
+      .eq("code", loweredCode);
     if (error) {
       console.error(error.message);
       return;
