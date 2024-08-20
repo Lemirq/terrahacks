@@ -5,8 +5,10 @@ import { Button, Chip } from "@nextui-org/react";
 import { IoLogOut } from "react-icons/io5";
 import Link from "next/link";
 import { logout } from "../login/actions";
-import { use } from "react";
+import { Suspense, use } from "react";
 import Referral from "./Referral";
+import Perks from "./Perks";
+import { LuLoader } from "react-icons/lu";
 
 const articles = [
   {
@@ -127,7 +129,17 @@ export default async function PrivatePage() {
             </Button>
           </Link>
         </section>
-
+        {/*   <Suspense
+          fallback={
+            <section className="w-full py-5 px-5 sm:px-10 fc gap-5 rounded-2xl border border-neutral-300/30 bg-neutral-900 mt-5">
+              <p className="text-xl  fr">
+                <LuLoader className="animate-spin mr-2" /> Loading your perks...
+              </p>
+            </section>
+          }
+        >
+          <Perks user={data.user} app={userData[0]} />
+        </Suspense> */}
         <Referral user={data.user} refCode={referralData} app={userData[0]} />
 
         <section className="mt- sm:px-10 p-5 w-full">
