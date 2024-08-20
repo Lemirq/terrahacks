@@ -4,6 +4,7 @@ import { cn } from "@/utils/cn";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { sponsors } from "@/data/sponsors";
 export const Sponsors = () => {
   return (
     <div className="px-5 sm:px-10 py-12 w-full my-36">
@@ -29,26 +30,6 @@ export const Sponsors = () => {
       </div>
     </div>
   );
-};
-
-const sponsors = {
-  bronze: [
-    {
-      name: "1Password",
-      href: "https://1password.com",
-      logo: "/images/sponsors/1p.svg",
-    },
-    {
-      name: "XYZ Domains",
-      href: "https://gen.xyz/",
-      logo: "/images/sponsors/xyz.svg",
-    },
-    {
-      name: "HackClub",
-      href: "https://hackclub.com/",
-      logo: "/images/sponsors/hcb.svg",
-    },
-  ],
 };
 
 const container = {
@@ -89,6 +70,7 @@ const ClipPathLinks = () => {
             logo={sponsor.logo}
             href={sponsor.href}
             tier="bronze"
+            bg={sponsor.bg}
           />
         ))}
       </Row>
@@ -111,7 +93,7 @@ const Row = ({
       className={cn("grid divide-x divide-neutral-900", {
         // "grid-cols-2": tier === "platinum" || tier === "gold",
         // "grid-cols-3": tier === "silver",
-        "grid-cols-1 md:grid-cols-3": tier === "bronze",
+        "grid-cols-1 sm:grid-cols-2 md:grid-cols-4": tier === "bronze",
       })}
     >
       {children}
@@ -143,10 +125,12 @@ const LinkBox = ({
   logo,
   href,
   tier,
+  bg,
 }: {
   logo: string;
   href: string;
   tier: "platinum" | "gold" | "silver" | "bronze";
+  bg?: boolean;
 }) => {
   const [scope, animate] = useAnimate();
 
@@ -213,14 +197,15 @@ const LinkBox = ({
         className="w-full h-20 sm:h-28 md:h-36 p-4"
       >
         <Image
-          width={200}
-          height={100}
+          width={800}
+          height={400}
           src={logo}
           alt="Sponsor Logo"
           className={cn("mx-auto", {
             "w-full": tier === "platinum",
             "w-3/4": tier === "gold",
-            "h-full sm:w-1/2 md:w-3/4": tier === "silver" || tier === "bronze",
+            "w-full h-full sm:w-auto object-contain":
+              tier === "silver" || tier === "bronze",
           })}
         />
 
@@ -232,15 +217,14 @@ const LinkBox = ({
           className="absolute inset-0  bg-primary text-white w-full h-20 sm:h-28 md:h-36 p-4"
         >
           <Image
-            width={200}
-            height={100}
+            width={800}
+            height={400}
             src={logo}
             alt="Sponsor Logo"
             className={cn("mx-auto", {
               "w-full": tier === "platinum",
               "w-3/4": tier === "gold",
-              "h-full sm:w-1/2 md:w-3/4":
-                tier === "silver" || tier === "bronze",
+              "h-full w-auto": tier === "silver" || tier === "bronze",
             })}
           />
         </div>
