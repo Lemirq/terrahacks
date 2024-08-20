@@ -43,4 +43,14 @@ export const people = [
 		name: 'Piranaven Puvanenthiran',
 		image: '/images/team/piranaven.jpg',
 	},
+	{
+name: "Ev Wong",
+image: "/images/team/ev.jpg",
+		lk: 'https://www.linkedin.com/in/evelynhwong'
+	},
+	{
+		name: "Jad Menkara",
+		image: "/images/team/jad.png",
+		lk: 'https://www.linkedin.com/in/jad-menkara-1593942aa/'
+	}
 ];

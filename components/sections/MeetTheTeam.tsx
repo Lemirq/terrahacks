@@ -1,128 +1,80 @@
 'use client';
 import React from 'react';
 import { people } from '@/data/people';
-import { motion } from 'framer-motion';
-import { Button } from '@nextui-org/react';
-import { IoLogoLinkedin } from 'react-icons/io5';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperControls from '@/components/SwiperControls';
+import { animate, motion, useMotionValue } from "framer-motion";
+import { useEffect, useState } from "react";
+import useMeasure from "react-use-measure";
+import Card from "@/components/TeamCard";
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-
-// import required modules
-import { Autoplay, Pagination, Navigation } from 'swiper/modules';
-// const container = {
-// 	hidden: { opacity: 0 },
-// 	show: {
-// 		opacity: 1,
-// 		transition: {
-// 			staggerChildren: 0.2,
-// 		},
-// 	},
-// };
-
-// const listItem = {
-// 	hidden: { opacity: 0 },
-// 	show: { opacity: 1 },
-// };
 const MeetTheTeam = () => {
+	const FAST_DURATION = 25;
+	const SLOW_DURATION = 75;
+
+	const [duration, setDuration] = useState(FAST_DURATION);
+	let [ref, { width }] = useMeasure();
+
+	const xTranslation = useMotionValue(0);
+
+	const [mustFinish, setMustFinish] = useState(false);
+	const [rerender, setRerender] = useState(false);
+
+	useEffect(() => {
+		let controls;
+		let finalPosition = -width / 2 - 8;
+
+		if (mustFinish) {
+			controls = animate(xTranslation, [xTranslation.get(), finalPosition], {
+				ease: "linear",
+				duration: duration * (1 - xTranslation.get() / finalPosition),
+				onComplete: () => {
+					setMustFinish(false);
+					setRerender(!rerender);
+				},
+			});
+		} else {
+			controls = animate(xTranslation, [0, finalPosition], {
+				ease: "linear",
+				duration: duration,
+				repeat: Infinity,
+				repeatType: "loop",
+				repeatDelay: 0,
+			});
+		}
+
+		return controls?.stop;
+	}, [rerender, xTranslation, duration, width]);
+
 	return (
-		<section id="founders" className="w-full px-5 sm:px-10 fc gap-10 mx-auto my-24">
+		<section id="founders" className="w-full fc gap-10 mx-auto my-24">
 			<motion.h3
-				initial={{ opacity: 0, y: 50 }}
-				whileInView={{ opacity: 1, y: 0 }}
-				viewport={{ once: true }}
+				initial={{opacity: 0, y: 50}}
+				whileInView={{opacity: 1, y: 0}}
+				viewport={{once: true}}
 				className="text-3xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium"
 			>
 				Meet The Team
 			</motion.h3>
-			{/* <div
-				className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10"
-			>
-				{people.map((person, index) => (
-					<Founder key={index} {...person} />
-				))}
-			</div> */}
-			<Swiper
-				centeredSlides={true}
-				autoplay={{
-					delay: 1500,
-					disableOnInteraction: false,
-				}}
-				pagination={{
-					clickable: true,
-					dynamicBullets: false,
-					bulletElement: 'button',
-					bulletActiveClass: '!bg-white',
-					bulletClass: 'bg-neutral-400 w-8 h-1 rounded-full mr-2',
-				}}
-				navigation={false}
-				modules={[Autoplay, Pagination, Navigation]}
-				className="w-full fc mySwiper !overflow-x-hidden !overflow-y-visible"
-				slidesPerView={1}
-				spaceBetween={10}
-				breakpoints={{
-					640: {
-						slidesPerView: 2,
-						spaceBetween: 20,
-					},
-					768: {
-						slidesPerView: 3,
-						spaceBetween: 40,
-					},
-					1024: {
-						slidesPerView: 5,
-						spaceBetween: 50,
-					},
-					1280: {
-						slidesPerView: 7,
-						spaceBetween: 60,
-					},
-				}}
-			>
-				{people.map((person, index) => (
-					<SwiperSlide key={index}>
-						<Founder {...person} />
-					</SwiperSlide>
-				))}
-			</Swiper>
+			<main className="w-full overflow-x-hidden h-64 relative">
+				<motion.div
+					className="absolute left-0 flex gap-4"
+					style={{x: xTranslation}}
+					ref={ref}
+					onHoverStart={() => {
+						setMustFinish(true);
+						setDuration(SLOW_DURATION);
+					}}
+					onHoverEnd={() => {
+						setMustFinish(true);
+						setDuration(FAST_DURATION);
+					}}
+				>
+					{[...people, ...people].map((item, idx) => (
+						<Card item={item} key={idx}/>
+					))}
+				</motion.div>
+			</main>
+
 		</section>
-	);
-};
-
-interface FounderProps {
-	name: string;
-	title: string;
-	description: string;
-	image: string;
-	lk: string;
-}
-
-const Founder = ({ name, title, description, image, lk }: FounderProps) => {
-	return (
-		<div className="fc py-10 gap-2 h-full w-full justify-start">
-			<div className="w-40 h-40 rounded-full overflow-hidden">
-				<img src={image} alt={name} className="w-full h-full object-cover" />
-			</div>
-			<h4 className="text-2xl font-semibold text-white inline-flex justify-center items-center gap-2">
-				{/* dont wrap text */}
-				<span className="whitespace-nowrap">{name}</span>
-				{lk && (
-					<a href={lk} target="_blank" rel="noreferrer">
-						<Button isIconOnly variant="bordered">
-							<IoLogoLinkedin />
-						</Button>
-					</a>
-				)}
-			</h4>
-			{/* <div className="fr gap-3 mb-4"></div> */}
-
-			{/* <p className="text-lg text-gray-400">{title}</p> */}
-			{/* <p className="text-lg sm:text-sm text-gray-200 	text-center max-w-[30ch]">{description}</p> */}
-		</div>
 	);
 };
 

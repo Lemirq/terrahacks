@@ -49,7 +49,7 @@ const Card = ({ card }: { card }) => {
         className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110"
       ></div>
       <div className="absolute inset-0 z-10 grid place-content-center">
-        <p className="bg-gradient-to-br from-white/20 to-white/0 p-8 text-4xl font-black uppercase text-white backdrop-blur-xl rounded-2xl">
+        <p className="bg-gradient-to-br from-black/40 to-black/30 p-8 text-4xl font-black lowercase text-white backdrop-blur-xl rounded-2xl">
           {card.title}
         </p>
       </div>

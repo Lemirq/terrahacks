@@ -2,7 +2,10 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 import { motion } from 'framer-motion';
-import { IoArrowDownCircle, IoChevronDown } from 'react-icons/io5';
+import {IoArrowDownCircle, IoChevronDown, IoChevronForward} from 'react-icons/io5';
+import { Button } from '@nextui-org/react';
+import Link from 'next/link';
+import Socials from "@/components/Socials";
 
 const SignUpForm = () => {
 	const handleSubmit = async (e) => {
@@ -63,7 +66,7 @@ const SignUpForm = () => {
 					/>
 				</div>
 			</div>
-			{/* 
+			{/*
 	<button type="submit" className="border-neutral-800 px-5 py-3 rounded-lg bg-white text-black font-bold text-sm w-full">
 	</button> */}
 			<button
@@ -120,23 +123,44 @@ const SignUpWaitlist = () => {
 					<span className="absolute bottom-0 left-3 right-3 h-[1px] bg-gradient-to-r from-zinc-500/0 via-zinc-300 to-zinc-500/0"></span>
 				</span>
 			</div>
-			<p className="text-neutral-400 my-2 text-sm sm:text-xl">
+			<p className="text-neutral-400 my-2 text-base sm:text-xl">
 				Hack49 is a yearly international hackathon dedicated to fostering the creation of groundbreaking solutions to address the world's most
 				complex issues.
 			</p>
 			{timeLeft && (
-				<div className="text-white text-2xl mb-10">
+				<div className="text-white text-2xl -10">
 					{timeLeft.months}mo {timeLeft.days}d until Hack49 2024!
 				</div>
 			)}
+			{/*<Link className="hover:-translate-y-1 transition-transform" href="/apply">*/}
+				{/*<Button size="lg" color="primary">*/}
+				{/*	Apply Now*/}
+				{/*</Button>*/}
+				{/*<motion.button className="p-[3px] relative mt-3"*/}
+				{/*whileHover={{ scale: 1.05 }}*/}
+				{/*			   whileTap={{*/}
+				{/*				   scale: 0.95,*/}
+				{/*				   rotate: -2,*/}
 
-			<SignUpForm />
+				{/*			   }}*/}
+				{/*>*/}
+				{/*	<div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-lg"/>*/}
+				{/*	<div*/}
+				{/*		className="px-24 py-2 fr text-xl gap-2 bg-black rounded-[6px]  relative group transition duration-200 text-white hover:bg-transparent">*/}
+				{/*		Apply Now <IoChevronForward className=" group-hover:text-white"/>*/}
+				{/*	</div>*/}
+				{/*</motion.button>*/}
+			{/*</Link>*/}
+<div className='my-4'>
+			<Socials />
+</div>
+			 <SignUpForm />
 
 			<button
 				className="w-full fr items-start gap-2 text-neutral-500 mt-4 animate-bounce"
-				onClick={() => document.querySelector('#about')?.scrollIntoView({ behavior: 'smooth' })}
+				onClick={() => document.querySelector('#about')?.scrollIntoView({behavior: 'smooth'})}
 			>
-				<IoArrowDownCircle className="text-xl" />
+				<IoArrowDownCircle className="text-xl"/>
 				<p className="text-sm">Scroll Down</p>
 			</button>
 		</motion.div>

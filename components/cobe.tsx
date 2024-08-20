@@ -24,7 +24,7 @@ export default function Cobe() {
 			glowColor: [1, 1, 1],
 			markers: [
 				// longitude latitude
-				{ location: [40.7128, -74.006], size: 0.1 },
+				{ location: [49, -74.006], size: 0.1 },
 			],
 			onRender: (state) => {
 				// Called on every animation frame.

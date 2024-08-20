@@ -202,6 +202,7 @@ const Application = ({ user }: { user: User }) => {
     errorMessage: errorMessages.first_name,
     isInvalid: !!errors.first_name,
     isRequired: true,
+    isDisabled:true,
     value: user.user_metadata.first_name,
     ...register("first_name", { required: true }),
   };
@@ -210,6 +211,7 @@ const Application = ({ user }: { user: User }) => {
     isInvalid: !!errors.last_name,
     value: user.user_metadata.last_name,
     isRequired: true,
+    isDisabled:true,
     ...register("last_name", { required: true }),
   };
   const registerEmail = {
@@ -217,6 +219,7 @@ const Application = ({ user }: { user: User }) => {
     value: user.email,
     isInvalid: !!errors.email,
     isRequired: true,
+    isDisabled:true,
     ...register("email", {
       required: true,
       pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
