@@ -129,7 +129,7 @@ export default async function PrivatePage() {
             </Button>
           </Link>
         </section>
-        {userData[0] && userData[0].status === "accepted" && (
+        {userData && userData[0] && userData[0].status === "accepted" && (
           <Suspense
             fallback={
               <section className="w-full py-5 px-5 sm:px-10 fc gap-5 rounded-2xl border border-neutral-300/30 bg-neutral-900 mt-5">
