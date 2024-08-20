@@ -224,7 +224,8 @@ const LinkBox = ({
             className={cn("mx-auto", {
               "w-full": tier === "platinum",
               "w-3/4": tier === "gold",
-              "h-full w-auto": tier === "silver" || tier === "bronze",
+              "w-full h-full sm:w-auto object-contain":
+                tier === "silver" || tier === "bronze",
             })}
           />
         </div>
