@@ -16,10 +16,10 @@ const HorizontalScrollCarousel = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["30%", "-35%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["40%", "-40%"]);
 
   return (
-    <section ref={targetRef} className="relative h-[300vh]  w-full px-10">
+    <section ref={targetRef} className="relative h-[300vh]  w-full">
       <div className="sticky top-0 fc h-screen items-center overflow-hidden">
         <h1 className="text-4xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium mb-10">
           A Weekend of...
@@ -38,18 +38,11 @@ const Card = ({ card }: { card }) => {
   return (
     <div
       key={card.id}
-      className="group relative h-[450px] min-w-[450px] overflow-hidden  rounded-2xl"
+      className="group relative h-[350px] min-w-[350px] overflow-hidden  rounded-2xl"
     >
-      <div
-        style={{
-          backgroundImage: `url(${card.url})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-        className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110"
-      ></div>
+      <div className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110 bg-gradient-to-br from-black/40 to-neutral-800"></div>
       <div className="absolute inset-0 z-10 grid place-content-center">
-        <p className="bg-gradient-to-br from-black/40 to-black/30 p-8 text-4xl font-black lowercase text-white backdrop-blur-xl rounded-2xl">
+        <p className=" p-8 text-4xl font-black uppercase text-white backdrop-blur-xl rounded-2xl">
           {card.title}
         </p>
       </div>
