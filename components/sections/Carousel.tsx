@@ -3,9 +3,10 @@ import {
   useTransform,
   useScroll,
   useMotionValueEvent,
+  useVelocity,
 } from "framer-motion";
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const Example = () => {
   return <HorizontalScrollCarousel />;
@@ -18,16 +19,23 @@ const HorizontalScrollCarousel = () => {
   });
 
   const x = useTransform(scrollYProgress, [0, 1], ["40%", "-40%"]);
+  const bgX = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  // motion value event
 
   return (
-    <section ref={targetRef} className="relative h-[300vh]  w-full">
+    <section ref={targetRef} className="relative h-[300vh] w-full">
       <div className="sticky top-0 fc h-screen items-center overflow-hidden">
         <h1 className="text-4xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium mb-10">
           A Weekend of...
         </h1>
-        <motion.div style={{ x }} className="fr gap-4 items-start">
+        <motion.div
+          style={{
+            x,
+          }}
+          className="fr gap-4 items-start"
+        >
           {cards.map((card) => {
-            return <Card card={card} key={card.id} />;
+            return <Card card={card} key={card.id} bgX={bgX} />;
           })}
         </motion.div>
       </div>
@@ -35,18 +43,19 @@ const HorizontalScrollCarousel = () => {
   );
 };
 
-const Card = ({ card }: { card }) => {
+const Card = ({ card, bgX }: { card: (typeof cards)[0]; bgX: number }) => {
   return (
-    <div
+    <motion.div
       style={
         card.title.toLowerCase() === "prizes"
           ? {
               backgroundImage: `url(${card.url})`,
               backgroundSize: "cover",
-              backgroundPosition: "center",
+              backgroundPositionX: bgX,
             }
           : {}
       }
+      animate={{}}
       key={card.id}
       className="group relative size-64 sm:size-[350px] overflow-hidden rounded-2xl"
     >
@@ -58,7 +67,7 @@ const Card = ({ card }: { card }) => {
           {card.title}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
