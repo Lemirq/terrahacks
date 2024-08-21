@@ -4,6 +4,7 @@ import {
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
+import Image from "next/image";
 import { useRef } from "react";
 
 const Example = () => {
@@ -37,12 +38,23 @@ const HorizontalScrollCarousel = () => {
 const Card = ({ card }: { card }) => {
   return (
     <div
+      style={
+        card.title.toLowerCase() === "prizes"
+          ? {
+              backgroundImage: `url(${card.url})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+            }
+          : {}
+      }
       key={card.id}
-      className="group relative h-[350px] min-w-[350px] overflow-hidden  rounded-2xl"
+      className="group relative size-64 sm:size-[350px] overflow-hidden rounded-2xl"
     >
-      <div className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110 bg-gradient-to-br from-black/40 to-neutral-800"></div>
+      {card.title !== "prizes" && (
+        <div className="absolute inset-0 z-0 transition-transform duration-300 group-hover:scale-110 bg-gradient-to-br from-black/40 to-neutral-800"></div>
+      )}
       <div className="absolute inset-0 z-10 grid place-content-center">
-        <p className=" p-8 text-4xl font-black uppercase text-white backdrop-blur-xl rounded-2xl">
+        <p className=" p-8 text-2xl sm:text-4xl font-black uppercase text-white backdrop-blur-xl rounded-2xl">
           {card.title}
         </p>
       </div>

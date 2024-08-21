@@ -17,6 +17,7 @@ export default function Home() {
         <main className="w-full bg-dot-white/[0.2] bg-neutral-950 fc">
           <Animation />
           <Hero />
+          <Example />
           <About />
           <Sponsors />
           <MeetTheTeam />
