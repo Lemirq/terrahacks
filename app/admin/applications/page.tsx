@@ -30,25 +30,34 @@ const Applications = async () => {
     (application) => application.status === "rejected",
   );
 
+  const incompleteApplications = allApplications.filter(
+    (application) => !application.complete,
+  );
+
   return (
     <div className="fc gap-3 items-start w-full">
       <h1 className="text-2xl text-center">Applications</h1>
-      <div className="w-full fc lg:fr lg:gap-10 gap-4 lg:items-stre">
-        <div className="px-5 py-4 w-full bg-blue-400/40 rounded-2xl whitespace-nowrap">
-          <h3 className="font-bold text-2xl">{allApplications.length} Total</h3>
+      <div className="w-full fr flex-wrap justify-start gap-4">
+        <div className="px-5 py-4 bg-blue-400/40 rounded-2xl whitespace-nowrap">
+          <h3 className="font-bold text-xl">{allApplications.length} Total</h3>
         </div>
-        <div className="px-5 py-4 w-full bg-orange-400/40 rounded-2xl whitespace-nowrap">
-          <h3 className="font-bold text-2xl">
-            {incomingApplications.length} incoming
+        <div className="px-5 py-4 bg-blue-400/40 rounded-2xl whitespace-nowrap">
+          <h3 className="font-bold text-xl">
+            {incompleteApplications.length} Incomplete
           </h3>
         </div>
-        <div className="px-5 py-4 w-full bg-green-400/40 rounded-2xl whitespace-nowrap">
-          <h3 className="font-bold text-2xl">
+        <div className="px-5 py-4 bg-orange-400/40 rounded-2xl whitespace-nowrap">
+          <h3 className="font-bold text-xl">
+            {incomingApplications.length} completed
+          </h3>
+        </div>
+        <div className="px-5 py-4 bg-green-400/40 rounded-2xl whitespace-nowrap">
+          <h3 className="font-bold text-xl">
             {acceptedApplications.length} accepted
           </h3>
         </div>
-        <div className="px-5 py-4 w-full bg-red-400/40 rounded-2xl whitespace-nowrap">
-          <h3 className="font-bold text-2xl">
+        <div className="px-5 py-4 bg-red-400/40 rounded-2xl whitespace-nowrap">
+          <h3 className="font-bold text-xl">
             {rejectedApplications.length} rejected
           </h3>
         </div>

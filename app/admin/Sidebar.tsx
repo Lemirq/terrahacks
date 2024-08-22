@@ -32,7 +32,7 @@ const Sidebar = () => {
         <div className="w-56 h-screen rounded-2xl bg-neutral-900 border-2 border-neutral-300/20 justify-between fc gap-4 py-10 px-5">
           {/* Links for FAQ, waitlist, applications */}
           <div className="fc w-full gap-2">
-            {links.map((link) => (
+            {links.map((link, i) => (
               <Link
                 className={cn(
                   "w-full bg-neutral-800 rounded-xl px-5 py-2 border border-neutral-300/20",
@@ -40,7 +40,7 @@ const Sidebar = () => {
                     "bg-primary-300/60": pathname === link.href,
                   },
                 )}
-                key={link.href}
+                key={i}
                 href={link.href}
               >
                 {link.text}
