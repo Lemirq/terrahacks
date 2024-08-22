@@ -146,6 +146,7 @@ const Application = async ({ params }: { params: { id: string } }) => {
               answer={
                 data.social.github && (
                   <a
+                    target="blank"
                     className="text-blue-500 underline"
                     href={formatSocialLink(data.social.github)}
                   >
@@ -159,6 +160,7 @@ const Application = async ({ params }: { params: { id: string } }) => {
               answer={
                 data.social.linkedin && (
                   <a
+                    target="blank"
                     className="text-blue-500 underline"
                     href={formatSocialLink(data.social.linkedin)}
                   >
@@ -172,6 +174,7 @@ const Application = async ({ params }: { params: { id: string } }) => {
               answer={
                 data.social.twitter && (
                   <a
+                    target="blank"
                     className="text-blue-500 underline"
                     href={formatSocialLink(data.social.twitter)}
                   >
@@ -185,6 +188,7 @@ const Application = async ({ params }: { params: { id: string } }) => {
               answer={
                 data.social.instagram && (
                   <a
+                    target="blank"
                     className="text-blue-500 underline"
                     href={formatSocialLink(data.social.instagram)}
                   >
@@ -198,6 +202,7 @@ const Application = async ({ params }: { params: { id: string } }) => {
               answer={
                 data.social.portfolio && (
                   <a
+                    target="blank"
                     className="text-blue-500 underline"
                     href={formatSocialLink(data.social.portfolio)}
                   >
