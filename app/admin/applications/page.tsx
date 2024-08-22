@@ -39,16 +39,16 @@ const Applications = async () => {
       <h1 className="text-2xl text-center">Applications</h1>
       <div className="w-full fr flex-wrap justify-start gap-4">
         <div className="px-5 py-4 bg-blue-400/40 rounded-2xl whitespace-nowrap">
-          <h3 className="font-bold text-xl">{allApplications.length} Total</h3>
+          <h3 className="font-bold text-xl">{allApplications.length} total</h3>
         </div>
         <div className="px-5 py-4 bg-blue-400/40 rounded-2xl whitespace-nowrap">
           <h3 className="font-bold text-xl">
-            {incompleteApplications.length} Incomplete
+            {incompleteApplications.length} incomplete
           </h3>
         </div>
         <div className="px-5 py-4 bg-orange-400/40 rounded-2xl whitespace-nowrap">
           <h3 className="font-bold text-xl">
-            {incomingApplications.length} completed
+            {allApplications.length - incompleteApplications.length} completed
           </h3>
         </div>
         <div className="px-5 py-4 bg-green-400/40 rounded-2xl whitespace-nowrap">
