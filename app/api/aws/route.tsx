@@ -5,6 +5,7 @@ import { render } from "@react-email/components";
 import App from "@/emails/application_received";
 
 export async function GET(req: NextRequest) {
+  return NextResponse.json({ ok: true });
   AWS.config.update({
     accessKeyId: process.env.AWS_ACCESS_KEY,
     secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
