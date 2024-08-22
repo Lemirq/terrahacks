@@ -18,7 +18,7 @@ const Contact = () => {
       </motion.h3>
       <Link
         href="mailto:team@hack49.com"
-        className="p-5 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-900 text-2xl sm:text-4xl md:text-6xl"
+        className="p-5 rounded-2xl bg-gradient-to-br from-neutral-700 to-neutral-900 text-2xl sm:text-4xl"
       >
         team@hack49.com
       </Link>
