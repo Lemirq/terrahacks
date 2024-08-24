@@ -1,6 +1,8 @@
 import { createClient } from "@/utils/supabase/server";
 import React from "react";
 import AllApps from "./AllApps";
+import Link from "next/link";
+import { Button } from "@nextui-org/react";
 
 const Applications = async () => {
   const supabase = createClient();
@@ -36,7 +38,12 @@ const Applications = async () => {
 
   return (
     <div className="fc gap-3 items-start w-full">
-      <h1 className="text-2xl text-center">Applications</h1>
+      <div className="fr gap-2">
+        <Link href="/admin">
+          <Button>Back</Button>
+        </Link>
+        <h1 className="text-2xl text-center">Applications</h1>
+      </div>
       <div className="w-full fr flex-wrap justify-start gap-4">
         <div className="px-5 py-4 bg-blue-400/40 rounded-2xl whitespace-nowrap">
           <h3 className="font-bold text-xl">{allApplications.length} total</h3>

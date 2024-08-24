@@ -1,14 +1,13 @@
-import Sidebar from './Sidebar';
+import Sidebar from "./Sidebar";
 
 export default function AdminLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<div className="w-full items-start min-h-screen fr px-5 sm:px-10">
-			<Sidebar />
-			<div className="py-28 w-full h-full sm:pl-64 pt-48 sm:pt-28">{children}</div>
-		</div>
-	);
+  return (
+    <div className="w-full items-start min-h-screen fc justify-start px-5 py-28 sm:px-10 pt-48 sm:pt-28">
+      {children}
+    </div>
+  );
 }
