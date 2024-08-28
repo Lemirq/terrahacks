@@ -7,6 +7,7 @@ const columns = [
 		name: 'REVIEWED BY',
 		uid: 'review',
 	},
+	{ name: 'CREATED AT', uid: 'created_at' },
 ];
 
 export { columns };

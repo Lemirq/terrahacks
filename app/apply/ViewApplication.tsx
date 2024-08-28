@@ -71,14 +71,19 @@ const ViewApplication = ({ data, resume }: { data: Props; resume?: { name: strin
 				<Section title="Experience">
 					<Viewer question="Hackathons Attended" answer={data.hackathons_attended.toString()} />
 					<Viewer question="Top Interests" answer={data.top_interests.join(', ')} />
-					<Viewer question="Confidence in AI/ML" answer={data.confidence.confidence_ai_machine_learning} />
-					<Viewer question="Confidence in Back End Dev" answer={data.confidence.confidence_back_end_dev} />
-					<Viewer question="Confidence in Cybersecurity" answer={data.confidence.confidence_cybersecurity} />
-					<Viewer question="Confidence in Front End Dev" answer={data.confidence.confidence_front_end_dev} />
-					<Viewer question="Confidence in Fullstack Dev" answer={data.confidence.confidence_fullstack_dev} />
-					<Viewer question="Confidence in Product Management" answer={data.confidence.confidence_product_management} />
-					<Viewer question="Confidence in UI/UX Design" answer={data.confidence.confidence_ui_ux_design} />
-					<Viewer question="Confidence in Web3/Crypto/Blockchain" answer={data.confidence.confidence_web3_crypto_blockchain} />
+					{
+						data.confidence &&
+						<>
+						<Viewer question="Confidence in AI/ML" answer={data.confidence.confidence_ai_machine_learning}/>
+						<Viewer question="Confidence in Back End Dev" answer={data.confidence.confidence_back_end_dev} />
+				<Viewer question="Confidence in Cybersecurity" answer={data.confidence.confidence_cybersecurity}/>
+				<Viewer question="Confidence in Front End Dev" answer={data.confidence.confidence_front_end_dev}/>
+				<Viewer question="Confidence in Fullstack Dev" answer={data.confidence.confidence_fullstack_dev}/>
+				<Viewer question="Confidence in Product Management"
+						answer={data.confidence.confidence_product_management}/>
+				<Viewer question="Confidence in UI/UX Design" answer={data.confidence.confidence_ui_ux_design}/>
+				<Viewer question="Confidence in Web3/Crypto/Blockchain"
+						answer={data.confidence.confidence_web3_crypto_blockchain}/></>}
 				</Section>
 
 				<Section title="Social">
@@ -103,7 +108,8 @@ const ViewApplication = ({ data, resume }: { data: Props; resume?: { name: strin
 
 				<Section title="Short Answers">
 					<div className="col-span-4 w-full fc gap-5">
-						<Viewer question="Tell us the story of how you began in the computer science field." answer={data.short_ans_1} />
+						{data.short_ans_1&&<Viewer question="Tell us the story of how you began in the computer science field."
+								 answer={data.short_ans_1}/>}
 						<Viewer
 							question="Tell us the biggest challenge you have ever faced (doesn't have to be related to computer science)."
 							answer={data.short_ans_2}

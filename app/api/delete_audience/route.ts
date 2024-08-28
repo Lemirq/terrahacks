@@ -27,6 +27,3 @@ export async function GET() {
 	}
 	return NextResponse.json({ success: true });
 }
-
-export const fetchCache = 'force-no-store';
-export const revalidate = 0;

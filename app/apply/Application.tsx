@@ -247,16 +247,16 @@ const Application = ({ user }: { user: User }) => {
 			.from('applications')
 			.update({
 				age: age,
-				confidence: {
-					confidence_ai_machine_learning: data.confidence_ai_machine_learning,
-					confidence_back_end_dev: data.confidence_back_end_dev,
-					confidence_cybersecurity: data.confidence_cybersecurity,
-					confidence_front_end_dev: data.confidence_front_end_dev,
-					confidence_fullstack_dev: data.confidence_fullstack_dev,
-					confidence_product_management: data.confidence_product_management,
-					confidence_ui_ux_design: data.confidence_ui_ux_design,
-					confidence_web3_crypto_blockchain: data.confidence_web3_crypto_blockchain,
-				},
+				// confidence: {
+				// 	confidence_ai_machine_learning: data.confidence_ai_machine_learning,
+				// 	confidence_back_end_dev: data.confidence_back_end_dev,
+				// 	confidence_cybersecurity: data.confidence_cybersecurity,
+				// 	confidence_front_end_dev: data.confidence_front_end_dev,
+				// 	confidence_fullstack_dev: data.confidence_fullstack_dev,
+				// 	confidence_product_management: data.confidence_product_management,
+				// 	confidence_ui_ux_design: data.confidence_ui_ux_design,
+				// 	confidence_web3_crypto_blockchain: data.confidence_web3_crypto_blockchain,
+				// },
 				country: data.country,
 				email: data.email,
 				first_name: data.first_name,
@@ -266,7 +266,7 @@ const Application = ({ user }: { user: User }) => {
 				level_of_study: data.level_of_study,
 				major: data.major,
 				phone: data.phone_number,
-				short_ans_1: data.short_answer1,
+				// short_ans_1: data.short_answer1,
 				short_ans_2: data.short_answer2,
 				social: {
 					github: data.github,
@@ -364,7 +364,7 @@ const Application = ({ user }: { user: User }) => {
 									render={({ field: { onChange, onBlur, value } }) => (
 										<InputMask mask="999-999-9999" value={value} onChange={onChange} onBlur={onBlur}>
 											{(inputProps) => (
-												<Input
+												<Input	
 													autoComplete="off"
 													isInvalid={!!errors.phone_number}
 													errorMessage={errorMessages.phone}
@@ -620,91 +620,91 @@ and a dropdown to select their confidence level in each of these areas.
 from not confident, somewhat confident, confident, very confident, expert
 For each, there will be a dropdown to select their confidence level.
 All the data should be added to the 'confidence' object in the form data. */}
-							<div className="w-full fc items-start gap-2 mt-5">
-								<p>How confident are you in the following areas?</p>
-								<p className="text-sm">
-									If you're a beginner, don't worry! This hackathon is a great place to learn and grow. If you're an expert, we'd
-									love to see what you can do!
-								</p>
-								<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
-									{confidence.map((item: confidenceType) => {
-										const { value, label } = item;
-										return (
-											<Controller
-												key={value}
-												name={value}
-												control={control}
-												rules={{
-													// string should be a valid value
-													validate: (value) =>
-														['Not confident', 'Somewhat confident', 'Confident', 'Very confident', 'Expert'].includes(
-															value
-														),
-													required: true,
-												}}
-												render={({ field: { onChange, onBlur, value: broski } }) => (
-													<Select
-														label={label}
-														placeholder="Select an option"
-														isRequired
-														isInvalid={!!errors[value]}
-														onBlur={onBlur}
-														onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-															onChange(e.target.value);
-														}}
-														errorMessage={errorMessages[value]}
-														selectedKeys={broski ? new Set([broski]) : []}
-													>
-														{['Not confident', 'Somewhat confident', 'Confident', 'Very confident', 'Expert'].map(
-															(level) => (
-																<SelectItem key={level} value={level}>
-																	{level}
-																</SelectItem>
-															)
-														)}
-													</Select>
-												)}
-											/>
-										);
-									})}
-								</div>
+							{/*<div className="w-full fc items-start gap-2 mt-5">*/}
+							{/*	<p>How confident are you in the following areas?</p>*/}
+							{/*	<p className="text-sm">*/}
+							{/*		If you're a beginner, don't worry! This hackathon is a great place to learn and grow. If you're an expert, we'd*/}
+							{/*		love to see what you can do!*/}
+							{/*	</p>*/}
+							{/*	<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 w-full">*/}
+							{/*		{confidence.map((item: confidenceType) => {*/}
+							{/*			const { value, label } = item;*/}
+							{/*			return (*/}
+							{/*				<Controller*/}
+							{/*					key={value}*/}
+							{/*					name={value}*/}
+							{/*					control={control}*/}
+							{/*					rules={{*/}
+							{/*						// string should be a valid value*/}
+							{/*						validate: (value) =>*/}
+							{/*							['Not confident', 'Somewhat confident', 'Confident', 'Very confident', 'Expert'].includes(*/}
+							{/*								value*/}
+							{/*							),*/}
+							{/*						required: true,*/}
+							{/*					}}*/}
+							{/*					render={({ field: { onChange, onBlur, value: broski } }) => (*/}
+							{/*						<Select*/}
+							{/*							label={label}*/}
+							{/*							placeholder="Select an option"*/}
+							{/*							isRequired*/}
+							{/*							isInvalid={!!errors[value]}*/}
+							{/*							onBlur={onBlur}*/}
+							{/*							onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {*/}
+							{/*								onChange(e.target.value);*/}
+							{/*							}}*/}
+							{/*							errorMessage={errorMessages[value]}*/}
+							{/*							selectedKeys={broski ? new Set([broski]) : []}*/}
+							{/*						>*/}
+							{/*							{['Not confident', 'Somewhat confident', 'Confident', 'Very confident', 'Expert'].map(*/}
+							{/*								(level) => (*/}
+							{/*									<SelectItem key={level} value={level}>*/}
+							{/*										{level}*/}
+							{/*									</SelectItem>*/}
+							{/*								)*/}
+							{/*							)}*/}
+							{/*						</Select>*/}
+							{/*					)}*/}
+							{/*				/>*/}
+							{/*			);*/}
+							{/*		})}*/}
+							{/*	</div>*/}
 
-								<p>Quick Tip: Use tab and the left/right arrow keys to select quickly</p>
-							</div>
+							{/*	<p>Quick Tip: Use tab and the left/right arrow keys to select quickly</p>*/}
+							{/*</div>*/}
 						</Section>
 						{/* Short answer section */}
 						<Section title="Short Answer">
-							<Controller
-								name="short_answer1"
-								control={control}
-								rules={{
-									required: true,
-									maxLength: 1000,
-									minLength: 200,
-									validate: (value) => value.trim().length > 0 || 'Input cannot be only spaces',
-								}}
-								render={({ field: { onChange, onBlur, value } }) => (
-									<div className="fc gap-2 items-start w-full">
-										<Textarea
-											autoComplete="off"
-											label="Tell us the story of how you began in the computer science field."
-											labelPlacement="outside"
-											placeholder="Enter your response"
-											isRequired
-											size="lg"
-											isInvalid={!!errors.short_answer1}
-											onBlur={onBlur}
-											onChange={(e) => {
-												setChar1(e.target.value.length);
-												onChange(e.target.value);
-											}}
-											errorMessage={errorMessages.short_answer1}
-											value={value}
-											description={`Max 1000 characters (${char1}/1000)`}
-										/>
-									</div>
-								)}
-							/>
+							{/*<Controller*/}
+							{/*	name="short_answer1"*/}
+							{/*	control={control}*/}
+							{/*	rules={{*/}
+							{/*		required: true,*/}
+							{/*		maxLength: 1000,*/}
+							{/*		minLength: 200,*/}
+							{/*		validate: (value) => value.trim().length > 0 || 'Input cannot be only spaces',*/}
+							{/*	}}*/}
+							{/*	render={({ field: { onChange, onBlur, value } }) => (*/}
+							{/*		<div className="fc gap-2 items-start w-full">*/}
+							{/*			<Textarea*/}
+							{/*				autoComplete="off"*/}
+							{/*				label="Tell us the story of how you began in the computer science field."*/}
+							{/*				labelPlacement="outside"*/}
+							{/*				placeholder="Enter your response"*/}
+							{/*				isRequired*/}
+							{/*				size="lg"*/}
+							{/*				isInvalid={!!errors.short_answer1}*/}
+							{/*				onBlur={onBlur}*/}
+							{/*				onChange={(e) => {*/}
+							{/*					setChar1(e.target.value.length);*/}
+							{/*					onChange(e.target.value);*/}
+							{/*				}}*/}
+							{/*				errorMessage={errorMessages.short_answer1}*/}
+							{/*				value={value}*/}
+							{/*				description={`Max 1000 characters (${char1}/1000)`}*/}
+							{/*			/>*/}
+							{/*		</div>*/}
+							{/*	)}*/}
+							{/*/>	*/}
 							<Controller
 								name="short_answer2"
 								control={control}

@@ -21,8 +21,9 @@ const PdfViewer = ({ url }: { url: string }) => {
 
 	return (
 		<>
-			<Button startContent={<IoDocument />} onPress={onOpen}>
-				Open Resume
+
+			<Button disabled={!url} startContent={<IoDocument />} onPress={onOpen}>
+				{url ? "Open Resume": "No Resume"}
 			</Button>
 			<Modal size="full" isOpen={isOpen} onOpenChange={onOpenChange}>
 				<ModalContent>

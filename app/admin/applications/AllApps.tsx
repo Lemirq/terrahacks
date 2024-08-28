@@ -57,7 +57,7 @@ export default function AllApps({ applications }: { applications: Tables<'applic
 	};
 
 	const renderCell = React.useCallback(
-		async (app: Database['public']['Tables']['applications']['Row'], columnKey: 'name' | 'level_of_study' | 'status' | 'country' | 'review') => {
+		async (app: Database['public']['Tables']['applications']['Row'], columnKey: 'name' | 'level_of_study' | 'status' | 'country' | 'review' | 'created_at') => {
 			let reviewByUser: Database['public']['Tables']['users']['Row'] = null;
 			if (app.reviewedBy) {
 				reviewByUser = await getUser(app);
@@ -102,6 +102,11 @@ export default function AllApps({ applications }: { applications: Tables<'applic
 					);
 				case 'country':
 					return <p>{`${countries.find((c) => c.code === app.country)?.emoji} ${countries.find((c) => c.code === app.country)?.name}`}</p>;
+				case 'created_at':
+					// format so that August 1, 2021
+					return <p>{new Date(app.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</p>;
+				default:
+					return null;
 			}
 		},
 		[]

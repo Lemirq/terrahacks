@@ -4,23 +4,31 @@ import AllApps from "./AllApps";
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
 
-const Applications = async () => {
+interface ApplicationsProps {
+    searchParams: { limit: string | undefined };
+}
+
+const Applications = async ({searchParams}:ApplicationsProps) => {
   const supabase = createClient();
+
   const fetchApplications = async () => {
     const { data, error } = await supabase
-      .from("applications")
-      .select("*")
-      .order("created_at", { ascending: false });
+        .from("applications")
+        .select("*")
+      .order("created_at", { ascending: false, })
+
     if (error) {
       console.error(error);
     }
     return data;
   };
   const allApplications = await fetchApplications();
-  const filteredApplications = allApplications?.filter((app) => app.complete);
   if (!allApplications) {
     return <div>Loading...</div>;
   }
+
+  const filteredApplications = allApplications.filter(
+    (application) => application.complete)
   const incomingApplications = allApplications.filter(
     (application) =>
       application.status === "not_started" && application.first_name,

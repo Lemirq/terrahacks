@@ -26,7 +26,6 @@ const ReviewApplication = ({
   url,
   adminEmail,
 }: ReviewApplicationProps) => {
-  const router = useRouter();
   const approve = async () => {
     // approve application
     const supabase = createClient();
@@ -46,21 +45,36 @@ const ReviewApplication = ({
 
     toast.success("Application approved!");
     // send email
-    const fetched = await fetch(window.location.origin + "/api/mailing", {
-      method: "POST",
-      body: JSON.stringify({
-        name: data?.firstName,
-        email: data?.email,
-        type: "accepted",
-      }),
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
+
+    const promise = new Promise(async (resolve, reject) => {
+      const resp = await fetch("/api/mailing", {
+        method: "POST",
+        body: JSON.stringify({
+          name: data?.firstName,
+          email: data?.email,
+          type: "accepted",
+        }),
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      });
+      const response = await resp.json();
+      console.log(response);
+      if (response.error) {
+        reject();
+        return;
+      }
+        resolve(data);
+    })
+
+    toast.promise(promise, {
+      loading: 'Sending email...',
+      success: `Email sent!`,
+      error: 'Failed to send email contact Vihaan',
     });
 
-    toast.success("Email sent!");
-    console.log(await fetched.json());
   };
+
 
   const reject = async () => {
     // reject application
@@ -127,12 +141,6 @@ const ReviewApplication = ({
           {data.status === "rejected" && "Rejected"}
         </Chip>
       </div>
-      {accessibleTo.includes(data.email) && (
-        <div className="w-full gap-3">
-          <h3 className="font-bold text-xl lg:text-2xl">Admin Notes</h3>
-          <p>{data.admin_notes}</p>
-        </div>
-      )}
       {accessibleTo.includes(adminEmail) && (
         <div className="gap-3 fr flex-wrap justify-start w-full sm:w-[initial]">
           {url && <PdfViewer url={url} />}

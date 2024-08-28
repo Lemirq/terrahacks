@@ -90,6 +90,4 @@ const Home = async () => {
 
   return <Dashboard insights={insights} users={users.data} />;
 };
-export const fetchCache = "force-no-store";
-
 export default Home;

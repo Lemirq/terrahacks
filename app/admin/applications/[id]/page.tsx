@@ -3,11 +3,6 @@ import React from "react";
 import countries from "@/data/countries.json";
 import ReviewApplication from "./ReviewApplication";
 const Application = async ({ params }: { params: { id: string } }) => {
-  // get origin from the request
-  const origin =
-    typeof window === "undefined"
-      ? "http://localhost:3000"
-      : window.location.origin;
   const supabase = createClient();
   const fetchApplication = async () => {
     const { data, error } = await supabase
@@ -51,7 +46,6 @@ const Application = async ({ params }: { params: { id: string } }) => {
     if (!url) return "";
     return url.startsWith("http") ? url : `https://${url}`;
   };
-
   return (
     <div className="fc gap-3 items-start w-full">
       <ReviewApplication
@@ -96,47 +90,50 @@ const Application = async ({ params }: { params: { id: string } }) => {
           <Viewer question="Major" answer={data.major || "N/A"} />
         </Section>
 
-        <Section title="Experience">
+      <Section title="Experience">
           <Viewer
-            question="Hackathons Attended"
-            answer={data.hackathons_attended.toString()}
+              question="Hackathons Attended"
+              answer={data.hackathons_attended.toString()}
+          />
+        {data.confidence &&
+            <><Viewer
+              question="Top Interests"
+              answer={data.top_interests.join(", ")}
           />
           <Viewer
-            question="Top Interests"
-            answer={data.top_interests.join(", ")}
+              question="Confidence in AI/ML"
+              answer={data.confidence.confidence_ai_machine_learning}
           />
           <Viewer
-            question="Confidence in AI/ML"
-            answer={data.confidence.confidence_ai_machine_learning}
+              question="Confidence in Back End Dev"
+              answer={data.confidence.confidence_back_end_dev}
           />
           <Viewer
-            question="Confidence in Back End Dev"
-            answer={data.confidence.confidence_back_end_dev}
+              question="Confidence in Cybersecurity"
+              answer={data.confidence.confidence_cybersecurity}
           />
           <Viewer
-            question="Confidence in Cybersecurity"
-            answer={data.confidence.confidence_cybersecurity}
+              question="Confidence in Front End Dev"
+              answer={data.confidence.confidence_front_end_dev}
           />
           <Viewer
-            question="Confidence in Front End Dev"
-            answer={data.confidence.confidence_front_end_dev}
+              question="Confidence in Fullstack Dev"
+              answer={data.confidence.confidence_fullstack_dev}
           />
           <Viewer
-            question="Confidence in Fullstack Dev"
-            answer={data.confidence.confidence_fullstack_dev}
+              question="Confidence in Product Management"
+              answer={data.confidence.confidence_product_management}
           />
           <Viewer
-            question="Confidence in Product Management"
-            answer={data.confidence.confidence_product_management}
+              question="Confidence in UI/UX Design"
+              answer={data.confidence.confidence_ui_ux_design}
           />
           <Viewer
-            question="Confidence in UI/UX Design"
-            answer={data.confidence.confidence_ui_ux_design}
+              question="Confidence in Web3/Crypto/Blockchain"
+              answer={data.confidence.confidence_web3_crypto_blockchain}
           />
-          <Viewer
-            question="Confidence in Web3/Crypto/Blockchain"
-            answer={data.confidence.confidence_web3_crypto_blockchain}
-          />
+        </>
+        }
         </Section>
 
         {data.social && (
