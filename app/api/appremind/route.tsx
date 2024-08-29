@@ -16,7 +16,11 @@ export async function GET(request: NextRequest) {
     data: { user },
     error: URROR,
   } = await supabase.auth.getUser();
-  console.log(user);
+
+  if (!user?.email?.endsWith("hack49.com")) {
+    return NextResponse.json({ error: "Not authorized" }, { status: 401 });
+  }
+
   const { data, error } = await supabase
     .from("applications")
     .select("*")
@@ -47,12 +51,38 @@ export async function GET(request: NextRequest) {
     return user.email;
   });
 
-  // send email
+  // splice into chunks of 50
+  const chunks = [];
+  let i = 0;
+  while (i < emails.length) {
+    chunks.push([...emails.slice(i, i + 50)]);
+    i += 50;
+  }
+
+  // return NextResponse.json({ emails: chunks });
+
   const resend = new Resend(process.env.RESEND);
-  const { data: rData, error: rError } = await resend.emails.send({
-    from: "Hack49 Team<team@hack49.com>",
-    to: emails,
-    subject: "Hack49: Free domains running out!",
-    react: <CompleteApp />,
+  // for each chunk send email
+  chunks.forEach(async (chunk) => {
+    const { data: rData, error: rError } = await resend.emails.send({
+      from: "Hack49 Team<team@hack49.com>",
+      bcc: chunk,
+      subject: "Hack49: Free domains running out!",
+      react: <CompleteApp />,
+    });
+
+    if (rError) {
+      console.error(rError);
+    }
+
+    console.log(rData);
   });
+
+  // send email
+  // const { data: rData, error: rError } = await resend.emails.send({
+  //   from: "Hack49 Team<team@hack49.com>",
+  //   to: emails,
+  //   subject: "Hack49: Free domains running out!",
+  //   react: <CompleteApp />,
+  // });
 }
