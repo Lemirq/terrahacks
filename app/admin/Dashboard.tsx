@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import { Toaster } from "sonner";
-import Waitlist from "./Waitlist";
-import { User } from "@/node_modules/@supabase/auth-js/src/lib/types";
 import Link from "next/link";
 import { IoChevronForward } from "react-icons/io5";
 import dynamic from "next/dynamic";
@@ -16,7 +14,6 @@ const Dashboard = ({ insights, users }: { insights: any; users: any }) => {
   //   ...insights.find((insight: any) => insight.title === "Total Users").data,
   // ];
 
-  const chartData = [];
 
   return (
     <div className="w-full h-full overflow-x-hidden justify-start fc">
