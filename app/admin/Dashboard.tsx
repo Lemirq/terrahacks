@@ -19,7 +19,7 @@ const Dashboard = ({ insights, users }: { insights: any; users: any }) => {
   const chartData = [];
 
   return (
-    <div className="w-full h-screen overflow-x-hidden justify-start fc">
+    <div className="w-full h-full overflow-x-hidden justify-start fc">
       <div className="w-full max-w-7xl fc gap-10">
         <div className="fr gap-3 justify-between w-full">
           <h1 className="text-4xl text-center">Admin Dashboard</h1>

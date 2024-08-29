@@ -56,17 +56,17 @@ const Home = async () => {
     insights.push({
       title: "Incomplete Applications",
       value: `${incompleteApplications.length} | ${(
-        (incompleteApplications.length / applications.data.length) *
-        100
+          (incompleteApplications.length / applications.data.length) *
+          100
       ).toFixed(0)}%`,
     });
 
     insights.push({
       title: "Complete Applications",
       value: `${applications.data.length - incompleteApplications.length} | ${(
-        ((applications.data.length - incompleteApplications.length) /
-          applications.data.length) *
-        100
+          ((applications.data.length - incompleteApplications.length) /
+              applications.data.length) *
+          100
       ).toFixed(0)}%`,
     });
 
@@ -86,7 +86,16 @@ const Home = async () => {
       title: "Rejected Applications",
       value: rejectedApplications.length,
     });
-  }
+
+    //   insight about how many countries are on apps
+    const countries = applications.data.map((app) => app.country);
+    const uniqueCountries = [...new Set(countries)];
+    insights.push({
+      title: "Countries",
+      value: uniqueCountries.length,
+    });
+}
+
 
   return <Dashboard insights={insights} users={users.data} />;
 };
