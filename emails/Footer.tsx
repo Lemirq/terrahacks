@@ -1,6 +1,6 @@
 import { Link, Text, Hr } from "@react-email/components";
 
-const Footer = ({ email }: { email: string }) => {
+const Footer = ({ email }: { email?: string }) => {
   return (
     <>
       <Text className="font-bold text-lg">Best regards,</Text>
@@ -54,8 +54,9 @@ const Footer = ({ email }: { email: string }) => {
       </ul>
       <Hr className="border border-solid border-neutral-600 my-[26px] mx-0 w-full" />
       <Text className="text-neutral-300/70 text-[12px] leading-[24px]">
-        This email was sent to {email} because you applied to participate in
-        Hack49. If you believe this was a mistake, please contact us at{" "}
+        This email was sent to {email || "you"} because you applied to
+        participate in Hack49. If you believe this was a mistake, please contact
+        us at{" "}
         <Link className="text-white underline" href="mailto:team@hack49.com">
           team@hack49.com
         </Link>
