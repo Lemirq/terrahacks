@@ -49,7 +49,7 @@ const listItem = {
 
 const ClipPathLinks = () => {
   return (
-    <div className="divide-y divide-neutral-900 border border-neutral-600 w-full">
+    <div className=" ">
       {/* <Row tier="platinum">
 				<LinkBox Icon={SiGoogle} href="#" />
 				<LinkBox Icon={SiShopify} href="#" />
@@ -90,10 +90,10 @@ const Row = ({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className={cn("grid divide-x divide-neutral-900", {
+      className={cn("flex flex-wrap fr divide-x divide-neutral-900", {
         // "grid-cols-2": tier === "platinum" || tier === "gold",
         // "grid-cols-3": tier === "silver",
-        "grid-cols-1 sm:grid-cols-2 md:grid-cols-4": tier === "bronze",
+        // "grid-cols-1 sm:grid-cols-2 md:grid-cols-4": tier === "bronze",
       })}
     >
       {children}
@@ -189,7 +189,7 @@ const LinkBox = ({
       onMouseLeave={(e) => {
         handleMouseLeave(e);
       }}
-      className="relative grid w-full place-content-center"
+      className="relative grid place-content-center"
     >
       <Link
         href={href}
