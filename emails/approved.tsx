@@ -67,9 +67,20 @@ const Approved: React.FC<Readonly<ApprovedProps>> = ({ name, email, code }) => (
               </ol>
             </Text>
             <Text className="text-lg">One more thing...</Text>
-            <Container>
+            <Text className="text-lg">
               If you want to increase your chances of winning a FREE t-shirt,
-              post on social media!{" "}
+              post on social media! The following image can accompany your post:
+            </Text>
+            <Img
+              src={
+                code
+                  ? `https://hack49.com/api/generate_img?mode=accepted&code=${code}`
+                  : `https://hack49.com/api/generate_img?mode=accepted`
+              }
+              alt="image"
+              className="m-auto rounded-md w-full"
+            />
+            <Container>
               <p className="mt-4">Here's a sample post:</p>
               <Container className="text-lg bg-neutral-800 p-4 rounded-lg">
                 <p>
@@ -91,19 +102,6 @@ const Approved: React.FC<Readonly<ApprovedProps>> = ({ name, email, code }) => (
                 )}
                 <p>#Hack49 #Hackathon #Tech #Innovation</p>
               </Container>
-              <Text className="text-lg">
-                You can post on social media to boost your chances of winning.
-                The following image can accompany your post:
-              </Text>
-              <Img
-                src={
-                  code
-                    ? `https://hack49.com/api/generate_img?mode=accepted&code=${code}`
-                    : `https://hack49.com/api/generate_img?mode=accepted`
-                }
-                alt="image"
-                className="m-auto rounded-md w-full"
-              />
             </Container>
             <Text className="text-lg">
               Start brainstorming ideas and assembling your team if you haven't

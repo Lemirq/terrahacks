@@ -90,7 +90,7 @@ const Row = ({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true }}
-      className={cn("flex flex-wrap fr divide-x divide-neutral-900", {
+      className={cn("flex flex-wrap fr", {
         // "grid-cols-2": tier === "platinum" || tier === "gold",
         // "grid-cols-3": tier === "silver",
         // "grid-cols-1 sm:grid-cols-2 md:grid-cols-4": tier === "bronze",
@@ -189,7 +189,7 @@ const LinkBox = ({
       onMouseLeave={(e) => {
         handleMouseLeave(e);
       }}
-      className="relative grid place-content-center"
+      className="relative grid place-content-center border-neutral-800 border"
     >
       <Link
         href={href}
