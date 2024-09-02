@@ -84,7 +84,7 @@ const SignUpForm = () => {
       if (!supabaseData.user?.user_metadata.email_verified) {
         setEmailSent(true);
       } else {
-        redirect("/dashboard");
+        redirect("/apply");
       }
     }
 
