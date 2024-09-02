@@ -276,12 +276,7 @@ const Success = ({
               <p>#Hack49 #Hackathon #Tech #Innovation</p>
             </p>
 
-            <p>
-              The following image can accompany your post. This image may or may
-              not have your unique referral code. If it doesn't, we suggest you
-              make one on the Dashboard, then click <b>Generate Post Image</b>{" "}
-              in the referral prizes section.
-            </p>
+            <p>The following image can accompany your post.</p>
             <div className="w-full fc gap-2 mt-5">
               {!imageLoaded && (
                 <div className="fr my-2">

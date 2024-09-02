@@ -45,8 +45,6 @@ const SignUpForm = () => {
       return;
     }
 
-    console.log(location.origin);
-
     // add to resend API
     const response = await fetch(
       `/api/add_subscriber?email=${formData.email}&first_name=${formData.firstName.trim()}&last_name=${formData.lastName.trim()}`,

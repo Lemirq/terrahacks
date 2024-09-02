@@ -49,7 +49,7 @@ const listItem = {
 
 const ClipPathLinks = () => {
   return (
-    <div className=" ">
+    <div>
       {/* <Row tier="platinum">
 				<LinkBox Icon={SiGoogle} href="#" />
 				<LinkBox Icon={SiShopify} href="#" />

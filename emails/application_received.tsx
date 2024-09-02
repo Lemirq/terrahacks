@@ -64,10 +64,8 @@ const AppReceived: React.FC<Readonly<AppReceivedProps>> = ({ email, code }) => (
               invite earns you an extra ticket!
             </Text>
             <Text className="text-lg">
-              You can also create your own referral code to generate a custom
-              version of the image below with your code, and share it on social
-              media! The image below may or may not contain your code, if it
-              doesn't, you can generate a new one on the dashboard.
+              You can post on social media to boost your chances of winning. The
+              following image can accompany your post:
             </Text>
             <Img
               src={
