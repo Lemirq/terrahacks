@@ -28,8 +28,13 @@ const Footer = () => {
           </a>
           <ul className="flex flex-wrap items-center mb-6 text-sm font-medium sm:mb-0 text-gray-400">
             <li>
-              <a href="#hero" className="hover:underline me-4 md:me-6">
-                Waitlist
+              <a href="/apply" className="hover:underline me-4 md:me-6">
+                Apply
+              </a>
+            </li>
+            <li>
+              <a href="/dashboard" className="hover:underline me-4 md:me-6">
+                Dashboard
               </a>
             </li>
             <li>
@@ -58,7 +63,7 @@ const Footer = () => {
             </a>
             . All Rights Reserved.
           </span>{" "}
-<Socials/>
+          <Socials />
         </div>
       </div>
     </footer>
