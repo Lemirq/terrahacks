@@ -26,9 +26,24 @@ const ReviewApplication = ({
   url,
   adminEmail,
 }: ReviewApplicationProps) => {
+  const supabase = createClient();
+
   const approve = async () => {
+    // fetch referral code
+    const { data: refData, error: refError } = await supabase
+      .from("referrals")
+      .select("*")
+      .eq("user_id", id);
+
+    if (refError) {
+      console.error(refError);
+      toast.error("Failed to fetch referral code");
+      return;
+    }
+
+    const code = refData[0]?.code;
+
     // approve application
-    const supabase = createClient();
     await supabase
       .from("applications")
       .update({ status: "accepted" })
@@ -44,8 +59,8 @@ const ReviewApplication = ({
     }
 
     toast.success("Application approved!");
-    // send email
 
+    // send email
     const promise = new Promise(async (resolve, reject) => {
       const resp = await fetch("/api/mailing", {
         method: "POST",
@@ -53,6 +68,7 @@ const ReviewApplication = ({
           name: data?.firstName,
           email: data?.email,
           type: "accepted",
+          code,
         }),
         headers: {
           "Access-Control-Allow-Origin": "*",
@@ -64,21 +80,18 @@ const ReviewApplication = ({
         reject();
         return;
       }
-        resolve(data);
-    })
-
-    toast.promise(promise, {
-      loading: 'Sending email...',
-      success: `Email sent!`,
-      error: 'Failed to send email contact Vihaan',
+      resolve(data);
     });
 
+    toast.promise(promise, {
+      loading: "Sending email...",
+      success: `Email sent!`,
+      error: "Failed to send email contact Vihaan",
+    });
   };
-
 
   const reject = async () => {
     // reject application
-    const supabase = createClient();
     await supabase
       .from("applications")
       .update({ status: "rejected" })

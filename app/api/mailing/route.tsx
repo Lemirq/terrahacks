@@ -36,7 +36,7 @@ export async function POST(request: Request) {
               email,
               code: code,
             })
-          : Approved({ name, email }),
+          : Approved({ name, email, code }),
   });
 
   if (error) {

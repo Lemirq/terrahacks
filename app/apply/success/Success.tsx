@@ -245,12 +245,6 @@ const Success = ({
                 </a>
               </li>
             </ul>
-            <p>
-              If you haven't already created a referral code, you can do so by
-              going to the Dashboard{" "}
-              <IoChevronForward className="mx-1 inline-block" /> Referral
-              Prizes.
-            </p>
             <p className="mt-4">Here's a sample post:</p>
             <p className="text-lg bg-neutral-800 p-4 rounded-lg my-3">
               <p>
