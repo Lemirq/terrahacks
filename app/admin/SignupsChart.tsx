@@ -1,7 +1,8 @@
+import { Tables } from "@/database.types";
 import React from "react";
 import Chart, { Props } from "react-apexcharts";
 
-const Bro = ({ users }: { users: any }) => {
+const SignupsChart = ({ users }: { users: Tables<"users">[] }) => {
   // transfrom data
   console.log(users);
 
@@ -23,6 +24,12 @@ const Bro = ({ users }: { users: any }) => {
     }
     return acc;
   }, {});
+  newUsers = Object.keys(newUsers)
+    .sort((a, b) => new Date(a).getTime() - new Date(b).getTime())
+    .reduce((acc: any, key: string) => {
+      acc[key] = newUsers[key];
+      return acc;
+    }, {});
 
   console.log(newUsers);
   const series: Props["series"] = [
@@ -51,6 +58,10 @@ const Bro = ({ users }: { users: any }) => {
 
     dataLabels: {
       enabled: false,
+    },
+    title: {
+      text: "Totals Signups by Day",
+      align: "left",
     },
     stroke: {
       show: true,
@@ -93,4 +104,4 @@ const Bro = ({ users }: { users: any }) => {
   );
 };
 
-export default Bro;
+export default SignupsChart;

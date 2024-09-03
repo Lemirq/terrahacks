@@ -1,4 +1,3 @@
-
 import Dashboard from "./Dashboard";
 import { redirect } from "next/navigation";
 import { createClient } from "@/utils/supabase/server";
@@ -51,17 +50,17 @@ const Home = async () => {
     insights.push({
       title: "Incomplete Applications",
       value: `${incompleteApplications.length} | ${(
-          (incompleteApplications.length / applications.data.length) *
-          100
+        (incompleteApplications.length / applications.data.length) *
+        100
       ).toFixed(0)}%`,
     });
 
     insights.push({
       title: "Complete Applications",
       value: `${applications.data.length - incompleteApplications.length} | ${(
-          ((applications.data.length - incompleteApplications.length) /
-              applications.data.length) *
-          100
+        ((applications.data.length - incompleteApplications.length) /
+          applications.data.length) *
+        100
       ).toFixed(0)}%`,
     });
 
@@ -89,9 +88,14 @@ const Home = async () => {
       title: "Countries",
       value: uniqueCountries.length,
     });
-}
+  }
 
-
-  return <Dashboard insights={insights} users={users.data} />;
+  return (
+    <Dashboard
+      insights={insights}
+      users={users.data}
+      applications={applications.data}
+    />
+  );
 };
 export default Home;

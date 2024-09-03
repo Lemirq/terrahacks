@@ -1,13 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import {
-  FaXTwitter,
-  FaTiktok,
-  FaYoutube,
-  FaLinkedin,
-  FaDiscord,
-} from "react-icons/fa6";
-import { IoLogoDiscord, IoLogoInstagram } from "react-icons/io5";
 import Socials from "@/components/Socials";
 const Footer = () => {
   return (

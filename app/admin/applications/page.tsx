@@ -1,21 +1,22 @@
 import { createClient } from "@/utils/supabase/server";
 import React from "react";
-import AllApps from "./AllApps";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { Button } from "@nextui-org/react";
+import AllApps from "./AllApps";
 
 interface ApplicationsProps {
-    searchParams: { limit: string | undefined };
+  searchParams: { limit: string | undefined };
 }
 
-const Applications = async ({searchParams}:ApplicationsProps) => {
+const Applications = async ({ searchParams }: ApplicationsProps) => {
   const supabase = createClient();
 
   const fetchApplications = async () => {
     const { data, error } = await supabase
-        .from("applications")
-        .select("*")
-      .order("created_at", { ascending: false, })
+      .from("applications")
+      .select("*")
+      .order("created_at", { ascending: false });
 
     if (error) {
       console.error(error);
@@ -28,7 +29,8 @@ const Applications = async ({searchParams}:ApplicationsProps) => {
   }
 
   const filteredApplications = allApplications.filter(
-    (application) => application.complete)
+    (application) => application.complete,
+  );
   const incomingApplications = allApplications.filter(
     (application) =>
       application.status === "not_started" && application.first_name,

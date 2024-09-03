@@ -4,16 +4,28 @@ import { Toaster } from "sonner";
 import Link from "next/link";
 import { IoChevronForward } from "react-icons/io5";
 import dynamic from "next/dynamic";
-const Bro = dynamic(() => import("./Chart"), {
+import { Database, Tables } from "@/database.types";
+const SignupsChart = dynamic(() => import("./SignupsChart"), {
   ssr: false,
 });
 
-const Dashboard = ({ insights, users }: { insights: any; users: any }) => {
+const AppChart = dynamic(() => import("./AppChart"), {
+  ssr: false,
+});
+
+const Dashboard = ({
+  insights,
+  users,
+  applications,
+}: {
+  insights: any;
+  users: Tables<"users">[];
+  applications: Tables<"applications">[];
+}) => {
   // transform insights -> title: "Total Users" into an array grouped by date and value of amount of signups
   // const bro = [
   //   ...insights.find((insight: any) => insight.title === "Total Users").data,
   // ];
-
 
   return (
     <div className="w-full h-full overflow-x-hidden justify-start fc">
@@ -43,7 +55,8 @@ const Dashboard = ({ insights, users }: { insights: any; users: any }) => {
             </h3>
           </Link>
         </div>
-        <Bro users={users} />
+        <SignupsChart users={users} />
+        <AppChart applications={applications} />
       </div>
       <Toaster />
     </div>
