@@ -25,5 +25,10 @@ export const sponsors = {
       href: "https://everyonestem.framer.website/",
       logo: "/images/sponsors/es.png",
     },
+    {
+      name: "Langtree",
+      href: "https://www.langtreecontrols.com/",
+      logo: "/images/sponsors/langtree.png",
+    },
   ],
 };

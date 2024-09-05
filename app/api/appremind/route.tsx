@@ -1,4 +1,5 @@
 import CompleteApp from "@/emails/complete_app";
+import OnlyTake from "@/emails/onlytake";
 import { createClient } from "@/utils/supabase/server";
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
@@ -9,8 +10,10 @@ export async function GET(request: NextRequest) {
   // get user
   const gte = new Date();
   const lte = new Date();
-  gte.setDate(gte.getDate() - 10);
-  lte.setDate(lte.getDate() - 3);
+  // gte.setDate(gte.getDate() - 10);
+  // lte.setDate(lte.getDate() - 3);
+
+  console.log(gte.toISOString(), lte.toISOString());
 
   const {
     data: { user },
@@ -25,9 +28,9 @@ export async function GET(request: NextRequest) {
     .from("applications")
     .select("*")
     // filter by created_at one week ago from now
-    .eq("complete", false)
-    .gte("created_at", gte.toISOString())
-    .lte("created_at", lte.toISOString());
+    .eq("complete", false);
+  // .gte("created_at", gte.toISOString())
+  // .lte("created_at", lte.toISOString());
   if (error) {
     console.error(error);
     return NextResponse.json({ error: "An error occured" }, { status: 500 });
@@ -67,8 +70,8 @@ export async function GET(request: NextRequest) {
     const { data: rData, error: rError } = await resend.emails.send({
       from: "Hack49 Team<team@hack49.com>",
       bcc: chunk,
-      subject: "Hack49: Free domains running out!",
-      react: <CompleteApp />,
+      subject: "Hack49: Applications only take 30 seconds!",
+      react: <OnlyTake />,
     });
 
     if (rError) {
@@ -85,4 +88,6 @@ export async function GET(request: NextRequest) {
   //   subject: "Hack49: Free domains running out!",
   //   react: <CompleteApp />,
   // });
+  //
+  return NextResponse.json({ emails: chunks });
 }
