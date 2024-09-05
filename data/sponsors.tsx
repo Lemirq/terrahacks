@@ -30,5 +30,10 @@ export const sponsors = {
       href: "https://www.langtreecontrols.com/",
       logo: "/images/sponsors/langtree.png",
     },
+    {
+      name: "Interview Cake",
+      href: "https://www.interviewcake.com/",
+      logo: "/images/sponsors/cake.svg",
+    },
   ],
 };

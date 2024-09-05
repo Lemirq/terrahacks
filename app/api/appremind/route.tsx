@@ -58,28 +58,27 @@ export async function GET(request: NextRequest) {
   const chunks = [];
   let i = 0;
   while (i < emails.length) {
-    chunks.push([...emails.slice(i, i + 50)]);
-    i += 50;
+    chunks.push([...emails.slice(i, i + 49)]);
+    i += 49;
   }
 
   // return NextResponse.json({ emails: chunks });
 
   const resend = new Resend(process.env.RESEND);
   // for each chunk send email
-  chunks.forEach(async (chunk) => {
-    const { data: rData, error: rError } = await resend.emails.send({
-      from: "Hack49 Team<team@hack49.com>",
-      bcc: chunk,
-      subject: "Hack49: Applications only take 30 seconds!",
-      react: <OnlyTake />,
-    });
-
-    if (rError) {
-      console.error(rError);
-    }
-
-    console.log(rData);
+  const { data: rData, error: rError } = await resend.emails.send({
+    from: "Hack49 Team<team@hack49.com>",
+    to: "team@hack49.com",
+    bcc: chunks[1],
+    subject: "Hack49: Applications only take 30 seconds!",
+    react: <OnlyTake />,
   });
+
+  if (rError) {
+    console.error(rError);
+  }
+
+  console.log(rData);
 
   // send email
   // const { data: rData, error: rError } = await resend.emails.send({
