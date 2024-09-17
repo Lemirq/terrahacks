@@ -136,6 +136,7 @@ const Referral = ({ user, refCode, app }: { user: User; app: Tables<'application
 				<div className="rounded-2xl border py-5 px-5 sm:px-10 border-neutral-300/30 w-full bg-neutral-900  relative z-10 fc items-stretch md:fr md:justify-between gap-10 justify-between">
 					<div className="z-10 fc gap-2 items-start justify-start">
 						<h3 className="text-3xl font-bold">Post</h3>
+						<p>We want to celebrate your acceptance to Hack49! Share the news and spread the word about the event. Below is a sample:</p>
 						<div className="text-lg bg-neutral-800 p-4 rounded-lg">
 							<p>I GOT ACCEPTED to participate in Hack49! 🚀</p>
 							<p>Hack49 is a 3-day virtual global hackathon where you can showcase your skills and win amazing prizes!</p>
