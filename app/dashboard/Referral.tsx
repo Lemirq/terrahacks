@@ -154,7 +154,9 @@ const Referral = ({ user, refCode, app }: { user: User; app: Tables<'application
 						<a
 							className="w-full"
 							download={`Hack49-Social-Post-${user.user_metadata.first_name}.png`}
-							href={code[0] && code[0].code ? `/api/generate_img?code=${code[0].code}&mode=applied` : '/api/generate_img?mode=applied'}
+							href={
+								code[0] && code[0].code ? `/api/generate_img?code=${code[0].code}&mode=accepted` : '/api/generate_img?mode=accepted'
+							}
 						>
 							<Image
 								src={code ? `/api/generate_img?mode=accepted&code=${code[0].code}` : `/api/generate_img?mode=accepted`}
@@ -164,7 +166,7 @@ const Referral = ({ user, refCode, app }: { user: User; app: Tables<'application
 								height={500}
 							/>
 						</a>
-							<p>Click image to download</p>
+						<p>Click image to download</p>
 					</div>
 				</div>
 			)}
