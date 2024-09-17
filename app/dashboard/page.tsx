@@ -78,6 +78,14 @@ export default async function PrivatePage() {
 		if (userData && userData[0].status === 'rejected') return 'danger';
 		if (userData && userData?.length > 0) return 'primary';
 	};
+
+	const generateButtonText = () => {
+		if (userData?.length === 0) return 'Start Application';
+		if (userData && userData[0].complete && !['accepted', 'rejected'].includes(userData[0].status)) return 'View Application';
+		if (userData && userData[0].status === 'accepted') return 'View Application';
+		if (userData && userData[0].status === 'rejected') return 'View Application';
+		if (userData && userData?.length > 0) return 'Continue Application';
+	};
 	return (
 		<main className="w-full min-h-screen py-36 fc px-5 sm:px-10">
 			<div className="w-full min-h-screen max-w-5xl mx-auto fc justify-start items-start h-full gap-2">
@@ -118,11 +126,7 @@ export default async function PrivatePage() {
 					</div>
 					<Link href="/apply">
 						<Button variant="shadow" color="primary">
-							{userData?.length === 0
-								? 'Start Application'
-								: userData && userData[0].complete
-								? 'View Application'
-								: 'Continue Application'}
+							{generateButtonText()}
 						</Button>
 					</Link>
 				</section>
