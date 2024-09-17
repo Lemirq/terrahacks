@@ -1,6 +1,7 @@
 import { Body, Button, Img, Container, Head, Html, Preview, Tailwind, Heading, Markdown, Text, Hr, Link } from '@react-email/components';
 import * as React from 'react';
 import tailwindConfig from './tailwind.config';
+import Footer from './Footer';
 
 interface ApprovedProps {
 	name: string;
@@ -44,7 +45,7 @@ const Approved: React.FC<Readonly<ApprovedProps>> = ({ name, email, code }) => (
 								</li>
 							</ol>
 						</Text>
-						<Text className="text-lg">One more thing...</Text>
+						<Text className="text-xl font-bold">One more thing...</Text>
 						<Text className="text-lg">
 							If you want to increase your chances of winning a FREE T-SHIRT, post on social media! The following image can accompany
 							your post:
@@ -84,18 +85,8 @@ const Approved: React.FC<Readonly<ApprovedProps>> = ({ name, email, code }) => (
 						</Text>
 						<Text className="text-lg">Looking forward to seeing you at Hack49!</Text>
 
-						<Text className="font-bold text-lg">Best regards,</Text>
-						<Text className="font-bold text-lg">Hack49 Team</Text>
+						<Footer email={email} />
 					</div>
-					<Hr className="border border-solid border-neutral-600 my-[26px] mx-0 w-full" />
-					<Text className="text-neutral-300/70 text-[12px] leading-[24px]">
-						This email was sent to {email} because you applied to participate in Hack49. If you believe this was a mistake, please contact
-						us at{' '}
-						<Link className="text-white underline" href="mailto:team@hack49.com">
-							team@hack49.com
-						</Link>
-						.
-					</Text>
 				</Container>
 			</Body>
 		</Tailwind>
