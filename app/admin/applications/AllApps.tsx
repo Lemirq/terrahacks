@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import {
 	Table,
 	TableHeader,
@@ -21,7 +21,7 @@ import {
 import countries from '@/data/countries.json';
 import { columns } from './data';
 import { Database, Tables } from '@/database.types';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { IoChevronDown, IoRefresh, IoSearch } from 'react-icons/io5';
 import { createClient } from '@/utils/supabase/client';
 import { User as sUser } from '@supabase/supabase-js';
@@ -41,11 +41,21 @@ const statusLabelMap = {
 };
 
 export default function AllApps({ applications }: { applications: Tables<'applications'>[] }) {
+	const params = useSearchParams();
 	const router = useRouter();
 	const [filterValue, setFilterValue] = React.useState('');
 	const [page, setPage] = React.useState(1);
-	const [reversed, setReversed] = React.useState(false);
+	const [reversed, setReversed] = React.useState(params.get('oldest_first') === 'true');
 	const rowsPerPage = 10;
+
+	// use effect for change of reversed, redirects to ?oldest_first=true
+	useEffect(() => {
+		if (reversed) {
+			router.push(window.location.pathname + '?oldest_first=true');
+		} else {
+			router.push(window.location.pathname);
+		}
+	}, [reversed]);
 
 	const pages = Math.ceil(applications.length / rowsPerPage);
 

@@ -60,6 +60,7 @@ const ReviewApplication = ({ id, data, url, adminEmail }: ReviewApplicationProps
 				reject();
 				return;
 			}
+			router.back();
 			resolve(data);
 		});
 
@@ -68,8 +69,6 @@ const ReviewApplication = ({ id, data, url, adminEmail }: ReviewApplicationProps
 			success: `Email sent!`,
 			error: 'Failed to send email, contact Vihaan',
 		});
-
-		router.back();
 	};
 
 	const reject = async () => {
