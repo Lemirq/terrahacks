@@ -13,17 +13,15 @@ import Example from "@/components/sections/Carousel";
 export default function Home() {
   return (
     <>
-      <ReactLenis root>
-        <main className="w-full bg-dot-white/[0.2] bg-neutral-950 fc">
-          <Animation />
-          <Hero />
-          <About />
-          <Sponsors />
-          <MeetTheTeam />
-          <FAQ />
-          <Contact />
-        </main>
-      </ReactLenis>
+      <main className="w-full bg-dot-white/[0.2] bg-neutral-950 fc">
+        <Animation />
+        <Hero />
+        <About />
+        <Sponsors />
+        <MeetTheTeam />
+        <FAQ />
+        <Contact />
+      </main>
     </>
   );
 }

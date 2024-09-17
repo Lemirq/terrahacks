@@ -1,42 +1,41 @@
-"use client";
-import React from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import Video from "../Video";
+'use client';
+import React from 'react';
+import { motion } from 'framer-motion';
+
 const About = () => {
-  const container = {
-    // hidden: { opacity: 0 },
-    show: {
-      // opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+	const container = {
+		// hidden: { opacity: 0 },
+		show: {
+			// opacity: 1,
+			transition: {
+				staggerChildren: 0.2,
+			},
+		},
+	};
 
-  const listItem = {
-    hidden: { opacity: 0, scale: 0.3 },
-    show: { opacity: 1, scale: 1 },
-  };
+	const listItem = {
+		hidden: { opacity: 0, scale: 0.3 },
+		show: { opacity: 1, scale: 1 },
+	};
 
-  const details = [
-    {
-      title: "When?",
-      description: "October 19 - 21",
-    },
-    {
-      title: "Where?",
-      description: "Online, on Devpost",
-    },
-    {
-      title: "Who?",
-      description: "Open to all students and professionals",
-    },
-  ];
+	const details = [
+		{
+			title: 'When?',
+			description: 'October 19 - 21',
+		},
+		{
+			title: 'Where?',
+			description: 'Online, on Dorahacks',
+		},
+		{
+			title: 'Who?',
+			description: 'Open to all students and professionals',
+		},
+	];
 
-  return (
-    <section id="about" className="w-full relative">
-      {/* <div className="absolute w-full h-full">
+	return (
+		<section id="about" className="w-full relative">
+			{/* <div className="absolute w-full h-full">
 				<Image
 					src="/images/decoration.png"
 					alt="Sphere"
@@ -48,50 +47,41 @@ const About = () => {
 					}}
 				/>
 			</div> */}
-      <div className="max-w-7xl fc gap-10 w-full mx-auto z-10 px-5 sm:px-10 my-24 relative">
-        <motion.h3
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-4xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium"
-        >
-          About Us
-        </motion.h3>
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="w-full fr gap-3 items-stretch flex-wrap sm:flex-nowrap"
-        >
-          {details.map((detail) => (
-            <motion.div
-              variants={listItem}
-              className="fc justify-start items-start gap-2 px-4 w-full h-auto"
-              key={detail.title}
-            >
-              <h4 className="text-2xl font-semibold text-white">
-                {detail.title}
-              </h4>
-              <p className="text-lg text-white">{detail.description}</p>
-            </motion.div>
-          ))}
-        </motion.div>
+			<div className="max-w-7xl fc gap-10 w-full mx-auto z-10 px-5 sm:px-10 my-24 relative">
+				<motion.h3
+					initial={{ opacity: 0, y: 50 }}
+					whileInView={{ opacity: 1, y: 0 }}
+					viewport={{ once: true }}
+					className="text-4xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium"
+				>
+					About Us
+				</motion.h3>
+				<motion.div
+					variants={container}
+					initial="hidden"
+					whileInView="show"
+					viewport={{ once: true }}
+					className="w-full fr gap-3 items-stretch flex-wrap sm:flex-nowrap"
+				>
+					{details.map((detail) => (
+						<motion.div variants={listItem} className="fc justify-start items-start gap-2 px-4 w-full h-auto" key={detail.title}>
+							<h4 className="text-2xl font-semibold text-white">{detail.title}</h4>
+							<p className="text-lg text-white">{detail.description}</p>
+						</motion.div>
+					))}
+				</motion.div>
 
-        <p className="text-lg text-neutral-300">
-          Play the video below to learn more about Hack49 and what we have to
-          offer.
-        </p>
-        <iframe
-          className="max-w-6xl w-full aspect-video rounded-2xl"
-          src="https://www.youtube.com/embed/bFUflO_1Tuw"
-          title=""
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
-        {/* <Video /> */}
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
+				<p className="text-lg text-neutral-300">Play the video below to learn more about Hack49 and what we have to offer.</p>
+				<iframe
+					className="max-w-6xl w-full aspect-video rounded-2xl"
+					src="https://www.youtube.com/embed/bFUflO_1Tuw"
+					title=""
+					allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+					referrerPolicy="strict-origin-when-cross-origin"
+					allowFullScreen
+				></iframe>
+				{/* <Video /> */}
+				{/* <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
 					<motion.div variants={listItem} className="fc gap-3 w-full">
 						<h4 className="text-2xl font-semibold text-white">Overview</h4>
 						<p className="text-lg text-gray-400 sm:text-center sm:min-w-[300px] text-left">
@@ -136,9 +126,9 @@ const About = () => {
 						<Image src="/images/collaboration.jpg" alt="Collaboration" width={500} height={500} className="rounded-3xl w-full" />
 					</motion.div>
 				</div> */}
-      </div>
-    </section>
-  );
+			</div>
+		</section>
+	);
 };
 
 export default About;
