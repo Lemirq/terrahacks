@@ -46,7 +46,7 @@ const Approved: React.FC<Readonly<ApprovedProps>> = ({ name, email, code }) => (
 						</Text>
 						<Text className="text-lg">One more thing...</Text>
 						<Text className="text-lg">
-							If you want to increase your chances of winning a FREE t-shirt, post on social media! The following image can accompany
+							If you want to increase your chances of winning a FREE T-SHIRT, post on social media! The following image can accompany
 							your post:
 						</Text>
 						<Img
