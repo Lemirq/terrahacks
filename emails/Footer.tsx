@@ -38,7 +38,7 @@ const Footer = ({ email }: { email?: string }) => {
 			</ul>
 			<Hr className="border border-solid border-neutral-600 my-[26px] mx-0 w-full" />
 			<Link className="text-white" href="https://hack49.com" target="_blank" rel="noopener noreferrer">
-				<Img src="https://hack49.com/images/logo-horizontal.svg" alt="Logo" className="w-full max-w-4xl" />
+				<Img src="http://localhost:3000/images/logo-horizontal-big.png" alt="Logo" className="w-full max-w-4xl" />
 			</Link>
 			<Text className="text-neutral-300/70 text-[12px] leading-[24px]">
 				This email was sent to {email || 'you'} because you applied to participate in Hack49. If you believe this was a mistake, please
