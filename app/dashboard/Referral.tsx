@@ -90,7 +90,7 @@ const Referral = ({ user, refCode, app }: { user: User; app: Tables<'application
 							<Button onClick={() => setPrizesVisible(true)} color="primary">
 								View Prize
 							</Button>
-							{app && app.complete && (
+							{app && app.complete && app.status !== 'accepted' && (
 								<Link
 									href={code && code[0] ? `/api/generate_img?code=${code[0].code}&mode=applied` : '/api/generate_img?mode=applied'}
 									target="_blank"
@@ -99,7 +99,7 @@ const Referral = ({ user, refCode, app }: { user: User; app: Tables<'application
 									<Button color="primary">Generate Post Image</Button>
 								</Link>
 							)}
-							{app && app.complete && (
+							{app && app.complete && app.status !== 'accepted' && (
 								<p>
 									{code && code[0]
 										? "This is the 'Just Applied' image that can accompany any social media posts. It contains your referral code."
