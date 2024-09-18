@@ -4,7 +4,7 @@ import { NextRequest, NextResponse } from 'next/server';
 // archived function used to generate referral codes for users who do not have one
 
 export async function GET(req: NextRequest) {
-	return NextResponse.error();
+	return NextResponse.json({ error: 'This endpoint is no longer available.' }, { status: 404 });
 
 	// this function will fetch all users from the database
 	const supabase = createClient();
