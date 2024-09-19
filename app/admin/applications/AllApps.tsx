@@ -45,6 +45,7 @@ export default function AllApps({ applications }: { applications: Tables<'applic
 	const [filterValue, setFilterValue] = React.useState('');
 	const [page, setPage] = React.useState(1);
 	const [reversed, setReversed] = React.useState(false);
+	// const [applications, setApplications] = useState<Tables<'applications'>[]>([]);
 	const rowsPerPage = 10;
 
 	const pages = Math.ceil(applications.length / rowsPerPage);
@@ -61,6 +62,50 @@ export default function AllApps({ applications }: { applications: Tables<'applic
 		}
 		return user;
 	};
+
+	// useEffect(() => {
+	// 	const fetchInitialData = async () => {
+	// 		const { data, error } = await supabase.from('applications').select('*').filter('complete', 'eq', true);
+	// 		if (error) {
+	// 			console.error(error);
+	// 			return;
+	// 		}
+	// 		setApplications(data);
+	// 	};
+	// 	fetchInitialData();
+
+	// 	const channel = supabase
+	// 		.channel('realtime apps')
+	// 		.on(
+	// 			'postgres_changes',
+	// 			{
+	// 				event: '*',
+	// 				schema: 'public',
+	// 				table: 'applications',
+	// 			},
+	// 			(payload) => {
+	// 				if (payload.eventType === 'DELETE') {
+	// 					// filter so that its only the user's chats
+	// 					setApplications((prev) => [...prev.filter((i) => i.id !== payload.old.id)]);
+	// 					return;
+	// 				}
+	// 				if (payload.eventType === 'UPDATE') {
+	// 					setApplications((prev) => {
+	// 						const newChats = [...prev];
+	// 						const index = newChats.findIndex((chat) => chat.id === payload.old.id);
+	// 						newChats[index] = payload.new;
+	// 						return newChats;
+	// 					});
+	// 					return;
+	// 				}
+	// 				setApplications((prev) => [...prev, payload.new]);
+	// 			}
+	// 		)
+	// 		.subscribe();
+	// 	return () => {
+	// 		supabase.removeChannel(channel);
+	// 	};
+	// }, [supabase]);
 
 	const renderCell = React.useCallback(
 		async (

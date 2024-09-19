@@ -11,6 +11,7 @@ interface ApplicationsProps {
 		status: string;
 		exclude: string;
 		limit: number;
+		completed_only: 'true' | 'false';
 	};
 }
 
@@ -21,19 +22,29 @@ const Applications = async ({ searchParams }: ApplicationsProps) => {
 	// get params
 	const oldest_first = searchParams.oldest_first;
 	const exclude = searchParams.exclude;
-	const limit = searchParams.limit || 1000;
+	console.log(searchParams.limit);
+	const limit = searchParams.limit;
+	const completed_only = searchParams.completed_only;
+
+	// statuses are: not_started, in_progress, accepted, rejected
+	const statuses = ['not_started', 'in_progress', 'accepted', 'rejected'];
+	// remove excluded statuses from statuses
+	let filteredStatuses = null;
+	if (exclude) {
+		filteredStatuses = statuses.filter((status) => !exclude.includes(status));
+	}
 
 	const fetchApplications = async () => {
-		const { data, error } = await supabase
+		let query = supabase
 			.from('applications')
 			.select('*')
+			.order('created_at', { ascending: oldest_first !== 'true' ? false : true });
 
-			.order('created_at', { ascending: oldest_first !== 'true' ? false : true })
-			// exclude is a comma separated string, write filters
-			.filter('status', 'neq', exclude.split(','))
-			.filter('complete', 'eq', true)
-			.limit(limit);
-		console.log(data);
+		if (filteredStatuses) query = query.in('status', filteredStatuses);
+		if (completed_only) query = query.filter('complete', 'eq', completed_only === 'true');
+		if (limit) query = query.limit(limit);
+
+		const { data, error } = await query;
 
 		if (error) {
 			console.error(error);
@@ -59,6 +70,7 @@ const Applications = async ({ searchParams }: ApplicationsProps) => {
 	const rejectedApplications = allApplications.filter((application) => application.status === 'rejected');
 
 	const incompleteApplications = allApplications.filter((application) => !application.complete);
+
 	return (
 		<div className="fc gap-3 items-start w-full">
 			<div className="fr gap-2">
