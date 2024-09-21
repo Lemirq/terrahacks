@@ -41,12 +41,6 @@ export const sponsors = {
       logo: "/images/sponsors/hcb-w.svg",
     },
     {
-      name: "EveryoneStem",
-      href: "https://everyonestem.framer.website/",
-      logo: "/images/sponsors/es.png",
-    },
-
-    {
       name: "Interview Cake",
       href: "https://www.interviewcake.com/",
       logo: "/images/sponsors/cake.svg",
