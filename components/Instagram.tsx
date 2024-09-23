@@ -64,7 +64,7 @@ export default function InstaFeed() {
 	}, []);
 
 	return (
-		<section className="px-5 sm:px-10 py-12 w-full my-36">
+		<section className="py-12 w-full my-36">
 			<Link href="https://www.instagram.com/hack49__/">
 				<motion.h3
 					initial={{ opacity: 0, y: 50 }}
