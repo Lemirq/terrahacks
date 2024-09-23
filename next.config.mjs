@@ -8,6 +8,16 @@ const nextConfig = {
 	eslint: {
 		ignoreDuringBuilds: true,
 	},
+	images: {
+		remotePatterns: [
+			{
+				protocol: 'https',
+				hostname: '*.cdninstagram.com',
+				port: '',
+				pathname: '**',
+			},
+		],
+	},
 };
 
 // Make sure adding Sentry options is the last code to run before exporting
