@@ -23,9 +23,9 @@ export default function Cobe({ countries }: { countries: string[] }) {
 			const bro = latlong.ref_country_codes.filter((c) => c.alpha2 === country)[0];
 			console.log(bro);
 			if (!bro) return;
-			return { location: [bro.latitude, bro.longitude], size: 0.01 };
+			return { location: [bro.latitude, bro.longitude], size: 0.1 };
 		});
-		coords.push({ location: [49, 74.006], size: 0.01 });
+		coords.push({ location: [49, 74.006], size: 0.1 });
 
 		// filter out undefined
 		const filtered = coords.filter((item) => item !== undefined);
