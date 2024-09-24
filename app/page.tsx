@@ -33,7 +33,7 @@ export default function Home() {
 				<About />
 				<Sponsors />
 				<MeetTheTeam />
-				<InstaFeed />
+				{/* <InstaFeed /> */}
 				<FAQ />
 				<Contact />
 			</main>
