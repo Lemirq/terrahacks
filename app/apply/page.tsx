@@ -30,7 +30,7 @@ const ApplicationPage = async () => {
 			const { data: resumeFile } = await supabase.storage.from('resumes').getPublicUrl(`${data.user.id}/${finalList[0].name}`);
 			url = resumeFile.publicUrl;
 		}
-		console.log(url);
+		// console.log(url);
 		return <ViewApplication data={app} resume={url && finalList ? { url: url, name: finalList[0] && finalList[0].name } : null} />;
 	}
 

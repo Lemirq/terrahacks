@@ -15,7 +15,7 @@ const CreateFAQ = ({ categories, setFAQs }: { categories: any; setFAQs: (faqs: a
 	const create = async () => {
 		const { data, error } = await client.from('faq').insert([{ question, answer, category: category.values().next().value }]);
 		if (error) {
-			console.log(error);
+			console.error(error);
 		}
 
 		// reset states

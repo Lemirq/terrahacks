@@ -25,7 +25,7 @@ export const approve = async (formData: FormData) => {
 		},
 	});
 
-	console.log(await fetched.json());
+	// console.log(await fetched.json());
 
 	redirect('/admin/applications');
 };
@@ -52,7 +52,7 @@ export const reject = async (formData: FormData) => {
 		},
 	});
 
-	console.log(await fetched.json());
+	// console.log(await fetched.json());
 
 	redirect('/admin/applications');
 };

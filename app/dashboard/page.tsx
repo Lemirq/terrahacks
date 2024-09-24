@@ -46,14 +46,14 @@ export default async function PrivatePage() {
 	if (userError) {
 		console.error(userError.message);
 	}
-	console.log(userData);
+	// console.log(userData);
 
 	// get referral code
 	const { data: referralData, error: referralError } = await supabase.from('referrals').select('*').eq('user_id', data.user.id);
 	if (referralError) {
 		console.error(referralError.message);
 	}
-	console.log(referralData);
+	// console.log(referralData);
 
 	const generateHeading = () => {
 		if (userData?.length === 0) return 'Application not started';

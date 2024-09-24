@@ -178,7 +178,7 @@ export default function Globe({ globeConfig, data }: WorldProps) {
 				];
 			});
 
-			console.log(gData);
+			// console.log(gData);
 
 			globeRef.current
 				.hexPolygonsData(countries.features)

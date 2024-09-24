@@ -69,7 +69,7 @@ const Form = () => {
 			},
 		});
 
-		console.log(await fetched.json());
+		// console.log(await fetched.json());
 		fetched.status === 200 ? toast.success('Message sent successfully!') : toast.error('Error sending message!');
 
 		setValue('name', '');

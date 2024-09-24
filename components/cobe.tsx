@@ -19,9 +19,9 @@ export default function Cobe({ countries }: { countries: string[] }) {
 	}));
 	const getCountries = () => {
 		const coords = countries.map((country) => {
-			console.log(country);
+			// console.log(country);
 			const bro = latlong.ref_country_codes.filter((c) => c.alpha2 === country)[0];
-			console.log(bro);
+			// console.log(bro);
 			if (!bro) return;
 			return { location: [bro.latitude, bro.longitude], size: 0.1 };
 		});
@@ -29,7 +29,7 @@ export default function Cobe({ countries }: { countries: string[] }) {
 
 		// filter out undefined
 		const filtered = coords.filter((item) => item !== undefined);
-		console.log(filtered);
+		// console.log(filtered);
 		return filtered;
 	};
 	useEffect(() => {
@@ -39,7 +39,7 @@ export default function Cobe({ countries }: { countries: string[] }) {
 		window.addEventListener('resize', onResize);
 		onResize();
 		const filtered = getCountries();
-		console.log(filtered);
+		// console.log(filtered);
 
 		const globe = createGlobe(canvasRef.current, {
 			devicePixelRatio: 2,

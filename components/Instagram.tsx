@@ -43,7 +43,7 @@ export default function InstaFeed() {
 			}
 
 			const feed = await data.json();
-			console.log(feed);
+			// console.log(feed);
 
 			setInstagramFeed(feed);
 

@@ -38,12 +38,12 @@ export default function EditFAQ({
 		// filter in supabase
 		const { data, error } = await client.from('faq').update({ question, answer, category: category.values().next().value }).eq('id', faq.id);
 		if (error) {
-			console.log(error);
+			console.error(error);
 		}
-		console.log(data);
+		// console.log(data);
 		toast.success('FAQ edited successfully');
 		getAllFAQs().then((response) => {
-			console.log(response);
+			// console.log(response);
 			setFAQs(response);
 		});
 	};

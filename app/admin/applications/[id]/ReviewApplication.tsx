@@ -55,7 +55,7 @@ const ReviewApplication = ({ id, data, url, adminEmail }: ReviewApplicationProps
 				},
 			});
 			const response = await resp.json();
-			console.log(response);
+			// console.log(response);
 			if (response.error) {
 				reject();
 				return;
@@ -97,7 +97,7 @@ const ReviewApplication = ({ id, data, url, adminEmail }: ReviewApplicationProps
 
 		// redirect to applications
 
-		console.log(await fetched.json());
+		// console.log(await fetched.json());
 	};
 
 	return (

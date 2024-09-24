@@ -22,7 +22,7 @@ const Applications = async ({ searchParams }: ApplicationsProps) => {
 	// get params
 	const oldest_first = searchParams.oldest_first;
 	const exclude = searchParams.exclude;
-	console.log(searchParams.limit);
+	// console.log(searchParams.limit);
 	const limit = searchParams.limit;
 	const completed_only = searchParams.completed_only;
 

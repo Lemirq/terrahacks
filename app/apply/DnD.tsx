@@ -23,14 +23,14 @@ export default function DnD({ user, onChange, onBlur, value }: { user: User; onC
 		setButtonL(true);
 		// before sending, we must check if there is already a file in the folder, as there can only be one file
 		const { data: files, error: filesError } = await supabase.storage.from('resumes').list(`${user.id}/`);
-		console.log(files);
+		// console.log(files);
 		if (files?.length === 1) {
 			toast.error('You can only upload one file');
 			setButtonL(false);
 			return;
 		}
 
-		console.log(`${user.id}/${file.name}`);
+		// console.log(`${user.id}/${file.name}`);
 		const { data, error } = await supabase.storage.from('resumes').upload(`${user.id}/${file.name}`, file);
 
 		if (error) {
@@ -38,7 +38,7 @@ export default function DnD({ user, onChange, onBlur, value }: { user: User; onC
 			toast.error(error.message);
 			setButtonL(false);
 		} else {
-			console.log(data);
+			// console.log(data);
 			toast.success('Resume uploaded successfully');
 			onChange({ target: { value: `${user.id}/${file.name}` } });
 			setUploadedFiles([...uploadedFiles, { name: file.name, uploaded: true }]);
@@ -54,7 +54,7 @@ export default function DnD({ user, onChange, onBlur, value }: { user: User; onC
 				console.error(error);
 				toast.error(error.message);
 			} else {
-				console.log(data);
+				// console.log(data);
 				const set = [...uploadedFiles, data.map((f) => ({ name: f.name, uploaded: true })).flat()];
 				// filter out file with name '.emptyFolderPlaceholder'
 
@@ -65,14 +65,14 @@ export default function DnD({ user, onChange, onBlur, value }: { user: User; onC
 	}, []);
 
 	const deleteFromSupabase = async (file) => {
-		console.log(`${user.id}/${file.name}`);
+		// console.log(`${user.id}/${file.name}`);
 		const { data, error } = await supabase.storage.from('resumes').remove([`${user.id}/${file.name}`]);
 
 		if (error) {
 			console.error(error);
 			toast.error(error.message);
 		} else {
-			console.log(data);
+			// console.log(data);
 			toast.success('Resume deleted successfully');
 			setUploadedFiles(uploadedFiles.filter((f) => f.name !== file.name));
 		}

@@ -6,7 +6,7 @@ import React from 'react';
 const Error = () => {
 	const searchParams = useSearchParams();
 	const bro = searchParams.get('message');
-	console.log(bro);
+	// console.log(bro);
 	return (
 		<main className="w-full h-screen overflow-hidden fc gap-3 px-5 sm:px-10">
 			<div className="fr gap-4">

@@ -7,7 +7,7 @@ export const getAllFAQs = async () => {
 		console.error(error);
 		throw new Error('Failed to fetch FAQs');
 	}
-	console.log(data);
+	// console.log(data);
 
 	return data;
 };
@@ -19,7 +19,7 @@ export const getAllCategories = async () => {
 		console.error(error);
 		throw new Error('Failed to fetch Categories');
 	}
-	console.log(data);
+	// console.log(data);
 	return data;
 };
 
@@ -30,6 +30,6 @@ export const getWaitlist = async () => {
 		console.error(error);
 		throw new Error('Failed to fetch Waitlist');
 	}
-	console.log(data);
+	// console.log(data);
 	return data;
 };

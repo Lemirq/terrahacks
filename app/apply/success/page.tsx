@@ -14,7 +14,7 @@ const SuccessPage = async () => {
 	}
 
 	const { data, error } = await supabase.from('applications').select('*').eq('user_id', user.id);
-	console.log(data);
+	// console.log(data);
 	if (data?.length === 0) {
 		redirect('/apply');
 	}
@@ -29,7 +29,7 @@ const SuccessPage = async () => {
 	// fetch referral code by the user
 	const { data: refData, error: refError } = await supabase.from('referrals').select('*').eq('user_id', user.id);
 	if (refError) {
-		console.log(refError);
+		console.error(refError);
 		return <div className="w-full min-h-screen overflow-hidden relative py-36 fc">{refError.message}</div>;
 	}
 

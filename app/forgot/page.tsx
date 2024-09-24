@@ -47,7 +47,7 @@ const ForgotPassword = () => {
 					>
 						<h1 className="text-2xl sm:text-4xl text-center">Forgot Password</h1>
 						<p className="text-neutral-300">Enter your email address and we'll send you a link to reset your password.</p>
-						<Input label="Email" placeholder="Enter your email" onClear={() => console.log('clear')} required type="email" name="email" />
+						<Input label="Email" placeholder="Enter your email" required type="email" name="email" />
 						{/* password, firstname, lastname */}
 
 						<Button type="submit" color="primary">

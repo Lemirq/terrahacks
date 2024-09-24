@@ -62,7 +62,7 @@ export async function GET(request: NextRequest) {
 		i += 49;
 	}
 
-	console.log(chunks);
+	// console.log(chunks);
 
 	// return NextResponse.json({ emails: chunks });
 

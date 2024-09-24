@@ -12,7 +12,7 @@ export async function POST(request: Request) {
 	// add to supabase table: email_list
 	const { data, error } = await supabase.from('email_list').insert([{ name, email }]);
 	if (error) {
-		console.log(error);
+		console.error(error);
 		if (error.code === '23505') {
 			return NextResponse.json({ error: 'Email already exists', status: 'error' });
 		}

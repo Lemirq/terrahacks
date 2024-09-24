@@ -13,7 +13,7 @@ export async function GET(req: NextRequest) {
 	});
 	AWS.config.getCredentials(function (error) {
 		if (error) {
-			console.log(error.stack);
+			console.error(error.stack);
 		}
 	});
 	const ses = new AWS.SES({ apiVersion: '2010-12-01' });

@@ -24,7 +24,7 @@ const LoginForm = () => {
 		const { error } = await supabase.auth.signInWithPassword(formData);
 
 		if (error) {
-			console.log(error.code);
+			console.error(error.code);
 			toast.error(error.message);
 
 			if (error.message === 'Email not confirmed') {
@@ -85,7 +85,6 @@ const LoginForm = () => {
 							label="Email"
 							placeholder="Enter your email"
 							description="We'll never share your email with anyone else."
-							onClear={() => console.log('clear')}
 							errorMessage={
 								errors.email?.type === 'required' ? 'Email is required' : errors.email?.type === 'pattern' && 'Email is invalid'
 							}
