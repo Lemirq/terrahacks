@@ -25,7 +25,7 @@ const About = () => {
 		},
 		{
 			title: 'Where?',
-			description: 'Online, on Dorahacks',
+			description: 'Online, on DoraHacks',
 		},
 		{
 			title: 'Who?',
@@ -48,28 +48,15 @@ const About = () => {
 				/>
 			</div> */}
 			<div className="max-w-7xl fc gap-10 w-full mx-auto z-10 px-5 sm:px-10 my-24 relative">
-				<motion.h3
-					initial={{ opacity: 0, y: 50 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					viewport={{ once: true }}
-					className="text-4xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium"
-				>
-					About Us
-				</motion.h3>
-				<motion.div
-					variants={container}
-					initial="hidden"
-					whileInView="show"
-					viewport={{ once: true }}
-					className="w-full fr gap-3 items-stretch flex-wrap sm:flex-nowrap"
-				>
+				<h3 className="text-4xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium">About Us</h3>
+				<div className="w-full fr gap-3 items-stretch flex-wrap sm:flex-nowrap">
 					{details.map((detail) => (
-						<motion.div variants={listItem} className="fc justify-start items-start gap-2 px-4 w-full h-auto" key={detail.title}>
+						<div className="fc justify-start items-start gap-2 px-4 w-full h-auto" key={detail.title}>
 							<h4 className="text-2xl font-semibold text-white">{detail.title}</h4>
 							<p className="text-lg text-white">{detail.description}</p>
-						</motion.div>
+						</div>
 					))}
-				</motion.div>
+				</div>
 
 				<p className="text-lg text-neutral-300">Play the video below to learn more about Hack49 and what we have to offer.</p>
 				<iframe
@@ -82,15 +69,15 @@ const About = () => {
 				></iframe>
 				{/* <Video /> */}
 				{/* <div className="grid grid-cols-1 md:grid-cols-2 gap-10 w-full">
-					<motion.div variants={listItem} className="fc gap-3 w-full">
+					<div variants={listItem} className="fc gap-3 w-full">
 						<h4 className="text-2xl font-semibold text-white">Overview</h4>
 						<p className="text-lg text-gray-400 sm:text-center sm:min-w-[300px] text-left">
 							Hack49 is a global hackathon designed to bring together creative minds, coders, and tech enthusiasts from around the
 							world. Our event focuses on collaboration, innovation, and the development of cutting-edge technology projects.
 							Participants will engage in various challenges and work together to create solutions that address real-world problems.
 						</p>
-					</motion.div>
-					<motion.div variants={listItem} className="fc gap-3 w-full">
+					</div>
+					<div variants={listItem} className="fc gap-3 w-full">
 						<h4 className="text-2xl font-semibold text-white">Our Mission</h4>
 						<p className="text-lg text-gray-400 sm:text-center sm:min-w-[300px] text-left">
 							The mission of Hack49 is to foster a community of innovation and creativity. We aim to provide a platform for individuals
@@ -98,8 +85,8 @@ const About = () => {
 							promoting technological advancement, encouraging collaboration, and empowering participants to turn their ideas into
 							reality.
 						</p>
-					</motion.div>
-					<motion.div variants={listItem} className="fc gap-3 w-full">
+					</div>
+					<div variants={listItem} className="fc gap-3 w-full">
 						<h4 className="text-2xl font-semibold text-white">Benefits</h4>
 						<p className="text-lg text-gray-400 text-left">
 							Participants in Hack49 will gain numerous benefits, including:
@@ -121,10 +108,10 @@ const About = () => {
 								<b>Growth: </b>Personal and professional growth through collaboration and competition.
 							</li>
 						</ul>
-					</motion.div>
-					<motion.div variants={listItem}>
+					</div>
+					<div variants={listItem}>
 						<Image src="/images/collaboration.jpg" alt="Collaboration" width={500} height={500} className="rounded-3xl w-full" />
-					</motion.div>
+					</div>
 				</div> */}
 			</div>
 		</section>

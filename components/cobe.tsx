@@ -33,6 +33,7 @@ export default function Cobe({ countries }: { countries: string[] }) {
 		return filtered;
 	};
 	useEffect(() => {
+		if (!canvasRef.current) return;
 		let phi = 0;
 		let width = 0;
 		const onResize = () => canvasRef.current && (width = canvasRef.current.offsetWidth);
@@ -40,7 +41,6 @@ export default function Cobe({ countries }: { countries: string[] }) {
 		onResize();
 		const filtered = getCountries();
 		// console.log(filtered);
-
 		const globe = createGlobe(canvasRef.current, {
 			devicePixelRatio: 2,
 			width: 900 * 2,
@@ -54,17 +54,21 @@ export default function Cobe({ countries }: { countries: string[] }) {
 			baseColor: [0.388, 0.4, 0.945],
 			markerColor: [0.1, 0.8, 1],
 			glowColor: [1, 1, 1],
-			markers: [...filtered],
+			// markers: [...filtered],
+			markers: [],
 			onRender: (state) => {
+				state.phi = phi;
+				phi += 0.004;
+
 				// This prevents rotation while dragging
-				if (!pointerInteracting.current) {
-					// Called on every animation frame.
-					// `state` will be an empty object, return updated params.
-					phi += 0.005;
-				}
-				state.phi = phi + r.get();
-				state.width = width * 2;
-				state.height = width * 2;
+				// if (!pointerInteracting.current) {
+				// 	// Called on every animation frame.
+				// 	// `state` will be an empty object, return updated params.
+				// 	phi += 0.005;
+				// }
+				// state.phi = phi + r.get();
+				// state.width = width * 2;
+				// state.height = width * 2;
 			},
 		});
 
@@ -75,36 +79,36 @@ export default function Cobe({ countries }: { countries: string[] }) {
 
 	return (
 		<canvas
-			onPointerDown={(e) => {
-				pointerInteracting.current = e.clientX - pointerInteractionMovement.current;
-				canvasRef.current.style.cursor = 'grabbing';
-			}}
-			onPointerUp={() => {
-				pointerInteracting.current = null;
-				canvasRef.current.style.cursor = 'grab';
-			}}
-			onPointerOut={() => {
-				pointerInteracting.current = null;
-				canvasRef.current.style.cursor = 'grab';
-			}}
-			onMouseMove={(e) => {
-				if (pointerInteracting.current !== null) {
-					const delta = e.clientX - pointerInteracting.current;
-					pointerInteractionMovement.current = delta;
-					api.start({
-						r: delta / 200,
-					});
-				}
-			}}
-			onTouchMove={(e) => {
-				if (pointerInteracting.current !== null && e.touches[0]) {
-					const delta = e.touches[0].clientX - pointerInteracting.current;
-					pointerInteractionMovement.current = delta;
-					api.start({
-						r: delta / 100,
-					});
-				}
-			}}
+			// onPointerDown={(e) => {
+			// 	pointerInteracting.current = e.clientX - pointerInteractionMovement.current;
+			// 	canvasRef.current.style.cursor = 'grabbing';
+			// }}
+			// onPointerUp={() => {
+			// 	pointerInteracting.current = null;
+			// 	canvasRef.current.style.cursor = 'grab';
+			// }}
+			// onPointerOut={() => {
+			// 	pointerInteracting.current = null;
+			// 	canvasRef.current.style.cursor = 'grab';
+			// }}
+			// onMouseMove={(e) => {
+			// 	if (pointerInteracting.current !== null) {
+			// 		const delta = e.clientX - pointerInteracting.current;
+			// 		pointerInteractionMovement.current = delta;
+			// 		api.start({
+			// 			r: delta / 200,
+			// 		});
+			// 	}
+			// }}
+			// onTouchMove={(e) => {
+			// 	if (pointerInteracting.current !== null && e.touches[0]) {
+			// 		const delta = e.touches[0].clientX - pointerInteracting.current;
+			// 		pointerInteractionMovement.current = delta;
+			// 		api.start({
+			// 			r: delta / 100,
+			// 		});
+			// 	}
+			// }}
 			ref={canvasRef}
 			style={{ width: 900, height: 900, maxWidth: '100%', aspectRatio: 1 }}
 		/>
