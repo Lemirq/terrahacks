@@ -72,15 +72,16 @@ export async function GET(request: NextRequest) {
 	// const { data: rData, error: rError } = await resend.emails.send({
 	// 	from: 'Hack49 Team<team@hack49.com>',
 	// 	to: 'team@hack49.com',
-	// // 	bcc: chunks[2],
-	// // 	subject: 'Hack49: Applications only take 30 seconds!',
-	// // 	react: <OnlyTake />,
-	// // });
+	// 	bcc: chunks[2],
+	// 	subject: 'Hack49: Applications only take 30 seconds!',
+	// 	react: <OnlyTake />,
+	// });
 
 	// if (rError) {
 	// 	console.error(rError);
 	// }
 
 	// console.log(rData);
-	return NextResponse.json({ emails: chunks });
+	// return NextResponse.json({ emails: chunks });
+	return NextResponse.json({ ping: 'pong' });
 }

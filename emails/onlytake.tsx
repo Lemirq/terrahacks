@@ -22,14 +22,11 @@ const OnlyTake: React.FC = () => (
 							Complete your Hack49 application to get a <b>FREE DOMAIN</b>! <i>Limited domains available.</i>
 						</Text>
 						<Text className="text-lg">
-							Besides our various other prizes like <b>3D printers, domains, cloud compute</b>, and potentially even access to{' '}
-							<b>OpenAI credits</b>, we also have a ton of <b>cash prizes</b>!
+							Besides our various other prizes like <b>Elegoo Mars 5 3D Printer, Elegoo Saturn 4 3D Printer, </b>
+							<b>domains, cloud compute</b>, and potentially even access to <b>OpenAI credits</b>, we also have a ton of{' '}
+							<b>cash prizes</b>!
 						</Text>
-						<Text className="text-lg">
-							There are 3 tracks, and the top 3 teams in each track can win <b>$100, $50, and $25</b>. The overall top 3 teams will get
-							an additional <b>$150, $100, or $50</b> added to their prize.
-						</Text>
-						<Text className="text-lg">And of course, we have the usual special award categories and more!</Text>
+						<Text className="text-lg">And of course, we have the neurotech category in which you can win BCI HARDWARE!</Text>
 						<Text className="text-lg">
 							To stay connected, join our <Link href="https://discord.gg/cgBYcqnvVy">Hack49 Discord server</Link>
 							—a global community of young developers. There, you can ask questions, receive announcements, and gain insights into

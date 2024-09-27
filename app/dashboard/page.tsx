@@ -123,7 +123,7 @@ export default async function PrivatePage() {
 							{generateSubHeading()}
 						</p>
 						<p className="text-neutral-300">
-							Application due date: <span className="text-white font-bold">October 1, 2024</span>
+							Application due date: <span className="text-white font-bold">October 10, 2024</span>
 						</p>
 					</div>
 					<Link href="/apply">
