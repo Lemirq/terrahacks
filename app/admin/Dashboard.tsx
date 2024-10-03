@@ -24,7 +24,7 @@ const Dashboard = ({
 	insights: any;
 	users: Tables<'users'>[];
 	applications: Tables<'applications'>[];
-	referralRanking: {
+	referralRanking?: {
 		name: string;
 		referrals: number;
 	}[];
@@ -54,23 +54,25 @@ const Dashboard = ({
 							</div>
 						);
 					})}
-					<div className="bg-neutral-800 p-4 rounded-lg shadow-md fc gap-2 items-start aspect-video">
-						<ScrollShadow size={100} className="w-[300px] h-[200px]">
-							{/* referral */}
-							<h3 className="text-2xl">Referral Ranking</h3>
-							<div className="w-full gap-3">
-								{referralRanking.map((referral) => {
-									return (
-										<div key={referral.name} className="">
-											<h3 className="text-sm">
-												{referral.name} | {referral.referrals}
-											</h3>
-										</div>
-									);
-								})}
-							</div>
-						</ScrollShadow>
-					</div>
+					{referralRanking && (
+						<div className="bg-neutral-800 p-4 rounded-lg shadow-md fc gap-2 items-start aspect-video">
+							<ScrollShadow size={100} className="w-[300px] h-[200px]">
+								{/* referral */}
+								<h3 className="text-2xl">Referral Ranking</h3>
+								<div className="w-full gap-3">
+									{referralRanking.map((referral) => {
+										return (
+											<div key={referral.name} className="">
+												<h3 className="text-sm">
+													{referral.name} | {referral.referrals}
+												</h3>
+											</div>
+										);
+									})}
+								</div>
+							</ScrollShadow>
+						</div>
+					)}
 					<div className="bg-neutral-800 p-4 rounded-lg shadow-md fc gap-2 items-start aspect-video">
 						<ScrollShadow size={100} className="w-[300px] h-[200px]">
 							{/* country */}

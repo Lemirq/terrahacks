@@ -17,6 +17,7 @@ export default function Home() {
 	useEffect(() => {
 		const get = async () => {
 			const { data, error } = await s.from('applications').select('country').filter('country', 'not.is', null);
+			error && console.log(error);
 
 			// make a unique value and eliminate null. Final output should be an array of unique values
 			const unique = [...new Set(data.map((item) => item.country))].filter((item) => item !== null);

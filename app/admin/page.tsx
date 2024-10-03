@@ -90,7 +90,10 @@ const Home = async () => {
 	}
 
 	const uids = referrals.map((referral) => referral.user_id);
-	const { data: referredUsers, error: referredUsersError } = await supabase.from('users').select('*').in('uid', uids);
+	console.log(uids);
+	const { data: referredUsers, error: referredUsersError } = await supabase.from('users').select('*');
+	console.log(referredUsers);
+	// console.log(referredUsersError);
 
 	if (referredUsersError || !referredUsers) {
 		console.error(referredUsersError);
@@ -98,15 +101,15 @@ const Home = async () => {
 	}
 
 	// create user ranking for used referrals
-	const userRanking = referredUsers
-		.map((user) => {
-			const ref = referrals.filter((referral) => referral.user_id === user.uid);
-			return {
-				name: user.firstName,
-				referrals: ref[0].used,
-			};
-		})
-		.sort((a, b) => b.referrals - a.referrals);
+	// const userRanking = referredUsers
+	// 	.map((user) => {
+	// 		const ref = referrals.filter((referral) => referral.user_id === user.uid);
+	// 		return {
+	// 			name: user.firstName,
+	// 			referrals: ref[0].used,
+	// 		};
+	// 	})
+	// 	.sort((a, b) => b.referrals - a.referrals);
 
 	// do similar for applications from countries
 	const countries = applications.data.filter((app) => app.complete).map((app) => app.country);
@@ -143,7 +146,7 @@ const Home = async () => {
 			insights={insights}
 			users={users.data}
 			applications={applications.data}
-			referralRanking={userRanking}
+			// referralRanking={userRanking}
 			countryRanking={sortedCountryRanking}
 		/>
 	);
