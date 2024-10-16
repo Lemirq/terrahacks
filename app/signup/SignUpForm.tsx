@@ -93,7 +93,7 @@ const SignUpForm = () => {
 		if (error) {
 			toast.error(error.message);
 		} else {
-			toast.success('Email sent successfully!');
+			toast.success('Email sent! Check your inbox.');
 		}
 	};
 
