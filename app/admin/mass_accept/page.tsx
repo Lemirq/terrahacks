@@ -54,7 +54,7 @@ const MassAcceptance = () => {
 			method: 'POST',
 			body: JSON.stringify({
 				name: data?.first_name,
-				email: 'sharmavihaan190@gmail.com',
+				email: data?.email,
 				type: 'accepted',
 			}),
 			headers: {
@@ -77,6 +77,8 @@ const MassAcceptance = () => {
 			}
 			showError(res.error);
 			toast.error('Reverted status');
+		} else if (res.data) {
+			toast.success('Email sent');
 		}
 
 		await fetchAllApplications();
@@ -103,6 +105,8 @@ const MassAcceptance = () => {
 					<h2>Current Application</h2>
 					<p>{ca.first_name + ' ' + ca.last_name}</p>
 					<p>{ca.email}</p>
+					{/* date applied */}
+					<p>date applied: {new Date(ca.created_at).toDateString()}</p>
 					<p>hackathons_attended: {ca.hackathons_attended}</p>
 					<p>{ca.status}</p>
 					<Button onClick={approve}>Approve</Button>
