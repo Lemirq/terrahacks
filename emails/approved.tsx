@@ -33,10 +33,6 @@ const Approved: React.FC<Readonly<ApprovedProps>> = ({ name, email, code }) => (
 									Join our <Link href="https://discord.gg/cgBYcqnvVy">Discord</Link>; to find teammates, ask questions, and meet
 									other participants.
 								</li>
-								<li>
-									Take a look at the <Link href="https://dorahacks.io/hackathon/hack49-2024">DoraHacks</Link>; this'll be where you
-									submit your project.
-								</li>
 
 								{/*<li>Read the Participant Guide: [Link to the guide]</li>*/}
 								<li>
