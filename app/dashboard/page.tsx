@@ -113,7 +113,7 @@ export default async function PrivatePage() {
 					</Link>
 				</div>
 				{/* section for post image */}
-				{userData && userData[0] && userData[0].status === 'accepted' && (
+				{userData && userData.length > 0 && userData[0].status === 'accepted' && (
 					<Referral user={data.user} refCode={referralData} app={userData[0]} />
 				)}
 				<section className="w-full py-5 px-5 sm:px-10 fc gap-5 items-start md:fr justify-between rounded-2xl border border-neutral-300/30 bg-neutral-900 mt-5">
