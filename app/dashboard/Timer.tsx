@@ -71,7 +71,7 @@ const Timer = () => {
 			)}
 
 			{/* timer for oct 19 10pm est */}
-			<p>Timer for October 21, 2024 10:00 PM EST, when hacking ends.</p>
+			{showTimer && <p>Timer for October 21, 2024 10:00 PM EST, when hacking ends.</p>}
 		</div>
 	);
 };
