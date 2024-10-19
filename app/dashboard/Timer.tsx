@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 
 const Timer = () => {
 	const calculateTimeLeft = () => {
-		const targetDate = new Date('October 21, 2024 22:00:00');
+		const targetDate = new Date('October 21, 2024 22:00:00 GMT-0400'); // EST
 		const now = new Date();
 		const difference = targetDate.getTime() - now.getTime();
 
@@ -26,7 +26,7 @@ const Timer = () => {
 
 	useEffect(() => {
 		const checkStartTime = () => {
-			const startTime = new Date('October 19, 2024 12:00:00');
+			const startTime = new Date('October 19, 2024 10:10:00 GMT-0400'); // EST
 			const now = new Date();
 			if (now >= startTime) {
 				setShowTimer(true);

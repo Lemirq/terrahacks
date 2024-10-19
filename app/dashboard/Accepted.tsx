@@ -3,6 +3,7 @@ import Link from 'next/link';
 import React from 'react';
 import Schedule from './Schedule';
 import JudgingRubric from './JudgingRubric';
+import Video from './Video';
 
 const Accepted = () => {
 	return (
@@ -12,6 +13,7 @@ const Accepted = () => {
 					<Button color="primary">View Schedule</Button>
 				</Link>
 			</section> */}
+			<Video />
 			<Schedule />
 			<JudgingRubric />
 		</>

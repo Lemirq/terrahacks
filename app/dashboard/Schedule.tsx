@@ -21,10 +21,12 @@ const Schedule = () => {
 			'October 19, 2024': {
 				'12:00 P.M.': ['Live Opening Video', 'Hacking Begins'],
 				'2:00 P.M.': 'First Mentoring Session (Finding and Starting a project)',
-				'2:30 P.M. - 3:30 P.M.': {
-					title: 'CoCalc: Collaborative Calculation',
-					meeting: 'https://teams.microsoft.com/meet/218233667539?p=rtVZjjp8BFYmYwWyox',
-				},
+				'2:30 P.M. - 3:30 P.M.': [
+					{
+						title: 'CoCalc: Collaborative Calculation',
+						meeting: 'https://teams.microsoft.com/meet/218233667539?p=rtVZjjp8BFYmYwWyox',
+					},
+				],
 				'4:00 P.M. - 5:00 P.M.': [
 					{
 						title: 'Prompt Engineering 101',

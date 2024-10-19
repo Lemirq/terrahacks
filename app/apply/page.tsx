@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation';
 import React from 'react';
 import dynamic from 'next/dynamic';
 import ViewApplication from './ViewApplication';
+import Closed from './Closed';
 
 const Application = dynamic(() => import('./Application'), { ssr: false });
 
@@ -33,7 +34,7 @@ const ApplicationPage = async () => {
 		// console.log(url);
 		return <ViewApplication data={app} resume={url && finalList ? { url: url, name: finalList[0] && finalList[0].name } : null} />;
 	}
-
+	return <Closed />;
 	return <Application user={data.user} />;
 };
 
