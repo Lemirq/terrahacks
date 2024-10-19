@@ -1,9 +1,12 @@
 import { Button } from '@nextui-org/react';
 import Link from 'next/link';
 import React from 'react';
-import Schedule from './Schedule';
+const Schedule = dynamic(() => import('./Schedule'), {
+	ssr: false,
+});
 import JudgingRubric from './JudgingRubric';
 import Video from './Video';
+import dynamic from 'next/dynamic';
 
 const Accepted = () => {
 	return (

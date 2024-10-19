@@ -26,7 +26,7 @@ const Timer = () => {
 
 	useEffect(() => {
 		const checkStartTime = () => {
-			const startTime = new Date('October 19, 2024 10:10:00 GMT-0400'); // EST
+			const startTime = new Date('October 19, 2024 12:00:00 GMT-0400'); // EST
 			const now = new Date();
 			if (now >= startTime) {
 				setShowTimer(true);
@@ -43,9 +43,9 @@ const Timer = () => {
 	}, []);
 
 	return (
-		<div suppressHydrationWarning className="text-lg sm:text-6xl w-full text-center fr md:gap-4">
+		<div className="w-full fc gap-2">
 			{showTimer ? (
-				<div>
+				<div suppressHydrationWarning className="text-lg sm:text-6xl w-full text-center fr md:gap-4">
 					{timeLeft.days !== undefined ? (
 						<>
 							<span suppressHydrationWarning>{timeLeft.days}d </span>
@@ -69,6 +69,9 @@ const Timer = () => {
 			) : (
 				<></>
 			)}
+
+			{/* timer for oct 19 10pm est */}
+			<p>Timer for October 21, 2024 10:00 PM EST, when hacking ends.</p>
 		</div>
 	);
 };
