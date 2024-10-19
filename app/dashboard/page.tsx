@@ -56,6 +56,7 @@ export default async function PrivatePage() {
 		console.error(referralError.message);
 	}
 	// console.log(referralData);
+	//
 
 	const generateHeading = () => {
 		if (userData?.length === 0) return 'Application not started';
@@ -121,10 +122,10 @@ export default async function PrivatePage() {
 				</div>
 
 				{userData && userData.length > 0 && userData[0].status === 'accepted' && <Accepted />}
-				{/* section for post image */}
-				{/* {userData && userData.length > 0 && userData[0].status === 'accepted' && (
+
+				{userData && userData.length > 0 && userData[0].status === 'accepted' && (
 					<Referral user={data.user} refCode={referralData} app={userData[0]} />
-				)} */}
+				)}
 				<section className="w-full py-5 px-5 sm:px-10 fc gap-5 items-start md:fr justify-between rounded-2xl border border-neutral-300/30 bg-neutral-900 mt-5">
 					<div className="fc gap-3 items-start w-full">
 						<Chip color={getChipColor()}>Application Status</Chip>

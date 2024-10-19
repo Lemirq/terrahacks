@@ -150,6 +150,38 @@ export type Database = {
         }
         Relationships: []
       }
+      invites: {
+        Row: {
+          code: string | null
+          created_at: string
+          id: number
+          invited_by: string
+          invited_who: string[] | null
+        }
+        Insert: {
+          code?: string | null
+          created_at?: string
+          id?: number
+          invited_by: string
+          invited_who?: string[] | null
+        }
+        Update: {
+          code?: string | null
+          created_at?: string
+          id?: number
+          invited_by?: string
+          invited_who?: string[] | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "invites_invited_by_fkey"
+            columns: ["invited_by"]
+            isOneToOne: false
+            referencedRelation: "applications"
+            referencedColumns: ["user_id"]
+          },
+        ]
+      }
       referrals: {
         Row: {
           code: string

@@ -63,18 +63,18 @@ const ViewApplication = ({
           <Viewer question="Last Name" answer={data.last_name} />
           <Viewer question="Email" answer={data.email} />
           {data.phone && (
-            <Viewer question="Phone" answer={data.phone?.toString()} />
+            <Viewer question="Phone" answer={data.phone&&data.phone?.toString()} />
           )}
           <Viewer question="Country" answer={data.country} />
           <Viewer question="Gender" answer={data.gender} />
-          <Viewer question="Age" answer={data.age.toString()} />
+          <Viewer question="Age" answer={data.age&&data.age.toString()} />
         </Section>
 
         <Section title="School">
           <Viewer question="Level of Study" answer={data.level_of_study} />
           <Viewer
             question="Graduation Year"
-            answer={data.graduation?.toString()}
+            answer={data.graduation&&data.graduation?.toString()}
           />
           {data.major && <Viewer question="Major" answer={data.major} />}
         </Section>
@@ -82,7 +82,7 @@ const ViewApplication = ({
         <Section title="Experience">
           <Viewer
             question="Hackathons Attended"
-            answer={data.hackathons_attended.toString()}
+            answer={data.hackathons_attended&&data.hackathons_attended.toString()}
           />
           <Viewer
             question="Top Interests"
