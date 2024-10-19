@@ -124,7 +124,7 @@ const judges: Judge[] = [
 
 const Judges = () => {
 	return (
-		<section className="px-5 sm:px-10 py-12 w-full my-36">
+		<section className="px-5 sm:px-10 py-12 w-full my-12">
 			<h3 className="text-4xl lg:text-5xl lg:leading-tight max-w-5xl mx-auto text-center tracking-tight font-medium mb-10">Our Judges</h3>
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
 				{judges.map((judge: Judge) => (

@@ -36,8 +36,8 @@ export default function Home() {
 				<About />
 				<Sponsors />
 				{/* <Prizing /> */}
-				<Judges />
 				<MeetTheTeam />
+				<Judges />
 				{/* <InstaFeed /> */}
 				<FAQ />
 				<Contact />
