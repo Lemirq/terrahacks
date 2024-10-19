@@ -34,7 +34,7 @@ const JudgingRubric = () => {
 							<td>Solution is largely: derivative, with little to no innovation or original thought.</td>
 						</tr>
 						<tr>
-							<td className="font-bold text-xl">Technical Execution</td>
+							<td className="font-bold">Technical Execution</td>
 							<td>Demonstrates advanced technical skills, fully functional with excellent performance.</td>
 							<td>
 								Uses a solid technical foundation, mostly functional with minor issues, solid implementation but could be improved.
@@ -44,7 +44,7 @@ const JudgingRubric = () => {
 							<td>Does not function or is poorly executed.</td>
 						</tr>
 						<tr>
-							<td className="font-bold text-xl">Design and Usability</td>
+							<td className="font-bold">Design and Usability</td>
 							<td>Outstanding user experience, highly intuitive interface, visually appealing with professional aesthetics.</td>
 							<td>Good user experience, functional design but could be more intuitive, some polish needed.</td>
 							<td>Poor user experience, confusing interface, visually unappealing design.</td>
@@ -52,7 +52,7 @@ const JudgingRubric = () => {
 							<td>Unappealing project with little consideration for user needs.</td>
 						</tr>
 						<tr>
-							<td className="font-bold text-xl">Presentation and Communication</td>
+							<td className="font-bold">Presentation and Communication</td>
 							<td>Exceptionally clear, well-organized, and highly engaging presentation.</td>
 							<td>Generally clear presentation, somewhat engaging but not particularly memorable.</td>
 							<td>Unclear or disorganized presentation, making it difficult to understand.</td>
