@@ -4,7 +4,7 @@ import latlong from '@/data/latlong.json';
 // https://github.com/shuding/cobe
 import { useSpring } from 'react-spring';
 
-export default function Cobe({ countries }: { countries: string[] }) {
+export default function Cobe() {
 	const canvasRef = useRef();
 	const pointerInteracting = useRef(null);
 	const pointerInteractionMovement = useRef(0);
@@ -17,21 +17,21 @@ export default function Cobe({ countries }: { countries: string[] }) {
 			precision: 0.001,
 		},
 	}));
-	const getCountries = () => {
-		const coords = countries.map((country) => {
-			// console.log(country);
-			const bro = latlong.ref_country_codes.filter((c) => c.alpha2 === country)[0];
-			// console.log(bro);
-			if (!bro) return;
-			return { location: [bro.latitude, bro.longitude], size: 0.1 };
-		});
-		coords.push({ location: [49, 74.006], size: 0.1 });
+	// const getCountries = () => {
+	// 	const coords = countries.map((country) => {
+	// 		// console.log(country);
+	// 		const bro = latlong.ref_country_codes.filter((c) => c.alpha2 === country)[0];
+	// 		// console.log(bro);
+	// 		if (!bro) return;
+	// 		return { location: [bro.latitude, bro.longitude], size: 0.1 };
+	// 	});
+	// 	coords.push({ location: [49, 74.006], size: 0.1 });
 
-		// filter out undefined
-		const filtered = coords.filter((item) => item !== undefined);
-		// console.log(filtered);
-		return filtered;
-	};
+	// 	// filter out undefined
+	// 	const filtered = coords.filter((item) => item !== undefined);
+	// 	// console.log(filtered);
+	// 	return filtered;
+	// };
 	useEffect(() => {
 		if (!canvasRef.current) return;
 		let phi = 0;
@@ -39,7 +39,7 @@ export default function Cobe({ countries }: { countries: string[] }) {
 		const onResize = () => canvasRef.current && (width = canvasRef.current.offsetWidth);
 		window.addEventListener('resize', onResize);
 		onResize();
-		const filtered = getCountries();
+		// const filtered = getCountries();
 		// console.log(filtered);
 		const globe = createGlobe(canvasRef.current, {
 			devicePixelRatio: 2,
@@ -75,7 +75,7 @@ export default function Cobe({ countries }: { countries: string[] }) {
 		return () => {
 			globe.destroy();
 		};
-	}, [countries]);
+	}, []);
 
 	return (
 		<canvas
