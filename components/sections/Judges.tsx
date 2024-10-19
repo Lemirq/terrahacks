@@ -37,7 +37,7 @@ const judges: Judge[] = [
 		image: '/images/judges/tejas.jpg',
 	},
 	{
-		name: 'Gokul Naidu',
+		name: 'Gokul Balaguruswamy Naidu',
 		company: 'Amazon',
 		title: 'Software Development Manager',
 		image: '/images/judges/gokul.png',
