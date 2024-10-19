@@ -9,6 +9,8 @@ import Animation from '@/components/Animation';
 import { Sponsors } from '@/components/sections/Sponsors';
 import InstaFeed from '@/components/Instagram';
 import { createClient } from '@/utils/supabase/client';
+import Prizing from '@/components/sections/Prizing';
+import Judges from '@/components/sections/Judges';
 
 export default function Home() {
 	// fetch all applications
@@ -33,6 +35,8 @@ export default function Home() {
 				<Hero countries={countries} />
 				<About />
 				<Sponsors />
+				{/* <Prizing /> */}
+				<Judges />
 				<MeetTheTeam />
 				{/* <InstaFeed /> */}
 				<FAQ />

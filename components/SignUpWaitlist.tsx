@@ -127,11 +127,7 @@ const SignUpWaitlist = () => {
 				Hack49 is a yearly international hackathon dedicated to fostering the creation of groundbreaking solutions to address the world's most
 				complex issues.
 			</p>
-			{timeLeft && (
-				<div className="text-white text-2xl -10">
-					{timeLeft.months}mo {timeLeft.days}d until Hack49 2024!
-				</div>
-			)}
+			{timeLeft && <div className="text-white text-2xl -10">Hack49 2024 starts soon!</div>}
 			<Link className="hover:-translate-y-1 transition-transform" href="/apply">
 				{/*<Button size="lg" color="primary">*/}
 				{/*	Apply Now*/}
