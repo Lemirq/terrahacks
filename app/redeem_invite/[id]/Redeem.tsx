@@ -66,6 +66,7 @@ const Redeem = ({ app, user }: { app: any; user: any }) => {
 					console.log(ref);
 				}
 			};
+			updateReferral();
 			if (updateError) {
 				toast.error('Error accepting invite');
 			}
