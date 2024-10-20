@@ -52,18 +52,17 @@ const Invites = () => {
 			return;
 		}
 
-		if (data[0].invited_who && data[0].invited_who.length === 0) {
-			setUsers(null);
-			return;
-		}
-
 		setLink(data[0].code);
 		const u = [];
-		for (const guy of data[0].invited_who) {
-			const user = await fetchUser(guy);
-			u.push(user);
+		if (data[0].invited_who && data[0].invited_who.length > 0) {
+			for (const guy of data[0].invited_who) {
+				const user = await fetchUser(guy);
+				u.push(user);
+			}
+			setUsers(u.length === 0 ? null : u);
+		} else {
+			setUsers(null);
 		}
-		setUsers(u.length === 0 ? null : u);
 		setInviteExists(true);
 	};
 
