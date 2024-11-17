@@ -127,11 +127,12 @@ const SignUpWaitlist = () => {
 				Hack49 is a yearly international hackathon dedicated to fostering the creation of groundbreaking solutions to address the world's most
 				complex issues.
 			</p>
-			{timeLeft && <div className="text-white text-2xl -10">Hack49 2024 starts soon!</div>}
-			<Link className="hover:-translate-y-1 transition-transform" href="/apply">
-				{/*<Button size="lg" color="primary">*/}
-				{/*	Apply Now*/}
-				{/*</Button>*/}
+			{timeLeft && (
+				<div className="text-white text-2xl -10">
+					Hack49 2024 has ended. See you at <b>Hack49 2025</b>!
+				</div>
+			)}
+			{/* <Link className="hover:-translate-y-1 transition-transform" href="/apply">
 				<motion.button
 					className="p-[3px] relative mt-3"
 					whileHover={{ scale: 1.05 }}
@@ -145,7 +146,7 @@ const SignUpWaitlist = () => {
 						Apply Now <IoChevronForward />
 					</div>
 				</motion.button>
-			</Link>
+			</Link> */}
 
 			<div className="my-4">
 				<Socials />

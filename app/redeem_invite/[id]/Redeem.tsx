@@ -2,7 +2,6 @@
 import { createClient } from '@/utils/supabase/client';
 import { Button } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
-import { Router } from 'next/router';
 import React from 'react';
 import { toast } from 'sonner';
 
